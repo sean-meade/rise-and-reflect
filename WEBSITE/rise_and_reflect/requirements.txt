@@ -14,7 +14,7 @@ contourpy==1.0.6
 cssselect==1.2.0
 cycler==0.11.0
 dj-database-url==2.0.0
-Django==4.2.2
+Django==3.2.20
 fake-useragent==1.1.1
 Flask==2.2.2
 flask-restx==1.1.0
