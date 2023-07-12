@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu101.gitpod.io']
+ALLOWED_HOSTS = ['8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu101.gitpod.io', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -93,7 +93,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #Authentication for when users enter their email 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email' 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
