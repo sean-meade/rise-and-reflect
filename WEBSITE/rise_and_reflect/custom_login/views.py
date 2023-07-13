@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from .forms import *
 
+def index(request):
+    return render(request, 'home/index.html')
+
 def register(request):
     if request.method == 'POST':
         form = MyCustomSignupForm(request.POST)
@@ -10,3 +13,4 @@ def register(request):
     else:
         form = MyCustomSignupForm()
     return render(request, 'allauth/account/signup.html', {'form': form})
+
