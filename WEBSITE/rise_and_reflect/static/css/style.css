@@ -3,14 +3,13 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow:hidden;
 }
 
 .container-fluid {
     margin-top: -50px; 
 }
 
-.container {
+.hompage-container {
     height: 100vh;
     display: flex;
     align-items: center;

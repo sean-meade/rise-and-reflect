@@ -1,16 +1,9 @@
 from django.shortcuts import redirect, render
+from django.views import View
 from .forms import *
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import UserProfile
 
 def index(request):
     return render(request, 'home/index.html')
-
-def register(request):
-    if request.method == 'POST':
-        form = MyCustomSignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
-    else:
-        form = MyCustomSignupForm()
-    return render(request, 'allauth/account/signup.html', {'form': form})
 
