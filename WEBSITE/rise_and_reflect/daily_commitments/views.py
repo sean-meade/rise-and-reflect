@@ -8,6 +8,8 @@ def submit_commitments(request):
     if request.POST:
         form = CommitmentsForm(request.POST)
         if form.is_valid():
-            form.save()
+            commitments = form.save(commit=False)
+            commitments.user = request.user
+            commitments.save()
         return render(request, 'home/index.html')
     return render(request, 'daily-commit/daily-commit2.html', {'form': CommitmentsForm})

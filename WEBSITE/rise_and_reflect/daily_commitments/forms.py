@@ -11,6 +11,7 @@ class CommitmentsForm(forms.ModelForm):
 
     class Meta:
         model = UserTimeCommitments
+        exclude = ('user',)
         fields = ['hours_of_sleep', 'work_time_from', 'work_time_to', 'commute_time', 'wake_time']
 
         widgets = {
