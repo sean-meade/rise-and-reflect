@@ -107,6 +107,8 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
+ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
+
 
 WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'
 
