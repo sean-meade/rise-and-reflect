@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import CommitmentsForm
 from .models import HEALTH_AREAS, UserHealthArea
 
@@ -12,16 +12,13 @@ def submit_commitments(request):
             commitments = form.save(commit=False)
             commitments.user = request.user
             commitments.save()
-        return render(request, 'home/index.html')
+        return redirect(health_goals)
     return render(request, 'daily-commit/daily-commit.html', {'form': CommitmentsForm})
 
 def health_goals(request):
-    print(request)
     
     if request.POST:
         form = request.POST
-        print(form)
-        print(request.POST)
         health_area = UserHealthArea(user=request.user, health_area=request.POST['area'])
         health_area.save()
         return render(request, 'home/index.html')
