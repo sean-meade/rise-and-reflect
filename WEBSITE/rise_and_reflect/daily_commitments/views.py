@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def daily_commit(request):
+    return render(request, 'daily-commit/daily-commit.html')
