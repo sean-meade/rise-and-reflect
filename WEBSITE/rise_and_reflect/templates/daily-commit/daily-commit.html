@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group row">
+                <label for="hours-sleep" class="col-4 col-form-label">Hours of sleep</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-cloud"></i>
+                            </div>
+                        </div>
+                        <input id="hours-sleep" name="hours-sleep" placeholder="Please, insert a whole number"
+                            type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4">Work Commitment</label>
+                <div class="col-8">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input name="work" id="toggleForm" type="checkbox" class="custom-control-input" value="rabbit">
+                        <label for="toggleForm" class="custom-control-label">Work</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="get-ready" class="col-4 col-form-label">Get ready by</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                        </div>
+                        <input id="get-ready" name="get-ready" placeholder="HH:MM" type="text" class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">AM/PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="commute-time" class="col-4 col-form-label">Commute Time</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-car"></i>
+                            </div>
+                        </div>
+                        <input id="commute-time" name="commute-time" placeholder="hours of commuting" type="text"
+                            class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="work-time-from" class="col-4 col-form-label">Working hours from</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-briefcase"></i>
+                            </div>
+                        </div>
+                        <input id="work-time-from" name="work-time-from" placeholder="HH:MM" type="text"
+                            class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">AM/PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="work-time-end" class="col-4 col-form-label">to</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-hand-stop-o"></i>
+                            </div>
+                        </div>
+                        <input id="work-time-end" name="work-time-end" placeholder="HH:MM" type="text"
+                            class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">AM/PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="wake-up" class="col-4 col-form-label">I would like to wake up at</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-exclamation-circle"></i>
+                            </div>
+                        </div>
+                        <div id="wakeUpTimeGroup">
+                            <div class="form-group">
+                                <label class="mr-2" for="wakeUpTime">Wake up at</label>
+                                <input type="text" class="form-control" id="wakeUpTime" placeholder="HH:MM am/pm">
+                            </div>
+                        </div>
+                        <input id="wake-up" name="wake-up" placeholder="HH:MM" type="text" class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./assets/script.js" charset="utf-8"></script>
+</body>
+
+{% endblock %}

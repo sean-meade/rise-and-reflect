@@ -1,3 +1,11 @@
+:root {
+  --light-purple: #b3a3c3;
+  --dark-purple: #7e679b;
+  --light-blue: #99b4df;
+  --teal: #66afa5;
+  --light-teal: #bedfdb;
+}
+
 html,
 body {
   height: 100%;
