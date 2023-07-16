@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block extra_meta %}
+
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'daily-commit-submit' %}" enctype = "multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button>Submit</button>
+</form>
+
+{% endblock %}

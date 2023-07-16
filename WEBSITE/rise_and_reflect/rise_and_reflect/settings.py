@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     # created apps
     'custom_login',
     'daily_commitments',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
