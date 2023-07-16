@@ -1,119 +1,61 @@
 {% extends "base.html" %} 
 {% load static %}
 
-{% block extra_meta %}
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta charset="utf-8" />
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-/>
-<meta
-    name="description"
-    content="An online shop for baked goods. A cafe located in Clare with a lovely view."
-/>
-<meta
-    name="keywords"
-    content="cafe, Clare, coffee, treats, tea, lunch, afternoon tea, order a cake"
-/>
-{% endblock %}
-<!-- different bootstrap links - jQuery -->
-{% block extra_css %}
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-    crossorigin="anonymous"
-/>
-
-{% endblock %} 
-
 {% block extra_js %}
 <script src="{% static 'js/script.js' %}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
     <h1 class="text-center">Daily Commitments Setup</h1>
-    <form class="">
-        <div class="form-group form-inline" id="hoursOfSleepGroup">
-            <label class="mr-2" for="hoursOfSleep">Hours of sleep</label>
+<form method="POST" action="{% url 'daily-commit-submit' %}" enctype = "multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group form-inline" id="hoursOfSleepGroup">
+        <label class="mr-2" for="id_hours_of_sleep">Hours of sleep</label>
+        {{form.hours_of_sleep}}
+    </div>
+
+
+    <div class="form-group row">
+        <div class="form-check">
             <input
-                type="text"
-                class="form-control"
-                id="hoursOfSleep"
-                placeholder="hours:minutes"
+                class="form-check-input"
+                type="checkbox"
+                id="toggleForm"
             />
+            <label class="form-check-label" for="toggleForm">
+                Show Work Form
+            </label>
         </div>
-        <div class="form-group row">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="toggleForm"
-                />
-                <label class="form-check-label" for="toggleForm">
-                    Show Work Form
-                </label>
-            </div>
+    </div>
+    <div class="form-group form-inline" id="wakeUpTimeGroup">
+        <label class="mr-2" for="id_wake_time">Wake up at</label>
+        {{form.wake_time}}
+    </div>
+    <div id="workForm" style="display: none" class="">
+        <div class="form-group form-inline">
+            <label class="mr-2" for="id_get_ready_time"
+                >Time to get ready for work</label
+            >
+            {{form.get_ready_time}}
         </div>
-        <div class="form-group form-inline" id="wakeUpTimeGroup">
-            <label class="mr-2" for="wakeUpTime">Wake up at</label>
-            <input
-                type="text"
-                class="form-control"
-                id="wakeUpTime"
-                placeholder="HH:MM am/pm"
-            />
+        <div class="form-group form-inline">
+            <label class="mr-2" for="id_commute_time">Commute time</label>
+            {{form.commute_time}}
         </div>
-        <div id="workForm" style="display: none" class="">
+        <div class="form-group form-inline">
+            <label class="mr-2">Work hours</label>
             <div class="form-group form-inline">
-                <label class="mr-2" for="startTime"
-                    >Get ready for work by</label
-                >
-                <input
-                    type="text"
-                    class="form-control"
-                    id="startTime"
-                    placeholder="HH:MM am/pm"
-                />
-            </div>
-            <div class="form-group form-inline">
-                <label class="mr-2" for="commuteTime">Commute time</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="commuteTime"
-                    placeholder="HH:MM"
-                />
-            </div>
-            <div class="form-group form-inline">
-                <label class="mr-2">Work hours</label>
-                <div class="form-group form-inline">
-                    <div class="input-group-text mb-2 mr-sm-2">From:</div>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="workHoursFrom"
-                        placeholder="HH:MM am/pm"
-                    />
-                    <div class="input-group-text mb-2 mr-sm-2">To:</div>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="workHoursTo"
-                        placeholder="HH:MM am/pm"
-                    />
-                </div>
+                <div class="input-group-text mb-2 mr-sm-2">From:</div>
+                {{form.work_time_from}}
+                <div class="input-group-text mb-2 mr-sm-2">To:</div>
+                {{form.work_time_to}}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
 </div>
+
 {% endblock %}

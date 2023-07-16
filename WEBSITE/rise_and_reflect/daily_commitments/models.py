@@ -10,6 +10,7 @@ class UserTimeCommitments(models.Model):
     work_time_from = models.TimeField(blank=True, null=True)
     work_time_to = models.TimeField(blank=True, null=True)
     commute_time = models.IntegerField(blank=True, null=True)
+    get_ready_time = models.IntegerField(blank=True, null=True, default=0)
     wake_time = models.TimeField(blank=True, null=True)
     
     
