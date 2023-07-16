@@ -1,106 +1,34 @@
 {% extends "base.html" %}
+
 {% load i18n %}
-{% block head_title %} 
-    {% trans "Signup" %}
-{% endblock %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">{% trans "Welcome" %}</h1>
-    
-        <form
-            class="signup"
-            id="signup_form"
-            method="post"
-            action="{% url 'account_signup' %}"
-        >
-            {% csrf_token %}
-            <div class="form-group">
-                <input
-                    type="text"
-                    name="name"
-                    class="form-control"
-                    placeholder="Name"
-                    maxlength="30"
-                    required=""
-                    id="id_name"
-                />
-            </div>
-            <div class="form-group">
-                <input
-                    type="text"
-                    name="username"
-                    class="form-control"
-                    placeholder="Username"
-                    autocomplete="username"
-                    minlength="4"
-                    maxlength="150"
-                    required=""
-                    id="id_username"
-                />
-            </div>
-            <div class="form-group">
-                <input
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    placeholder="E-mail"
-                    autocomplete="email"
-                    maxlength="320"
-                    required=""
-                    id="id_email"
-                    aria-describedby="emailHelp"
-                />
-            </div>
-    
-            <div class="form-group">
-                <input 
-                    type="text"
-                    name="phone"
-                    class="form-control"
-                    maxlength="30"
-                    placeholder="Phone number (optional)"
-                    required="" id="id_phone">
-            </div>
-    
-            <div class="form-group">
-                <input
-                    type="password"
-                    name="password1"
-                    class="form-control"
-                    placeholder="Password"
-                    autocomplete="new-password"
-                    required=""
-                    id="id_password1"
-                />
-            </div>
-            <div class="form-group">
-                <input
-                    type="password"
-                    name="password2"
-                    class="form-control"
-                    placeholder="Confirm password"
-                    autocomplete="new-password"
-                    required=""
-                    id="id_password2"
-                />
-            </div>
-    
-            <div class="row justify-content-center">
-                <button type="submit" class="btn">{% trans "Sign Up" %}</button>
-            </div>
-        </form>
-        <div class="row justify-content-center pt-3">
-            <button type="" class="btn">Sign up with Google</button>
-        </div>
-        <div class="row justify-content-center pt-3">
-            <button type="" class="btn">Sign up with Facebook</button>
-        </div>
-    
-        <p class="text-center pt-3">
-            {% blocktrans %}<a href="{{ login_url }}">Already signed up</a>.{% endblocktrans %}
-        </p>
-    </div>
-    
-    {% endblock %}
-    
+<div class="container">
+    <h1 class="text-center">{% trans "Welcome" %}</h1>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="row justify-content-center">
+    <button type="submit" class="btn">{% trans "Sign Up" %}</button>
+</div>
+</form>
+<div class="row justify-content-center pt-3">
+<button type="" class="btn">Sign up with Google</button>
+</div>
+<div class="row justify-content-center pt-3">
+<button type="" class="btn">Sign up with Facebook</button>
+</div>
+
+<p class="text-center pt-3">
+{% blocktrans %}<a href="{{ login_url }}">Already signed up</a>.{% endblocktrans %}
+</p>
+</div>
+
+{% endblock %}
