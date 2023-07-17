@@ -50,7 +50,10 @@ INSTALLED_APPS = [
 
     # created apps
     'custom_login',
+    'daily_commitments',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -98,13 +101,16 @@ ACCOUNT_FORMS = {
     'signup': 'custom_login.forms.CustomSignupForm',
 }
 
-#Authentication for when users enter their email 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' 
+# Authentication for when users enter their email 
+# TODO: Add email here 
+ACCOUNT_AUTHENTICATION_METHOD = 'username' 
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
 
 
 WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'
