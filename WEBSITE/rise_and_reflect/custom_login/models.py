@@ -8,5 +8,7 @@ class UserProfile(models.Model):
                                 related_name='profile', on_delete=models.CASCADE)
     name = models.CharField(max_length=30, blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
+    logged_in = models.BooleanField(default=False)
+
     
     
