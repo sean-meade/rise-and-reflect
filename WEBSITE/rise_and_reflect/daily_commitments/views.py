@@ -15,7 +15,6 @@ def submit_commitments(request):
 def health_goals(request):
     
     if request.POST:
-        form = request.POST
         health_area = UserHealthArea(user=request.user, health_area=request.POST['area'])
         health_area.save()
         return render(request, 'home/index.html')
