@@ -2,9 +2,6 @@ from django.shortcuts import redirect, render
 from .forms import CommitmentsForm
 from .models import HEALTH_AREAS, UserHealthArea
 
-def daily_commit(request):
-    return render(request, 'daily-commit/daily-commit.html', {'form': CommitmentsForm})
-
 def submit_commitments(request):
     if request.POST:
         form = CommitmentsForm(request.POST)
