@@ -101,7 +101,8 @@ ACCOUNT_FORMS = {
     'signup': 'custom_login.forms.CustomSignupForm',
 }
 
-#Authentication for when users enter their email 
+# Authentication for when users enter their email 
+# TODO: Add email here 
 ACCOUNT_AUTHENTICATION_METHOD = 'username' 
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'

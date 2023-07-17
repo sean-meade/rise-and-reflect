@@ -21,9 +21,3 @@ class CommitmentsForm(forms.ModelForm):
             'work_time_to' : TimePickerInput(),
             'wake_time' : TimePickerInput(),
         }
-
-    # def __init__(self, *args, **kwargs):
-    #     super(CommitmentsForm, self).__init__(*args, **kwargs)
-    #     for field_name, field in self.fields.items():
-    #         field.widget.attrs['class'] = 'form-control'
-    #         field.label = ""
