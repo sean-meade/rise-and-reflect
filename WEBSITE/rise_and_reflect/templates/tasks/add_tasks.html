@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+<form action="{% url 'health-goals' %}" method="POST">
+    {% csrf_token %}
+    {{area.0.task}}
+    {% comment %} {% for area in areas %}
+        <button type ='submit' value="{{ area.0 }}" name="area" class='btn btn-outline-info' > 
+{{area.0}} </button>
+    {% endfor %} {% endcomment %}
+</form> 
+
+{% endblock %}

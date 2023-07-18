@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .forms import CommitmentsForm
 from .models import HEALTH_AREAS, UserHealthArea
+from tasks.models import Tasks, UserRoutine
 
 def submit_commitments(request):
     if request.POST:
@@ -15,8 +16,12 @@ def submit_commitments(request):
 def health_goals(request):
     
     if request.POST:
-        health_area = UserHealthArea(user=request.user, health_area=request.POST['area'])
+        area = request.POST['area']
+        health_area = UserHealthArea(user=request.user, health_area=area)
         health_area.save()
-        return render(request, 'home/index.html')
+        print(area)
+        area_tasks = Tasks.objects.all().filter(health_area=area)
+        
+        return render(request, 'tasks/add_tasks.html', {'area': area_tasks})
 
     return render(request, 'daily-commit/health-goal.html', {'areas': HEALTH_AREAS})

@@ -4,11 +4,19 @@ from daily_commitments.models import UserHealthArea
 
 User = settings.AUTH_USER_MODEL
 
+TASK_TYPE = [
+    ("Evening", "Evening"),
+    ("Morning", "Morning"),
+
+]
+
 class Tasks(models.Model):
     user = models.ForeignKey(User, verbose_name='user', related_name='user_to_task', 
                              on_delete=models.CASCADE)
-    health_area = models.ForeignKey(UserHealthArea, verbose_name='user',
+    health_area = models.ForeignKey(UserHealthArea, verbose_name='user', to_field='health_area',
                                 related_name='task_health_area', on_delete=models.CASCADE)
+    task = models.CharField(max_length=50)
+    task_type = models.CharField(max_length=9, choices=TASK_TYPE)
 
 class UserRoutine(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user',

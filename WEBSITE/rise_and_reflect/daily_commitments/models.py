@@ -23,4 +23,4 @@ class UserTimeCommitments(models.Model):
 class UserHealthArea(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user',
                                 related_name='health_area', on_delete=models.CASCADE)
-    health_area = models.CharField(max_length=9, choices=HEALTH_AREAS)
+    health_area = models.CharField(max_length=9, choices=HEALTH_AREAS, unique=True)
