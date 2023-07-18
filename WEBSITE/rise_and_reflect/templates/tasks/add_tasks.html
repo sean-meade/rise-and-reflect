@@ -1,15 +1,59 @@
-{% extends "base.html" %} 
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
-{% block content %}
+<form action="{% url 'create_routine' %}" method="POST">
+    {% csrf_token %} {% for task in tasks %}
+    <label for="{{task.id}}">{{task.task}}</label>
+    <input type="checkbox" id="{{task.id}}" name="{{task.id}}" />
+    <input
+        type="number"
+        id="{{task.id}}"
+        name="{{task.id}}_time"
+        placeholder="Duration"
+    />
+    <br />
+    {% endfor %}
 
-<form action="{% url 'health-goals' %}" method="POST">
-    {% csrf_token %}
-    {{area.0.task}}
-    {% comment %} {% for area in areas %}
-        <button type ='submit' value="{{ area.0 }}" name="area" class='btn btn-outline-info' > 
-{{area.0}} </button>
-    {% endfor %} {% endcomment %}
-</form> 
+    {% comment %} TODO: Make it so a user can't just enter a number for a task (for view logic) {% endcomment %}
+    <label for="custom1">Custom Task 1</label>
+    <input
+        type="text"
+        id="custom1"
+        name="custom1"
+        placeholder="Task Name"
+    /><input
+        type="number"
+        id="custom1"
+        name="custom1_time"
+        placeholder="Duration"
+    /><br />
+
+    <label for="custom2">Custom Task 2</label>
+    <input
+        type="text"
+        id="custom2"
+        name="custom2"
+        placeholder="Task Name"
+    /><input
+        type="number"
+        id="custom2"
+        name="custom2_time"
+        placeholder="Duration"
+    /><br />
+
+    <label for="custom3">Custom Task 3</label>
+    <input
+        type="text"
+        id="custom13"
+        name="custom3"
+        placeholder="Task Name"
+    /><input
+        type="number"
+        id="custom3"
+        name="custom3_time"
+        placeholder="Duration"
+    /><br />
+
+    <button type="submit">Submit</button>
+</form>
 
 {% endblock %}

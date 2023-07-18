@@ -17,11 +17,11 @@ def health_goals(request):
     
     if request.POST:
         area = request.POST['area']
+        # TODO: check if user has an area already and then overwrite if they do
         health_area = UserHealthArea(user=request.user, health_area=area)
         health_area.save()
-        print(area)
         area_tasks = Tasks.objects.all().filter(health_area=area)
         
-        return render(request, 'tasks/add_tasks.html', {'area': area_tasks})
+        return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks})
 
     return render(request, 'daily-commit/health-goal.html', {'areas': HEALTH_AREAS})
