@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Daily Commitments Setup</h1>
+<form method="POST" action="{% url 'daily-commit-submit' %}" enctype = "multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group form-inline" id="hoursOfSleepGroup">
+        <label class="mr-2" for="id_hours_of_sleep">Hours of sleep</label>
+        {{form.hours_of_sleep}}
+    </div>
+
+
+    <div class="form-group row">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="toggleForm"
+            />
+            <label class="form-check-label" for="toggleForm">
+                Show Work Form
+            </label>
+        </div>
+    </div>
+    <div class="form-group form-inline" id="wakeUpTimeGroup">
+        <label class="mr-2" for="id_wake_time">Wake up at</label>
+        {{form.wake_time}}
+    </div>
+    <div id="workForm" style="display: none" class="">
+        <div class="form-group form-inline">
+            <label class="mr-2" for="id_get_ready_time"
+                >Time to get ready for work</label
+            >
+            {{form.get_ready_time}}
+        </div>
+        <div class="form-group form-inline">
+            <label class="mr-2" for="id_commute_time">Commute time</label>
+            {{form.commute_time}}
+        </div>
+        <div class="form-group form-inline">
+            <label class="mr-2">Work hours</label>
+            <div class="form-group form-inline">
+                <div class="input-group-text mb-2 mr-sm-2">From:</div>
+                {{form.work_time_from}}
+                <div class="input-group-text mb-2 mr-sm-2">To:</div>
+                {{form.work_time_to}}
+            </div>
+        </div>
+    </div>
+{% comment %} TODO: Handle values javascript {% endcomment %}
+    <button class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h2>Profile</h2>
+        </div>
+    </div>
+
+    <div class="profile-box mt-4">
+        
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-3 text-center">
+                <img src="static/img/default.png" alt="Profile Image" class="img-fluid profile-image">
+            </div>
+
+            <div class="col-md-3 offset-md-1 text-center text-md-right">
+                <div class="d-flex flex-column justify-content-center h-100">
+                    <h4>Name of the User</h4>
+                    <p>Username: @username_here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-6 text-center">
+            <h4>Email Information</h4>
+            <p>Email: user@example.com</p>
+            <button type="button" class="btn btn-primary">Request Password Reset</button>
+        </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-12 text-center">
+            <button type="button" class="btn btn-primary btn-lg">Next</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

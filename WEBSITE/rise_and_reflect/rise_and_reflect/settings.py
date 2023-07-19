@@ -47,7 +47,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # created apps
+    'custom_login',
+    'daily_commitments',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,14 +96,22 @@ SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#Authentication for when users enter their email 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' 
-ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_FORMS = {
+    'signup': 'custom_login.forms.CustomSignupForm',
+}
+
+# Authentication for when users enter their email 
+# TODO: Add email here 
+ACCOUNT_AUTHENTICATION_METHOD = 'username' 
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
+
 
 WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'
 
@@ -158,6 +172,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
