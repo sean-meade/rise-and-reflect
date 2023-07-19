@@ -16,14 +16,12 @@ $(document).ready(function () {
       $("#wakeUpTimeGroup").slideUp();
       $("#workForm").slideDown();
       for (let formElement of workFormArray) {
-        console.log(formElement);
         if (!$(formElement).is(":required")) {
           $(formElement).attr("required", "required");
         }
       }
     } else {
       for (let formElement of workFormArray) {
-        console.log(formElement);
         if ($(formElement).is(":required")) {
           $(formElement).removeAttr("required");
         }
