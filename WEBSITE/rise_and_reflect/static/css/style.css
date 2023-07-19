@@ -60,3 +60,82 @@ body {
     height: 200px;
   }
 }
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.main-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  position: relative;
+}
+.date-box {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.arrow-left {
+  left: 10px;
+}
+.arrow-right {
+  right: 10px;
+}
+.arrow:hover {
+  font-size: 28px;
+  transform: translateY(-50%) scale(1.1);
+  cursor: pointer;
+}
+.routine-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.routine-box:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.task-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.feedback-section {
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 20px; 
+}
+
+.feedback-question {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.star-rating {
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+}
+.star-rating:hover,
+.star-rating.checked {
+  color: gold;
+}
+.feedback-textbox {
+  width: 90%;
+  height: 100px;
+}
+.submit-button {
+  display: block;
+  margin: 20px auto;
+}

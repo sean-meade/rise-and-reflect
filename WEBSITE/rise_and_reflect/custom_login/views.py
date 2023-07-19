@@ -8,3 +8,7 @@ def index(request):
 def profile(request):
     return render(request, 'profile.html')
 
+
+def user_homepage(request):
+    return render(request, 'user-homepage.html')
+
