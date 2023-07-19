@@ -36,7 +36,7 @@ def create_routine(request):
             obj = UserHealthArea.objects.get(user=request.user)
             health_area = getattr(obj, 'health_area')
             # Create the task
-            # TODO: make the task_type dynamic
+            # TODO: make the task_type dynamic (I think this is also creating more then one task)
             this_task = Tasks(user=request.user, health_area=obj, task=task_name, task_type="Evening")
             this_task.save()
             # add the id and duration of this newly create task to the selected_tasks list
@@ -53,6 +53,8 @@ def create_routine(request):
 
         for i in range(y):
             selected_tasks.append([None, None])
+
+        # TODO: Assign values for task_id_ before assign in creation below
 
         routine = UserRoutine(user=request.user,
                               task_id_1=Tasks.objects.get(id=selected_tasks[0][0]),

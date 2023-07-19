@@ -34,14 +34,14 @@ class UserRoutine(models.Model):
                                 related_name='task4', on_delete=models.CASCADE)
     duration_4 = models.IntegerField(blank=True, null=True)
     task_id_5 = models.ForeignKey(Tasks, verbose_name='task5',
-                                related_name='task5', on_delete=models.CASCADE)
+                                related_name='task5', on_delete=models.CASCADE, blank=True, null=True)
     duration_5 = models.IntegerField(blank=True, null=True)
     task_id_6 = models.ForeignKey(Tasks, verbose_name='task6',
-                                related_name='task6', on_delete=models.CASCADE)
+                                related_name='task6', on_delete=models.CASCADE, blank=True, null=True)
     duration_6 = models.IntegerField(blank=True, null=True)
     task_id_7 = models.ForeignKey(Tasks, verbose_name='task7',
-                                related_name='task7', on_delete=models.CASCADE)
+                                related_name='task7', on_delete=models.CASCADE, blank=True, null=True)
     duration_7 = models.IntegerField(blank=True, null=True)
     task_id_8 = models.ForeignKey(Tasks, verbose_name='task8',
-                                related_name='task8', on_delete=models.CASCADE)
+                                related_name='task8', on_delete=models.CASCADE, blank=True, null=True)
     duration_8 = models.IntegerField(blank=True, null=True)
