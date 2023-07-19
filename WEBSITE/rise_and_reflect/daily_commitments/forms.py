@@ -4,11 +4,11 @@ from .widget import TimePickerInput
  
 class CommitmentsForm(forms.ModelForm):
     hours_of_sleep = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours of Sleep'}))
-    work_time_from = forms.TimeField(widget=TimePickerInput)
-    work_time_to = forms.TimeField(widget=TimePickerInput)
-    commute_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Commute'}))
-    wake_time = forms.TimeField(widget=TimePickerInput)
-    get_ready_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Get Ready for work'}))
+    work_time_from = forms.TimeField(widget=TimePickerInput,required=False)
+    work_time_to = forms.TimeField(widget=TimePickerInput,required=False)
+    commute_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Commute'}),required=False)
+    wake_time = forms.TimeField(widget=TimePickerInput, required=False)
+    get_ready_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Get Ready for work'}),required=False)
 
     class Meta:
         model = UserTimeCommitments
