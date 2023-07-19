@@ -21,6 +21,5 @@ class UserTimeCommitments(models.Model):
     wake_time = models.TimeField(blank=True, null=True)
     
 class UserHealthArea(models.Model):
-    user = models.OneToOneField(User, primary_key=True, verbose_name='user',
-                                related_name='health_area', on_delete=models.CASCADE)
-    health_area = models.CharField(max_length=9, choices=HEALTH_AREAS, unique=True)
+    
+    health_area = models.CharField(max_length=9, choices=HEALTH_AREAS, unique=True, primary_key=True, default='None')
