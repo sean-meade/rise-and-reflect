@@ -56,4 +56,5 @@ def create_routine(request):
                 user=request.user)
             personal_task.save()
 
-        return redirect(health_goals)
+        # TODO: Redirect to page that displays a users tasks
+        return render(request, 'tasks/view_tasks.html', {'tasks': selected_tasks})

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+{% for task in tasks %}
+{{task}}
+    {% comment %} <label for="{{task.id}}">{{task.task}}</label>
+    <input type="checkbox" id="{{task.id}}" name="{{task.id}}" />
+    <input
+        type="number"
+        id="{{task.id}}"
+        name="{{task.id}}_time"
+        placeholder="Duration"
+    />
+    <br /> {% endcomment %}
+    {% endfor %}
+
+{% endblock %}
