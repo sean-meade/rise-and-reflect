@@ -36,3 +36,17 @@ body {
     text-align: center;
   }
 
+  .square-box {
+    padding-top: 100%; /* Set padding-top to a percentage value to maintain aspect ratio */
+    position: relative;
+    overflow: hidden;
+    }
+    
+    .square-box a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Set height to 100% to fill the square box */
+    width: 100%; /* Set width to 100% to fill the square box */
+    }
+
