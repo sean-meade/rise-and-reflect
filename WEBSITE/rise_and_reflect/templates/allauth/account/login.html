@@ -6,7 +6,7 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-
+{% comment %}
 <header>
   <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">Rise and Reflect</a>
@@ -102,7 +102,9 @@
   </div>
 </div>
 
-{% comment %} <h1>{% trans "Sign In" %}</h1>
+{% endcomment %}
+
+<h1>{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
 
@@ -136,6 +138,6 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form> {% endcomment %}
+</form> 
 
 {% endblock %}

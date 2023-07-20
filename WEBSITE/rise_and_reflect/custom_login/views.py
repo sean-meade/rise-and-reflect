@@ -10,6 +10,5 @@ def profile(request):
 
 
 def user_homepage(request):
-    print(request.user.username)
     return render(request, 'user-homepage.html')
 
