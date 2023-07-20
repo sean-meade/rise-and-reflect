@@ -1,6 +1,5 @@
 from . import views
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 urlpatterns = [
     path('daily-commit-submit/', views.submit_commitments, name='daily-commit-submit'),

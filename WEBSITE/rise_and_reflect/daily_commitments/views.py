@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .forms import CommitmentsForm
-from .models import HEALTH_AREAS, UserHealthArea
+from .models import HEALTH_AREAS
 from tasks.models import Tasks
 from custom_login.models import UserProfile
 

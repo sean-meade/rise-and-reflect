@@ -1,4 +1,3 @@
-import json
 from django.shortcuts import  render
 
 from custom_login.models import UserProfile
