@@ -14,14 +14,14 @@ TASK_TYPE = [
 # All tasks either suggested or custom
 class Tasks(models.Model):
     health_area = models.ForeignKey(UserHealthArea, verbose_name='health_area', to_field='health_area',
-                                related_name='task_health_area', on_delete=models.CASCADE)
+                                related_name='task_health_area', on_delete=models.PROTECT)
     task = models.CharField(max_length=50)
     task_type = models.CharField(max_length=9, choices=TASK_TYPE)
 
 # What tasks a user has selected or created and with what duration
 class PersonalTasks(models.Model):
     user = models.ForeignKey(User, verbose_name='user',
-                                related_name='user_routine', on_delete=models.CASCADE)
+                                related_name='user_routine', on_delete=models.PROTECT)
     task_id = models.ForeignKey(Tasks, verbose_name='task_id',
-                                related_name='task_id', on_delete=models.CASCADE)
+                                related_name='task_id', on_delete=models.PROTECT)
     duration = models.IntegerField(blank=True, null=True)
