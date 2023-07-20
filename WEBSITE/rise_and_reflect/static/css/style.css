@@ -36,6 +36,7 @@ body {
     text-align: center;
   }
 
+<<<<<<< HEAD
 .profile-image {
     width: 300px; /* Set the desired width */
     height: 300px; /* Set the desired height */
@@ -139,3 +140,19 @@ body {
   display: block;
   margin: 20px auto;
 }
+=======
+  .square-box {
+    padding-top: 100%; /* Set padding-top to a percentage value to maintain aspect ratio */
+    position: relative;
+    overflow: hidden;
+    }
+    
+    .square-box a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Set height to 100% to fill the square box */
+    width: 100%; /* Set width to 100% to fill the square box */
+    }
+
+>>>>>>> 18cee19a05c8c7f1fc883881d48f62023f5619a1
