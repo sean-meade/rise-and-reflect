@@ -1,16 +1,21 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
+<h2>Routine for {{user.username}}</h2>
+<br>
+<table>
+    <tr>
+      <th>Task Name</th>
+      <th>Evening/Morning</th>
+      <th>Duration</th>
+    </tr>
 {% for task in tasks %}
-{{task}}
-    {% comment %} <label for="{{task.id}}">{{task.task}}</label>
-    <input type="checkbox" id="{{task.id}}" name="{{task.id}}" />
-    <input
-        type="number"
-        id="{{task.id}}"
-        name="{{task.id}}_time"
-        placeholder="Duration"
-    />
-    <br /> {% endcomment %}
+    <tr>
+      <td>{{task.3}}</td>
+      <td>{{task.2}}</td>
+      <td>{{task.0}}</td>
+    </tr>
+
     {% endfor %}
+</table>
 
 {% endblock %}
