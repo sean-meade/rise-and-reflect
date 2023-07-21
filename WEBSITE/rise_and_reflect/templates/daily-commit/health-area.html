@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form action="{% url 'health-goals' %}" method="POST">
+<form action="{% url 'health-areas' %}" method="POST">
     {% csrf_token %}
     {% for area in areas %}
         <button type ='submit' value="{{ area.0 }}" name="area" class='btn btn-outline-info' > 

@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     # created apps
     'custom_login',
     'daily_commitments',
-
+    'tasks',
 ]
 
 

@@ -50,3 +50,7 @@ body {
     width: 100%; /* Set width to 100% to fill the square box */
     }
 
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
