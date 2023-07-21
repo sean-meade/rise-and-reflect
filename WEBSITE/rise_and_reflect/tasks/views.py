@@ -35,7 +35,7 @@ def create_routine(request):
             user_profile_obj = UserProfile.objects.get(user=request.user)
             
             # Create the task
-            this_task = Tasks(health_area=user_profile_obj.health_area, task=task_name, task_type="Evening")
+            this_task = Tasks(health_area=user_profile_obj.health_area, task=task_name, task_type="Evening", custom=True)
             this_task.save()
            
         # get duration and task_id of the users tasks
@@ -50,6 +50,7 @@ def create_routine(request):
             # Then add type and task to list
             all_user_tasks_list[task].append(filtered_task.task_type)
             all_user_tasks_list[task].append(filtered_task.task)
+            all_user_tasks_list[task].append(filtered_task.custom)
 
         # return all the users tasks
         return render(request, 'tasks/view_tasks.html', {'tasks': all_user_tasks_list})
@@ -63,5 +64,7 @@ def create_routine(request):
         filtered_task = Tasks.objects.get(id = all_user_tasks_list[task][1])
         all_user_tasks_list[task].append(filtered_task.task_type)
         all_user_tasks_list[task].append(filtered_task.task)
+        all_user_tasks_list[task].append(filtered_task.custom)
+
         
     return render(request, 'tasks/view_tasks.html', {'tasks': all_user_tasks_list, })

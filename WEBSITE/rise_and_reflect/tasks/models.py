@@ -8,7 +8,6 @@ User = settings.AUTH_USER_MODEL
 TASK_TYPE = [
     ("Evening", "Evening"),
     ("Morning", "Morning"),
-    ("Custom", "Custom"),
 ]
 
 # All tasks either suggested or custom
@@ -17,6 +16,7 @@ class Tasks(models.Model):
                                 related_name='task_health_area', on_delete=models.PROTECT)
     task = models.CharField(max_length=50)
     task_type = models.CharField(max_length=9, choices=TASK_TYPE)
+    custom = models.BooleanField(default=False)
 
 # What tasks a user has selected or created and with what duration
 class PersonalTasks(models.Model):
