@@ -22,4 +22,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('daily_commitments.urls')),
     path('tasks/', include('tasks.urls')),
+    path('routine/', include('track_routine.urls')),
 ] 

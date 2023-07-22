@@ -27,13 +27,11 @@ def create_routine(request):
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key],tasks[key + "_time"] ])
 
+        # Get the health area for the user
+        user_profile_obj = UserProfile.objects.get(user=request.user)
         # Add the custom tasks to the database based on the inputs from the user
         for task_name, duration in custom_tasks:
 
-            # Get the health area for the user
-            # TODO: might be worth adding 'Custom' to the list of areas
-            user_profile_obj = UserProfile.objects.get(user=request.user)
-            
             # Create the task
             this_task = Tasks(health_area=user_profile_obj.health_area, task=task_name, task_type="Evening", custom=True)
             this_task.save()

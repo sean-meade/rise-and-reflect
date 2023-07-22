@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'custom_login',
     'daily_commitments',
     'tasks',
+    'track_routine',
 ]
 
 
