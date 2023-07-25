@@ -22,9 +22,12 @@
 
     {% block corecss %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    
     {% endblock %}
 
     {% block extra_css %}
@@ -37,6 +40,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+
     {% endblock %}
 
     {% block extra_js %}
@@ -48,9 +52,16 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">Rise and Reflect</a>
-        </nav>
+        <nav class="navbar bg-navbar" id="navbar">
+            <a class="nav-logo" href="#">
+              Rise and Reflect
+            </a>
+            <div class="ml-auto">
+                <i class="fas fa-user"></i> 
+              <a href="#" class="login-link">Login</a>
+              <a href="#" class="signup-link">Sign Up</a>
+            </div>
+          </nav>
     </header>
 
     {% comment %} {% if messages %}
@@ -84,7 +95,7 @@
         </div>
 
     </footer>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
 
 </html>

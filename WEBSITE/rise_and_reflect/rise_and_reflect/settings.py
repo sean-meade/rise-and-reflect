@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu101.gitpod.io', '127.0.0.1']
+    '8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu102.gitpod.io', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:

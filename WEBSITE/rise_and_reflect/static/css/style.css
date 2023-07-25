@@ -13,6 +13,73 @@ body {
   padding: 0;
 }
 
+/* NAVBAR */
+
+.bg-navbar {
+  background-color: #7e679b;
+}
+
+
+.nav-logo {
+  color: white;
+  font-family: 'Handlee', cursive;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+  animation: slide-in-left 1s ease;
+  font-size: 25px;
+}
+
+.nav-logo:hover {
+  color: #bedfdb;
+  text-decoration: none;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.ml-auto i {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+  animation: slide-in-left 1s ease;
+  margin: 5px;
+ }
+
+.ml-auto a {
+  color: white;
+  font-family: 'Handlee', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+  animation: slide-in-left 1s ease;
+  margin: 5px;
+ }
+.ml-auto a:hover {
+  color: #bedfdb;
+  text-decoration: none;
+}
+
+/* FOOTER */
+
+.py-3 {
+  background-color: #7e679b;
+  color: white;
+  font-family: 'Handlee', cursive;
+}
+.py-3 a {
+  text-decoration: none;
+  color: #66afa5 ;
+}
+
+
 .container-fluid {
     margin-top: -50px; 
 }
