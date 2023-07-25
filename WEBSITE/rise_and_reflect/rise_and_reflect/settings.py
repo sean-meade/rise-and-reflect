@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu101.gitpod.io', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '8000-seanmeade-riseandreflec-2ebbuwx7alm.ws-eu101.gitpod.io', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -42,8 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'cloudinary',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -51,7 +54,7 @@ INSTALLED_APPS = [
     # created apps
     'custom_login',
     'daily_commitments',
-
+    'tasks',
 ]
 
 
@@ -71,12 +74,13 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                os.path.join(BASE_DIR, 'templates', 'allauth')],
+                 os.path.join(BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth, please do not remove from settings
+                # required by allauth, please do not remove from settings
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -101,9 +105,9 @@ ACCOUNT_FORMS = {
     'signup': 'custom_login.forms.CustomSignupForm',
 }
 
-# Authentication for when users enter their email 
-# TODO: Add email here 
-ACCOUNT_AUTHENTICATION_METHOD = 'username' 
+# Authentication for when users enter their email
+# TODO: Add email here
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
@@ -120,7 +124,7 @@ WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if os.environ.get('DEVELOPMENT') == 'True':
-        
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -130,9 +134,9 @@ if os.environ.get('DEVELOPMENT') == 'True':
 
 else:
 
-     DATABASES = {
-     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
- }
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation
@@ -172,8 +176,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Cloudinary storage settings
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+}
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

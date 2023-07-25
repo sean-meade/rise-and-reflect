@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<h2>Routine for {{user.username}}</h2>
+<br>
+<table>
+    <tr>
+      <th>Task Name</th>
+      <th>Evening/Morning</th>
+      <th>Duration</th>
+      <th>Custom</th>
+    </tr>
+{% for task in tasks %}
+    <tr>
+      <td>{{task.3}}</td>
+      <td>{{task.2}}</td>
+      <td>{{task.0}}</td>
+      <td>{{task.4}}</td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import UserTimeCommitments, UserHealthArea
 
-# Register your models here.
+admin.site.register(UserHealthArea)
+admin.site.register(UserTimeCommitments)
