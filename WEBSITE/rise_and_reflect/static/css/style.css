@@ -16,18 +16,18 @@ body {
 /* NAVBAR */
 
 .bg-navbar {
-  background-color: #7e679b;
+  background: linear-gradient(to bottom, #7e679b, transparent 70%);
 }
 
 
 .nav-logo {
   color: white;
-  font-family: 'Handlee', cursive;
+  font-family: 'Comfortaa', cursive;
   font-weight: bold;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  animation: slide-in-left 1s ease;
+  animation: slide-in-left 2s ease;
   font-size: 25px;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 .ml-auto i {
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   animation: slide-in-left 1s ease;
   margin: 5px;
@@ -56,8 +56,8 @@ body {
 
 .ml-auto a {
   color: white;
-  font-family: 'Handlee', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'Comfortaa', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   animation: slide-in-left 1s ease;
   margin: 5px;
@@ -70,11 +70,13 @@ body {
 /* FOOTER */
 
 .py-3 {
-  background-color: #7e679b;
   color: white;
-  font-family: 'Handlee', cursive;
+  font-family: 'Comfortaa', cursive;
+  background: linear-gradient(to top, #7e679b, transparent 70%);
+
 }
 .py-3 a {
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
   text-decoration: none;
   color: #66afa5 ;
 }
