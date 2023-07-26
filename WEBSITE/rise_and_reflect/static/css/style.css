@@ -15,6 +15,11 @@ body {
 
 /* NAVBAR */
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
 .bg-navbar {
   background: linear-gradient(to bottom, #7e679b, transparent 70%);
 }
@@ -27,7 +32,7 @@ body {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  animation: slide-in-left 2s ease;
+  animation: slide-in-bottom 2s ease;
   font-size: 25px;
 }
 
@@ -36,13 +41,13 @@ body {
   text-decoration: none;
 }
 
-@keyframes slide-in-left {
+@keyframes slide-in-bottom {
   0% {
-    transform: translateX(-100%);
+    transform: translateY(100%);
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -50,7 +55,6 @@ body {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  animation: slide-in-left 1s ease;
   margin: 5px;
  }
 
@@ -59,7 +63,6 @@ body {
   font-family: 'Comfortaa', cursive;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  animation: slide-in-left 1s ease;
   margin: 5px;
  }
 .ml-auto a:hover {
@@ -69,16 +72,30 @@ body {
 
 /* FOOTER */
 
+footer {
+  background: linear-gradient(to top, #7e679b, transparent 90%);
+  text-decoration: none;
+  
+
+}
 .py-3 {
   color: white;
   font-family: 'Comfortaa', cursive;
-  background: linear-gradient(to top, #7e679b, transparent 70%);
-
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .py-3 a {
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  color: #66afa5 ;
+  color: white ;
+}
+
+.socials {
+  margin: 0;
+  font-size: 25px;
+}
+footer a:hover {
+  text-decoration: none;
+  color: #66afa5;
 }
 
 

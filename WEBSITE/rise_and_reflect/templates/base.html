@@ -20,6 +20,13 @@
 
     {% endblock %}
 
+    {% block favicon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{%static 'favicon/site.webmanifest' %}">
+    {% endblock %}
+
     {% block corecss %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -53,7 +60,7 @@
 
     <header>
         <nav class="navbar bg-navbar" id="navbar">
-            <a class="nav-logo" href="#">
+            <a class="nav-logo " href="#">
               Rise and Reflect
             </a>
             <div class="ml-auto">
@@ -91,8 +98,11 @@
     <footer class="py-3">
 
         <div class="footer-copyright text-center py-2">© 2020 Copyright:
-            <a href="/"> Rise & Reflect</a>
+            <a href="https://github.com/sean-meade/rise-and-reflect" target="_blank">Rise & Reflect <i class="fab fa-github"></i></a>
         </div>
+    
+        </footer>
+        
 
     </footer>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
