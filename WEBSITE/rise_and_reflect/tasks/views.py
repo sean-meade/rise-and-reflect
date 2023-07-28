@@ -3,6 +3,14 @@ from django.shortcuts import  render
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks
 
+def set_evening_tasks(request):
+    return render(request, 'tasks/set_tasks_evening.html')
+
+
+def set_morning_tasks(request):
+    return render(request, 'tasks/set_tasks_morning.html')
+
+
 def create_routine(request):
     if request.POST:
         
