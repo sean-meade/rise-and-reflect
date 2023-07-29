@@ -2,12 +2,14 @@
 
 {% block content %}
 
-{{routine}}
+{{add_tasks}}
 
-{% comment %} <h2>Track task for {{user.username}}</h2>
+<h2>Track task for {{user.username}}</h2>
 <br>
 <h4>{{routine.0.day}}</h4>
-<table>
+
+
+<table id="sortable">
     <tr>
       <th>Task Name</th>
       <th>Evening/Morning</th>
@@ -15,7 +17,7 @@
       <th>Custom</th>
     </tr>
 {% for task in routine %}
-    <tr>
+    <tr data-pk="{{ task.id }}">
       <td>{{filtered_task.0.0}}</td>
       <td>{{task.completed}}</td>
       <td>{{task.2}}</td>
@@ -23,7 +25,7 @@
     </tr>
 
     {% endfor %}
-</table> {% endcomment %}
+</table>
 
 
 {% endblock %}

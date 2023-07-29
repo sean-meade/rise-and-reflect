@@ -1,18 +1,18 @@
-from datetime import date
 from django.conf import settings
 from django.db import models
-from daily_commitments.models import UserHealthArea
-from tasks.models import PersonalTasks
+from django.utils import timezone
 
 User = settings.AUTH_USER_MODEL
-    
 
-# All tasks either suggested or custom
+TASK_TYPE = [
+    ("Evening", "Evening"),
+    ("Morning", "Morning"),
+]
+
+# Table to link TrackedTasks and the day
 class RoutineTasks(models.Model):
     
-    personal_task_id = models.ForeignKey(PersonalTasks, verbose_name='personal_task_id', 
-                                         related_name='personal_task_id', on_delete=models.PROTECT)
-    completed = models.BooleanField(default=False)
     user = models.ForeignKey(User, verbose_name='user',
-                                related_name='user_routine_fid', on_delete=models.PROTECT)
-    day = models.DateField(verbose_name='routine_day', default=date.today())
+                                related_name='user_routine_fid', on_delete=models.CASCADE)
+    day = models.DateField(verbose_name='routine_day', default=timezone.now)
+    routine_type = models.CharField(max_length=9, choices=TASK_TYPE)
