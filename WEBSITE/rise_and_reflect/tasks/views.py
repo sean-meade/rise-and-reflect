@@ -2,11 +2,12 @@ from django.shortcuts import render
 from track_routine.models import RoutineTasks
 from datetime import date
 from custom_login.models import UserProfile
-from .models import Tasks, PersonalTasks
+from .models import Tasks, PersonalTasks, TrackedTasks
 
-
+# TODO: Get this to run automatically on creating tasks
 def create_routine(request):
     # TODO: pass trough what type of routine is being created
+    # TODO: Filter out suggested tasks and don't show custom ones
     routine_type = "Evening"
     if request.POST:
         # turn json into a python dict
@@ -38,7 +39,8 @@ def create_routine(request):
                     )
                     this_personal_task.save()
                     # TODO: add in TrackedTasks here
-
+                    this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                    this_trackable_task.save()
                 # If it is a custom one
                 except:
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
@@ -64,6 +66,9 @@ def create_routine(request):
                 duration=duration,
             )
             this_personal_task.save()
+            # TODO: add in TrackedTasks here
+            this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+            this_trackable_task.save()
 
         # get duration and task_id of the users tasks
         all_user_tasks_tuple = PersonalTasks.objects.filter(

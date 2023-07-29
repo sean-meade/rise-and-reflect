@@ -9,13 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # TODO:
-# Return tasks with name, duration, completed, type, custom
-# Add checkbox to tell if its completed or not
 # Separate evening from morning
 # create new view to handle changing days on page
 
-
 def track_routine(request):
+
     # get user
     user = request.user
     # Get user tasks
@@ -25,7 +23,22 @@ def track_routine(request):
     )
     # turn it to a list of lists
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
-    print("All tasks", all_user_tasks_list)
+
+    if request.POST:
+        # list of tasks that are ticked
+        tasks = [int(item) for item in list((request.POST).dict().values()) if item.isdigit()]
+        # List of all tasks of user
+        all_user_tasks_ids = [item[2] for item in all_user_tasks_list ]
+
+        # Run through all the users personal tasks
+        for count, task in enumerate(all_user_tasks_ids):
+            # check to see is that task is ticked
+            if task in tasks:
+                # set that task to true
+                TrackedTasks.objects.filter(personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task), user=user)).update(completed=True)
+            else:
+                # Set that task to false
+                TrackedTasks.objects.filter(personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=all_user_tasks_ids[count]), user=user)).update(completed=False)
 
     # for every task of the users
     for task in range(len(all_user_tasks_list)):
@@ -48,11 +61,8 @@ def track_routine(request):
 
         # If it is a custom one
         except:
-            print("Yes you are creating something!!!!!!!!!!!")
             routine_check = RoutineTasks(user=user, routine_type="Evening")
             routine_check.save()
-
-        # TODO: Return relevant info for tracking (I think this is basically view tasks + the day and completed)
 
         # get duration and task_id of the users tasks
         all_user_tasks_tuple = PersonalTasks.objects.filter(
@@ -73,8 +83,8 @@ def track_routine(request):
 
             filter_by_this_task = PersonalTasks.objects.get(task_id = filtered_task, user=request.user)
             print(filter_by_this_task)
-            tracked_task = TrackedTasks.objects.filter(
-            personal_task = filter_by_this_task, personal_routine=routine_check).values()
+            tracked_task = TrackedTasks.objects.get(
+            personal_task = filter_by_this_task, personal_routine=routine_check)
 
             print(tracked_task)
             
@@ -82,14 +92,14 @@ def track_routine(request):
 
         if routine_check:
             return render(
-                request, "routine/track_routine.html", {"routine": routine_check}
+                request, "routine/track_routine.html", {"routine": all_user_tasks_list}
             )
 
     return render(
         request, "routine/track_routine.html", {"add_tasks": "you need to create tasks and/or go to Create Routine."}
     )
 
-
+# TODO: Get drag and drop and position working
 class RoutineSortingView(View):
     # def post(self, request, pk, *args, **kwargs):
     #     for index, pk in enumerate(request.POST.getlist('book[]')):

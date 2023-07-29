@@ -1,29 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{{routine}}
-
-{% comment %} <h2>Track task for {{user.username}}</h2>
+<h2>Track task for {{user.username}}</h2>
 <br>
-<h4>{{routine.0.day}}</h4>
+<form action="{% url 'track_routine' %}" method="POST">
+  {% csrf_token %}
 <table>
     <tr>
       <th>Task Name</th>
       <th>Evening/Morning</th>
       <th>Duration</th>
-      <th>Custom</th>
+      <th>Completed</th>
     </tr>
 {% for task in routine %}
     <tr>
-      <td>{{filtered_task.0.0}}</td>
-      <td>{{task.completed}}</td>
+      <td>{{task.3}}</td>
       <td>{{task.2}}</td>
       <td>{{task.0}}</td>
+      {% if task.5 == False %}
+      <td><input type="checkbox" name="Task{{task.1}}" value="{{task.1}}"></td>
+      {% else %}
+      <td><input checked type="checkbox" name="Task{{task.1}}" value="{{task.1}}"></td>
+      {% endif %} 
     </tr>
 
     {% endfor %}
-</table> {% endcomment %}
+</table>
+
+      <button type="submit" class="btn btn-info">Submit</button>
+
+      </form>
 
 
 {% endblock %}
