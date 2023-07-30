@@ -1,3 +1,4 @@
+// This file doesn't do anything yet but it's my attempt at getting the drag and drop position working
 $(document).ready(function() {
     $("tbody").sortable({
      update: function(event, ui) {
