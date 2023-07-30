@@ -14,16 +14,24 @@ body {
 }
 
 /* NAVBAR */
-
 header {
   display: flex;
   justify-content: center;
 }
 
 .bg-navbar {
-  background-color:  #bedfdb;
+  background-color: #bedfdb;
 }
 
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.cloud-image {
+  height: 80px;
+  width: auto;
+}
 
 .nav-logo {
   color: white;
@@ -32,8 +40,26 @@ header {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  animation: slide-in-bottom 2s ease;
   font-size: 30px;
+  display: flex; /* This will align the image and text horizontally */
+  align-items: center; /* This will align the image and text vertically */
+}
+
+/* Add the slide-in animation keyframes */
+@keyframes slideInFromBottom {
+  from {
+      transform: translateY(50%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* Apply the slide-in animation to the text */
+.text {
+  animation: slideInFromBottom 2s ease forwards;
 }
 
 .nav-logo:hover {
@@ -41,22 +67,12 @@ header {
   text-decoration: none;
 }
 
-@keyframes slide-in-bottom {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 .ml-auto i {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   margin: 5px;
- }
+}
 
 .ml-auto a {
   color: white;
@@ -64,12 +80,12 @@ header {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   margin: 5px;
- }
+}
+
 .ml-auto a:hover {
   color: #bedfdb;
   text-decoration: none;
 }
-
 /* FOOTER */
 
 footer {
@@ -108,6 +124,7 @@ footer a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Comfortaa', cursive;
   }
   
   .video-container {
@@ -239,7 +256,7 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
-.hompage-container {
+.homepage-container {
 height: 100vh;
   display: flex;
   align-items: center;
