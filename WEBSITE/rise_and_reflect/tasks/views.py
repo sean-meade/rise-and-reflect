@@ -1,14 +1,11 @@
 from django.shortcuts import render
 from track_routine.models import RoutineTasks
-from datetime import date
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 
 def create_routine(request, routine_type):
 
-    # TODO: pass trough what type of routine is being created
     # TODO: Filter out suggested tasks and don't show custom ones
-    print(routine_type)
     if request.POST:
         # turn json into a python dict
         tasks = (request.POST).dict()
@@ -38,7 +35,6 @@ def create_routine(request, routine_type):
                         duration=tasks[key + "_time"],
                     )
                     this_personal_task.save()
-                    # TODO: add in TrackedTasks here
                     this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
                     this_trackable_task.save()
                 # If it is a custom one
@@ -46,6 +42,14 @@ def create_routine(request, routine_type):
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
+        
+        if routine_type == "Evening":
+            obj = UserProfile.objects.get(user=request.user)
+            print("obj", obj)
+            print(obj.health_area)
+            area = getattr(obj, "health_area_id")
+            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
+            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
@@ -66,7 +70,6 @@ def create_routine(request, routine_type):
                 duration=duration,
             )
             this_personal_task.save()
-            # TODO: add in TrackedTasks here
             this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
             this_trackable_task.save()
 
@@ -100,10 +103,19 @@ def create_routine(request, routine_type):
 
     
     for task in range(len(all_user_tasks_list)):
-        filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
-        all_user_tasks_list[task].append(filtered_task.task_type)
-        all_user_tasks_list[task].append(filtered_task.task)
-        all_user_tasks_list[task].append(filtered_task.custom)
+        try:
+            filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
+            all_user_tasks_list[task].append(filtered_task.task_type)
+            all_user_tasks_list[task].append(filtered_task.task)
+            all_user_tasks_list[task].append(filtered_task.custom)
+        except:
+            return render(
+        request,
+        "tasks/view_tasks.html",
+        {
+            "create_tasks": "You need to create tasks for the " + routine_type,
+        },
+    )
 
     return render(
         request,
