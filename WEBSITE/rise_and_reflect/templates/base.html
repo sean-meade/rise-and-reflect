@@ -34,6 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         
     {% endblock %}
 
@@ -65,8 +66,8 @@
             </a>
             <div class="ml-auto">
                 <i class="fas fa-user"></i> 
-              <a href="#" class="login-link">Login</a>
-              <a href="#" class="signup-link">Sign Up</a>
+              <a href="{% url'account_login' %}" class="login-link">Login</a>
+              <a href="{% url'account_signup' %}" class="signup-link">Sign Up</a>
             </div>
           </nav>
     </header>
@@ -105,7 +106,7 @@
         
 
     </footer>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
 </body>
 
 </html>
