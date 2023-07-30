@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<form action="{% url 'create_routine' %}" method="POST">
+<form action="{% url 'create_routine' routine_type=routine_type %}" method="POST">
     {% csrf_token %} {% for task in tasks %}
     <label for="{{task.id}}">{{task.task}}</label>
     <input type="checkbox" id="{{task.id}}" name="{{task.id}}" />

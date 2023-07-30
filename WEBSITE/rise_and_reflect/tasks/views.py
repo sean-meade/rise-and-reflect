@@ -4,11 +4,11 @@ from datetime import date
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 
-# TODO: Get this to run automatically on creating tasks
-def create_routine(request):
+def create_routine(request, routine_type):
+
     # TODO: pass trough what type of routine is being created
     # TODO: Filter out suggested tasks and don't show custom ones
-    routine_type = "Evening"
+    print(routine_type)
     if request.POST:
         # turn json into a python dict
         tasks = (request.POST).dict()
@@ -98,8 +98,9 @@ def create_routine(request):
     )
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
+    
     for task in range(len(all_user_tasks_list)):
-        filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1])
+        filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
         all_user_tasks_list[task].append(filtered_task.task_type)
         all_user_tasks_list[task].append(filtered_task.task)
         all_user_tasks_list[task].append(filtered_task.custom)
