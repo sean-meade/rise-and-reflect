@@ -22,8 +22,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background:  #bedfdb;
+  background:#bedfdb;
 }
+
+/* Testing images on home page
+.self-care {
+  max-width: 100%;
+  height: auto;
+}*/
 
 .video-container {
   width: 80vw;
