@@ -217,10 +217,6 @@ footer a:hover {
 .star-rating.checked {
   color: gold;
 }
-.feedback-textbox {
-  width: 90%;
-  height: 100px;
-}
 .submit-button {
   display: block;
   margin: 20px auto;
