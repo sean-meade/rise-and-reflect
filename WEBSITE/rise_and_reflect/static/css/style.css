@@ -14,43 +14,55 @@ body {
 }
 
 .container-fluid {
-    margin-top: -50px; 
+  margin-top: -50px;
 }
 
 .hompage-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .video-container {
-    width: 80vw; 
-    max-width: 80%;
-    height: 70vh;
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-  
-  .video-container p {
-    text-align: center;
-  }
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:#bedfdb;
+}
 
-  .square-box {
-    padding-top: 100%; /* Set padding-top to a percentage value to maintain aspect ratio */
-    position: relative;
-    overflow: hidden;
-    }
-    
-    .square-box a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%; /* Set height to 100% to fill the square box */
-    width: 100%; /* Set width to 100% to fill the square box */
-    }
+/* Testing images on home page
+.self-care {
+  max-width: 100%;
+  height: auto;
+}*/
 
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
+.video-container {
+  width: 80vw;
+  max-width: 80%;
+  height: 70vh;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.video-container p {
+  text-align: center;
+}
+
+.square-box {
+  padding-top: 100%;
+  /* Set padding-top to a percentage value to maintain aspect ratio */
+  position: relative;
+  overflow: hidden;
+}
+
+.square-box a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Set height to 100% to fill the square box */
+  width: 100%;
+  /* Set width to 100% to fill the square box */
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
