@@ -130,8 +130,8 @@ footer a:hover {
 }
 
 .carousel-inner img {
-  max-height: 600px; /* You can adjust this value as needed */
-  object-fit: cover; /* This ensures the image maintains its aspect ratio */
+  max-height: 800px; 
+  object-fit: cover; 
 }
 
 .homepage-container {
