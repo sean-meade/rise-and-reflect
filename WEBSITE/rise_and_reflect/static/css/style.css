@@ -263,6 +263,32 @@ footer a:hover {
   margin-top: 0px;
 }
 
+.tab-pane h4.text-center {
+  width: 100%;
+  margin: 0;
+}
+
+/* Adjust the table headers for centered text */
+.tab-pane table thead th.text-center {
+  text-align: center;
+}
+.full-task {
+  background-color: #66afa5;
+  border: 2px solid black;
+  Margin:5px;
+}
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  width:100%;
+}
+.table-bordered {
+  background-color: #bedfdb;
+  border: 2px solid black;
+}
+.task-title {
+  text-align: center;
+}
 .profile-image {
   width: 275px;
   height: 275px;

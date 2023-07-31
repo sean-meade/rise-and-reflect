@@ -21,6 +21,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="tab3-tab" data-toggle="pill" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Routines</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab4-tab" data-toggle="pill" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false">Tasks</a>
+            </li>
             <!-- Add more tabs as needed -->
             </ul>
         </div>
@@ -118,8 +121,88 @@
                     <div class="task-box">Task four</div>
                   </div>
                 </div>
-          </div>
-          <!-- Add more tab content as needed -->
+        </div>
+
+
+        <!-- Tab 4 Content (Morning and Evening Tasks) -->
+<div class="tab-pane fade full-task" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+    <ul class="nav nav-tabs" id="tasksTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="morning-tasks-tab" data-toggle="tab" href="#morning-tasks-content" role="tab" aria-controls="morning-tasks-content" aria-selected="true">Morning Tasks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="evening-tasks-tab" data-toggle="tab" href="#evening-tasks-content" role="tab" aria-controls="evening-tasks-content" aria-selected="false">Evening Tasks</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content for Morning and Evening Tasks -->
+    <div class="tab-content" id="tasksTabContent">
+        <!-- Morning Tasks Content -->
+        <div class="tab-pane fade show active" id="morning-tasks-content" role="tabpanel" aria-labelledby="morning-tasks-tab">
+            <div class="row">
+                <!-- Task Suggestions and Duration (Minutes) Table -->
+                <div class="col-md-12">
+                    <h4 class="mt-4 task-title">Task Suggestions</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Duration (Min)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Add morning task rows here as shown in the previous example -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evening Tasks Content -->
+        <div class="tab-pane fade" id="evening-tasks-content" role="tabpanel" aria-labelledby="evening-tasks-tab">
+            <div class="row">
+                <!-- Task Suggestions and Duration (Minutes) Table -->
+                <div class="col-md-12">
+                    <h4 class="mt-4">Task Suggestions</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Duration (Min)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Add evening task rows here -->
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="evening-task1">
+                                            <label class="form-check-label" for="evening-task1">Evening Task 1</label>
+                                        </div>
+                                    </td>
+                                    <td>30</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="evening-task2">
+                                            <label class="form-check-label" for="evening-task2">Evening Task 2</label>
+                                        </div>
+                                    </td>
+                                    <td>20</td> <!-- Duration for Evening Task 2 -->
+                                </tr>
+                                <!-- Add more evening tasks as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
       </div>
     </div>
