@@ -129,11 +129,10 @@ footer a:hover {
 
 }
 
-.carousel-inner img {
-  max-height: 800px;
+/* .carousel-inner img {
+  max-height: 100vh;
   object-fit: cover;
-}
-
+} */
 
 .about-border {
   position: relative;
