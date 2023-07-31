@@ -130,8 +130,29 @@ footer a:hover {
 }
 
 .carousel-inner img {
-  max-height: 800px; 
-  object-fit: cover; 
+  max-height: 800px;
+  object-fit: cover;
+}
+
+
+.about-border {
+  position: relative;
+  font-weight: bold;
+  padding: 15px;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+/* Add the pseudo-element for the overlay */
+.about-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(102,175,165, 0.5);
+  z-index: -1;
 }
 
 .homepage-container {
