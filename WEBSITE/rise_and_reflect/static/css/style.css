@@ -11,7 +11,7 @@ body {
   background-color: #bedfdb;
   display: flex;
   flex-direction: column;
-  min-height:100vh;
+  min-height: 100vh;
   font-family: 'Comfortaa', cursive;
 }
 
@@ -43,19 +43,20 @@ header {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   font-size: 30px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 
 @keyframes slideInFromBottom {
   from {
-      transform: translateY(50%);
-      opacity: 0;
+    transform: translateY(50%);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -87,6 +88,7 @@ header {
   color: #bedfdb;
   text-decoration: none;
 }
+
 /* FOOTER */
 
 footer {
@@ -94,24 +96,27 @@ footer {
   text-decoration: none;
   padding: 20px;
   margin-top: auto;
-  
+
 
 }
+
 .py-3 {
   color: white;
   font-family: 'Comfortaa', cursive;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .py-3 a {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  color: white ;
+  color: white;
 }
 
 .socials {
   margin: 0;
   font-size: 25px;
 }
+
 footer a:hover {
   text-decoration: none;
   color: #66afa5;
@@ -121,28 +126,33 @@ footer a:hover {
 .container-fluid {
   margin-top: -50px;
   font-family: 'Comfortaa', cursive;
- 
+
+}
+
+.carousel-inner img {
+  max-height: 800px; 
+  object-fit: cover; 
 }
 
 .homepage-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Comfortaa', cursive;
-  }
-  
-  .video-container {
-    width: 80vw; 
-    max-width: 80%;
-    height: 70vh;
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-  
-  .video-container p {
-    text-align: center;
-  }
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Comfortaa', cursive;
+}
+
+.video-container {
+  width: 80vw;
+  max-width: 80%;
+  height: 70vh;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.video-container p {
+  text-align: center;
+}
 
 /* PROFILE PAGE */
 
@@ -152,17 +162,19 @@ footer a:hover {
   bottom: 0;
   width: 10%;
   background-color: #7e679b;
-  padding-right: 0px  !important;
-  color: #fff; 
-  overflow-y: auto; 
+  padding-right: 0px !important;
+  color: #fff;
+  overflow-y: auto;
   height: calc(100vh - 100px);
   min-width: 200px;
 }
+
 .user-column {
   padding-top: 10px;
 }
+
 .right-column {
-  margin-left: 250px; 
+  margin-left: 250px;
   padding: 20px;
 }
 
@@ -183,11 +195,13 @@ footer a:hover {
   position: relative;
   border: 2px solid #66afa5;
   border-right: none;
-  
+
 }
+
 .tab-content {
   padding: 0;
 }
+
 .nav-pills .nav-link {
   margin: 0;
   padding: 0.5rem 1rem;
@@ -198,36 +212,44 @@ footer a:hover {
   border-radius:10px;
 }
 .account-info {
-  border: 2px solid #000; /* 2px solid black border */
-  padding: 10px; /* Optional: Add padding inside the border */
+  border: 2px solid #000;
+  /* 2px solid black border */
+  padding: 10px;
+  /* Optional: Add padding inside the border */
   margin: 5px;
   margin-top: 10px;
   background-color: #bedfdb;
   border-radius: 10px;
 }
+
 .security-info {
-  border: 2px solid #000; /* 2px solid black border */
-  padding: 10px; /* Optional: Add padding inside the border */
+  border: 2px solid #000;
+  /* 2px solid black border */
+  padding: 10px;
+  /* Optional: Add padding inside the border */
   margin: 5px;
   background-color: #bedfdb;
   border-radius: 10px;
 }
+
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .container-fluid {
-margin-top: 0px;
+  margin-top: 0px;
 }
+
 .profile-image {
   width: 275px;
-  height: 275px; 
-  object-fit: cover; 
+  height: 275px;
+  object-fit: cover;
   border: 5px solid black;
   border-radius: 50%;
   background-color: #fff;
- 
+
 }
 .tab-pane.fade.show {
   display: block;
@@ -270,9 +292,10 @@ margin-top: 0px;
 .profile {
   background-color: #bedfdb;
   min-height: 100vh;
-  font-family:'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;
   font-weight: bold;
 }
+
 .profile-box {
   border: 5px solid #7e679b;
   padding: 20px;
@@ -284,7 +307,7 @@ margin-top: 0px;
 
 @media (max-width: 767.98px) {
   .profile-box .profile-image {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .profile-image {
@@ -298,6 +321,7 @@ margin-top: 0px;
   font-size: 30px;
   margin-bottom: 20px;
 }
+
 .main-box {
   border: 1px solid black;
   padding: 20px;
@@ -306,6 +330,7 @@ margin-top: 0px;
   border-radius: 5px;
   margin: 2;
 }
+
 .date-box {
   width: 80%;
   margin: 0 auto;
@@ -315,6 +340,7 @@ margin-top: 0px;
   border-radius: 5px;
   border: 2px solid black;
 }
+
 .arrow {
   position: absolute;
   top: 50%;
@@ -323,17 +349,21 @@ margin-top: 0px;
   cursor: pointer;
   color: #7e679b;
 }
+
 .arrow-left {
   left: 10px;
 }
+
 .arrow-right {
   right: 10px;
 }
+
 .arrow:hover {
   font-size: 28px;
   transform: translateY(-50%) scale(1.1);
   cursor: pointer;
 }
+
 .routine-box {
   border: 2px solid black;
   padding: 20px;
@@ -343,10 +373,12 @@ margin-top: 0px;
   border-radius: 5px;
   
 }
+
 .routine-box:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
+
 .task-box {
   border: 2px solid black;
   padding: 20px;
@@ -358,7 +390,7 @@ margin-top: 0px;
 .feedback-section {
   text-align: center;
   margin-top: 20px;
-  padding-bottom: 20px; 
+  padding-bottom: 20px;
 }
 
 .feedback-question {
@@ -371,38 +403,47 @@ margin-top: 0px;
   font-size: 24px;
   cursor: pointer;
 }
+
 .star-rating:hover,
 .star-rating.checked {
   color: gold;
 }
+
 .submit-button {
   display: block;
   margin: 20px auto;
 }
+
 .square-box {
-  padding-top: 100%; /* Set padding-top to a percentage value to maintain aspect ratio */
+  padding-top: 100%;
+  /* Set padding-top to a percentage value to maintain aspect ratio */
   position: relative;
   overflow: hidden;
-  }
-  
-  .square-box a {
+}
+
+.square-box a {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%; /* Set height to 100% to fill the square box */
-  width: 100%; /* Set width to 100% to fill the square box */
-  }
+  height: 100%;
+  /* Set height to 100% to fill the square box */
+  width: 100%;
+  /* Set width to 100% to fill the square box */
+}
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
 .homepage-container {
-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background:#bedfdb;
+  background: #bedfdb;
 }
 
 /* Testing images on home page
@@ -445,21 +486,4 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
-}
-
-.container.center-boxes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.container.center-boxes .square-box {
-  flex: 0 0 calc(50% - 20px); /* Two items per row with some spacing */
-  max-width: calc(50% - 20px);
-  height: 200px; /* Set a fixed height for the square-box elements */
-  margin: 10px;
-  text-align: center;
-}
-.square-box {
-  height: 100px; /* Set a fixed height for the square-box elements */
 }
