@@ -31,8 +31,10 @@ header {
 }
 
 .cloud-image {
-  height: 80px;
+  height: 50px;
   width: auto;
+  margin-right: 10px;
+  
 }
 
 .nav-logo {
@@ -42,11 +44,10 @@ header {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
+  font-size: 27px;
+  display: flex; 
+  align-items: center; 
 }
-
 
 @keyframes slideInFromBottom {
   from {
