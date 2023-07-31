@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="title">Rise and Reflect</div>
+
+    <div class="main-box">
+      <div class="arrow arrow-left">&#x25C0;</div>
+      <div class="arrow arrow-right">&#x25B6;</div>
+      <div class="date-box">Selected Date</div>
+    </div>
+
+    <div class="main-box">
+      <div class="row">
+        <div class="col-6">
+          <div class="routine-box">Morning routine</div>
+        </div>
+        <div class="col-6">
+          <div class="routine-box">Evening routine</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main-box">
+        <div class="task-box">Task one</div>
+        <div class="task-box">Task two</div>
+        <div class="task-box">Task three</div>
+        <div class="task-box">Task four</div>
+      </div>
+    </div>
+  
+    
+
+    <!-- Feedback Section -->
+    <div class="feedback-section">
+      <div class="feedback-question">
+        <div>How did the routine go? What went well?</div>
+        <input type="text" class="feedback-textbox" placeholder="Enter your feedback...">
+      </div>
+
+      <div class="feedback-question">
+        <div>What can be improved?</div>
+        <input type="text" class="feedback-textbox" placeholder="Enter your feedback...">
+      </div>
+
+      <div class="feedback-question">
+        <div>What could help next time?</div>
+        <input type="text" class="feedback-textbox" placeholder="Enter your feedback...">
+      </div>
+
+      <div class="feedback-question">
+        <div>How are you liking the app so far?</div>
+        <span class="star-rating">&#9733;</span>
+        <span class="star-rating">&#9733;</span>
+        <span class="star-rating">&#9733;</span>
+        <span class="star-rating">&#9733;</span>
+        <span class="star-rating">&#9733;</span>
+      </div>
+
+      <div class="feedback-question">
+        <div>Can you tell us why?</div>
+        <input type="text" class="feedback-textbox" placeholder="Enter your feedback...">
+      </div>
+
+      <button class="submit-button">Submit</button>
+    </div>
+  </div>
+
+
+{% endblock %}
