@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
-<body>
+<!-- <body>
   <div class="d-flex align-items-center justify-content-center">
     <div class="container-fluid homepage-container">
       <div class="d-flex flex-column align-items-center justify-content-center inner-cover">
@@ -12,12 +14,12 @@
           Strong Minds.
           <br>
         </h1>
-        <!-- Commented this out for now
+         Commented this out for now
           <img src="static/images/self_care.jpg" class="img-fluid self-care" alt="Responsive image of self-care">
           <div class="border border-dark rounded video-container d-flex align-items-center justify-content-center">
           <p class="text-center">VIDEO HERE</p>
         </div>-->
-        <p class="lead">
+<!-- <p class="lead">
           Welcome to Rise & Reflect, your guide to unlocking the power of daily routines for enhanced
           mental well-being.
         </p>
@@ -27,9 +29,55 @@
         </div>
       </div>
     </div>
+  </div> 
+
+</body> -->
+<body>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'images/self_care.jpg' %}" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide caption</h5>
+          <p>djskgbowngnrwo</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'images/self_care.jpg' %}" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide caption</h5>
+          <p>djskgbowngnrwo</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'images/self_care.jpg' %}" alt="Third slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide caption</h5>
+          <p>djskgbowngnrwo</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 
-</body>
-
+  <!-- Add this JavaScript code to enable the carousel -->
+  <script>
+    $(document).ready(function() {
+      // Initialize the carousel
+      $('#carouselExampleIndicators').carousel();
+    });
+  </script>
 
 {% endblock %}

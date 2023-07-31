@@ -4,6 +4,15 @@
 <html lang="en">
 
 <head>
+
+    {% block head %}
+    <!-- Add the Bootstrap CSS and JavaScript files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% endblock %}
+
     {% block meta %}
     <!-- Required meta tags -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,8 +21,6 @@
     {% comment %} TODO: Add these {% endcomment %}
     <meta name="description" content="">
     <meta name="keywords" content="">
-
-
     {% endblock %}
 
     {% block extra_meta %}
@@ -21,10 +28,10 @@
     {% endblock %}
 
     {% block favicon %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{%static 'favicon/site.webmanifest' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
     {% endblock %}
 
     {% block corecss %}
@@ -35,7 +42,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        
     {% endblock %}
 
     {% block extra_css %}
@@ -44,14 +50,12 @@
 
     {% block corejs %}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
-
+    <!-- Remove the duplicated jQuery and Bootstrap JavaScript files -->
     {% endblock %}
 
     {% block extra_js %}
+
+
     {% endblock %}
 
     <title>Rise & Reflect {% block extra_title %}{% endblock %}</title>
@@ -66,11 +70,11 @@
                 <span class="text slide-in">Rise and Reflect</span>
             </a>
             <div class="ml-auto">
-                <i class="fas fa-user"></i> 
-              <a href="{% url 'account_login' %}" class="login-link">Login</a>
-              <a href="{% url 'account_signup' %}" class="signup-link">Sign Up</a>
+                <i class="fas fa-user"></i>
+                <a href="{% url 'account_login' %}" class="login-link">Login</a>
+                <a href="{% url 'account_signup' %}" class="signup-link">Sign Up</a>
             </div>
-          </nav>
+        </nav>
     </header>
 
     {% comment %} {% if messages %}
@@ -100,15 +104,16 @@
     <footer class="py-3 footer">
 
         <div class="footer-copyright text-center py-2">© 2020 Copyright:
-            <a href="https://github.com/sean-meade/rise-and-reflect" target="_blank">Rise & Reflect <i class="fab fa-github"></i></a>
+            <a href="https://github.com/sean-meade/rise-and-reflect" target="_blank">Rise & Reflect <i
+                    class="fab fa-github"></i></a>
         </div>
-    
-        </footer>
-        
+
+    </footer>
+
 
     </footer>
     {% block jquery_bootstrapjquery %}
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
