@@ -5,6 +5,14 @@ from .models import Tasks, PersonalTasks, TrackedTasks
 
 def create_routine(request, routine_type):
 
+def set_evening_tasks(request):
+    return render(request, 'tasks/set_tasks_evening.html')
+
+
+def set_morning_tasks(request):
+    return render(request, 'tasks/set_tasks_morning.html')
+
+
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
