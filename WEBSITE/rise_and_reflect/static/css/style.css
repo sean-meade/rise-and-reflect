@@ -192,18 +192,25 @@ footer a:hover {
   margin: 0;
   padding: 0.5rem 1rem;
 }
+.housing-box{
+  border: 2px solid #000; /* 2px solid black border */
+  background-color: #66afa5;
+  border-radius:10px;
+}
 .account-info {
   border: 2px solid #000; /* 2px solid black border */
   padding: 10px; /* Optional: Add padding inside the border */
   margin: 5px;
   margin-top: 10px;
   background-color: #bedfdb;
+  border-radius: 10px;
 }
 .security-info {
   border: 2px solid #000; /* 2px solid black border */
   padding: 10px; /* Optional: Add padding inside the border */
   margin: 5px;
   background-color: #bedfdb;
+  border-radius: 10px;
 }
 .row {
   display: flex;
@@ -221,6 +228,39 @@ margin-top: 0px;
   border-radius: 50%;
   background-color: #fff;
  
+}
+.tab-pane.fade.show {
+  display: block;
+}
+.goals-container {
+  border: 2px solid #000; /* 2px solid black border */
+  background-color: #66afa5;
+  border-radius:10px;
+}
+.goal-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  height: 200px;
+  
+}
+
+.instructions {
+  border: 2px solid #000; /* 2px solid black border */
+  padding: 10px; /* Optional: Add padding inside the border */
+  margin: 5px;
+  margin-top: 10px;
+  background-color: #bedfdb;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .col-md-6.mb-4 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
 }
 
 .profile {
@@ -389,4 +429,21 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.container.center-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container.center-boxes .square-box {
+  flex: 0 0 calc(50% - 20px); /* Two items per row with some spacing */
+  max-width: calc(50% - 20px);
+  height: 200px; /* Set a fixed height for the square-box elements */
+  margin: 10px;
+  text-align: center;
+}
+.square-box {
+  height: 100px; /* Set a fixed height for the square-box elements */
 }
