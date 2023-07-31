@@ -34,6 +34,6 @@ def health_areas(request):
         # Grab the tasks related to the health ares
         area_tasks = Tasks.objects.all().filter(health_area=area)
         # send tasks to page for user to choose what to add
-        return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks})
+        return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Evening"})
     # On GET request send data to create health area buttons
     return render(request, 'daily-commit/health-area.html', {'areas': HEALTH_AREAS})
