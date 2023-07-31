@@ -96,8 +96,6 @@ footer {
   text-decoration: none;
   padding: 20px;
   margin-top: auto;
-
-
 }
 
 .py-3 {
@@ -130,7 +128,7 @@ footer a:hover {
 }
 
 .carousel-inner img {
-  max-height: 800px;
+  max-height: 100vh;
   object-fit: cover;
 }
 
@@ -143,7 +141,6 @@ footer a:hover {
   border: 2px solid transparent;
 }
 
-/* Add the pseudo-element for the overlay */
 .about-border::before {
   content: "";
   position: absolute;
@@ -203,7 +200,6 @@ footer a:hover {
   text-decoration: none;
 }
 
-/* Set the text color to white for links in the left column */
 .fixed-left-column a.nav-link,
 .fixed-left-column h4 {
   color: #fff;
@@ -533,4 +529,8 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.carousel {
+  height: 100%;
 }
