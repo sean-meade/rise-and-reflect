@@ -8,9 +8,11 @@
 
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: #bedfdb;
+  display: flex;
+  flex-direction: column;
+  min-height:100vh;
+  font-family: 'Comfortaa', cursive;
 }
 
 /* NAVBAR */
@@ -41,11 +43,11 @@ header {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   font-size: 30px;
-  display: flex; /* This will align the image and text horizontally */
-  align-items: center; /* This will align the image and text vertically */
+  display: flex; 
+  align-items: center; 
 }
 
-/* Add the slide-in animation keyframes */
+
 @keyframes slideInFromBottom {
   from {
       transform: translateY(50%);
@@ -57,7 +59,6 @@ header {
   }
 }
 
-/* Apply the slide-in animation to the text */
 .text {
   animation: slideInFromBottom 2s ease forwards;
 }
@@ -91,6 +92,8 @@ header {
 footer {
   background-color: #bedfdb;
   text-decoration: none;
+  padding: 20px;
+  margin-top: auto;
   
 
 }
@@ -117,6 +120,8 @@ footer a:hover {
 
 .container-fluid {
   margin-top: -50px;
+  font-family: 'Comfortaa', cursive;
+ 
 }
 
 .homepage-container {
@@ -139,19 +144,99 @@ footer a:hover {
     text-align: center;
   }
 
-.profile-image {
-    width: 300px; /* Set the desired width */
-    height: 300px; /* Set the desired height */
-    object-fit: cover; /* Maintain aspect ratio and fill the container */
-    border: 5px solid black;
-    border-radius: 50%; /* Create a perfect circle */
+/* PROFILE PAGE */
+
+.fixed-left-column {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 10%;
+  background-color: #7e679b;
+  padding-right: 0px  !important;
+  color: #fff; 
+  overflow-y: auto; 
+  height: calc(100vh - 100px);
+  min-width: 200px;
+}
+.user-column {
+  padding-top: 10px;
+}
+.right-column {
+  margin-left: 250px; 
+  padding: 20px;
 }
 
+.fixed-left-column a.nav-link {
+  text-decoration: none;
+}
+
+/* Set the text color to white for links in the left column */
+.fixed-left-column a.nav-link,
+.fixed-left-column h4 {
+  color: #fff;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #fff !important;
+  border-radius: 25px 0 0 25px;
+  color: #000 !important;
+  position: relative;
+  border: 2px solid #66afa5;
+  border-right: none;
+  
+}
+.tab-content {
+  padding: 0;
+}
+.nav-pills .nav-link {
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+.account-info {
+  border: 2px solid #000; /* 2px solid black border */
+  padding: 10px; /* Optional: Add padding inside the border */
+  margin: 5px;
+  margin-top: 10px;
+  background-color: #bedfdb;
+}
+.security-info {
+  border: 2px solid #000; /* 2px solid black border */
+  padding: 10px; /* Optional: Add padding inside the border */
+  margin: 5px;
+  background-color: #bedfdb;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-fluid {
+margin-top: 0px;
+}
+.profile-image {
+  width: 275px;
+  height: 275px; 
+  object-fit: cover; 
+  border: 5px solid black;
+  border-radius: 50%;
+  background-color: #fff;
+ 
+}
+
+.profile {
+  background-color: #bedfdb;
+  min-height: 100vh;
+  font-family:'Comfortaa', cursive;
+  font-weight: bold;
+}
 .profile-box {
-  border: 1px solid black;
+  border: 5px solid #7e679b;
   padding: 20px;
   border-radius: 10px;
+  background-color: #b3a3c3;
 }
+
+
 
 @media (max-width: 767.98px) {
   .profile-box .profile-image {

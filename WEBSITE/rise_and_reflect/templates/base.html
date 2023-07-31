@@ -97,7 +97,7 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="py-3">
+    <footer class="py-3 footer">
 
         <div class="footer-copyright text-center py-2">© 2020 Copyright:
             <a href="https://github.com/sean-meade/rise-and-reflect" target="_blank">Rise & Reflect <i class="fab fa-github"></i></a>
@@ -107,7 +107,12 @@
         
 
     </footer>
+    {% block jquery_bootstrapjquery %}
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+
+    {% endblock %}
 </body>
 
 </html>
