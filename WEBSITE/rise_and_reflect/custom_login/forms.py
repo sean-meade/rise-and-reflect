@@ -17,6 +17,7 @@ class CustomSignupForm(SignupForm):
         user.save()
         # Create your user profile with these extra fields
         user_profile = UserProfile(user=user, name=self.cleaned_data['name'], phone=self.cleaned_data['phone'])
+        print(user_profile)
         user_profile.save()
 
     # On initial creation of the form add form-control class and remove labels.

@@ -3,8 +3,6 @@ from track_routine.models import RoutineTasks
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 
-def create_routine(request, routine_type):
-
 def set_evening_tasks(request):
     return render(request, 'tasks/set_tasks_evening.html')
 
@@ -12,7 +10,7 @@ def set_evening_tasks(request):
 def set_morning_tasks(request):
     return render(request, 'tasks/set_tasks_morning.html')
 
-
+def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
@@ -36,6 +34,7 @@ def set_morning_tasks(request):
                     int(key)
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key, tasks[key + "_time"]])
+                    # TODO: Check to see if a Personal task exists with task_id
                     # Create the personal task
                     this_personal_task = PersonalTasks(
                         user=user,
