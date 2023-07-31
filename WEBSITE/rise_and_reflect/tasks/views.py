@@ -56,7 +56,8 @@ def create_routine(request, routine_type):
             print(obj.health_area)
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
-            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
+
+            return render(request, 'tasks/set_tasks_morning.html', {'tasks': area_tasks, 'routine_type': "Morning"})
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
