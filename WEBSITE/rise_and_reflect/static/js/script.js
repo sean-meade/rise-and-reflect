@@ -12,6 +12,7 @@ $(document).ready(function () {
     if ($(this).is(":checked")) {
       if ($("#id_wake_time").is(":required")) {
         $("#id_wake_time").removeAttr("required");
+        $("#id_wake_time").val('');
       }
       $("#wakeUpTimeGroup").slideUp();
       $("#workForm").slideDown();
@@ -24,6 +25,7 @@ $(document).ready(function () {
       for (let formElement of workFormArray) {
         if ($(formElement).is(":required")) {
           $(formElement).removeAttr("required");
+          $(formElement).val('');
         }
       }
       $("#workForm").slideUp();

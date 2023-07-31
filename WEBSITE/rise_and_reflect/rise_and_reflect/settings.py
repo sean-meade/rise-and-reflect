@@ -50,11 +50,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'djangoviz',
+    'social_django',
 
     # created apps
     'custom_login',
     'daily_commitments',
     'tasks',
+    'track_routine',
 ]
 
 
