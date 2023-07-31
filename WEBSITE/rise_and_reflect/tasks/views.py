@@ -3,12 +3,6 @@ from track_routine.models import RoutineTasks
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 
-def set_evening_tasks(request):
-    return render(request, 'tasks/set_tasks_evening.html')
-
-
-def set_morning_tasks(request):
-    return render(request, 'tasks/set_tasks_morning.html')
 
 def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones
@@ -57,7 +51,7 @@ def create_routine(request, routine_type):
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
 
-            return render(request, 'tasks/set_tasks_morning.html', {'tasks': area_tasks, 'routine_type': "Morning"})
+            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
