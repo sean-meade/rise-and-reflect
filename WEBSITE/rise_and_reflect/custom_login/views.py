@@ -5,11 +5,11 @@ def index(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'home/profile.html')
 
 
 def user_homepage(request):
-    return render(request, 'user-homepage.html')
+    return render(request, 'user_home/user-homepage.html')
 
 
 def daily_commit(request):

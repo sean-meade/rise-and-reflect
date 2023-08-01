@@ -258,6 +258,18 @@ footer a:hover {
   margin-top: 0px;
 }
 
+.health-btn {
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+}
+
 .profile-image {
   width: 275px;
   height: 275px;
