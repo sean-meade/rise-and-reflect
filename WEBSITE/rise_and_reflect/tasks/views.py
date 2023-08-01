@@ -13,8 +13,6 @@ def set_morning_tasks(request):
 
 def create_routine(request, routine_type):
 
-def create_routine(request, routine_type):
-
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
