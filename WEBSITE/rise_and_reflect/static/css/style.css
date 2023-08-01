@@ -125,7 +125,7 @@ footer a:hover {
 .container-fluid {
   margin-top: -50px;
   font-family: 'Comfortaa', cursive;
-
+  margin-top: 0px;
 }
 
 .about-border {
@@ -169,12 +169,13 @@ footer a:hover {
 
 /* PROFILE PAGE */
 
+
 .fixed-left-column {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 10%;
-  background-color: #7e679b;
+  background-color: #bedfdb;
   padding-right: 0px !important;
   color: #fff;
   overflow-y: auto;
@@ -205,9 +206,14 @@ footer a:hover {
   border-radius: 25px 0 0 25px;
   color: #000 !important;
   position: relative;
-  border: 2px solid #66afa5;
+  border: 2px solid #7e679b;
   border-right: none;
+}
 
+.nav-item {
+  margin-top: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tab-content {
@@ -220,7 +226,7 @@ footer a:hover {
 }
 .housing-box{
   border: 2px solid #000; /* 2px solid black border */
-  background-color: #66afa5;
+  background-color: #b3a3c3;
   border-radius:10px;
 }
 .account-info {
@@ -250,9 +256,7 @@ footer a:hover {
   justify-content: center;
 }
 
-.container-fluid {
-  margin-top: 0px;
-}
+
 
 .tab-pane h4.text-center {
   width: 100%;
@@ -297,6 +301,11 @@ footer a:hover {
   background-color: #66afa5;
   border-radius:10px;
 }
+.routine-border {
+  border: 2px solid #000; /* 2px solid black border */
+  background-color: #66afa5;
+  border-radius:10px;
+}
 
 
  .goal-box {
@@ -333,7 +342,8 @@ footer a:hover {
   background-color: #bedfdb;
   min-height: 100vh;
   font-family: 'Comfortaa', cursive;
-  font-weight: bold;
+  font-weight: bolder;
+  box-shadow: 0 0 0 5px #bedfdb;
 }
 
 .profile-box {
@@ -344,7 +354,7 @@ footer a:hover {
 }
 
 .user-column {
-  text-align: center; 
+  text-align: center;  
 }
 
 .user-column img {
@@ -352,9 +362,11 @@ footer a:hover {
   height:225px; 
   border-radius: 50%;
   overflow: hidden; 
-  border: 4px solid #66afa5;
+  border: 4px solid #7e679b;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
   margin: 0 auto 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   transition: transform 0.3s ease; 
 }
 
@@ -420,6 +432,7 @@ footer a:hover {
   transition: transform 0.2s;
   background-color: #bedfdb;
   border-radius: 5px;
+  margin-top: 20px;
   
 }
 
@@ -434,6 +447,7 @@ footer a:hover {
   margin-bottom: 10px;
   border-radius: 5px;
   background-color: #bedfdb;
+  margin-top: 20px;
 }
 
 .feedback-section {
@@ -624,4 +638,30 @@ td {
 
 .progress-evening {
   background-color: #99b4df !important;; 
+}
+
+/* FB & Google on sign up page */
+.btn-google,
+.btn-facebook {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #4285F4;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-google .fab,
+.btn-facebook .fab {
+    margin-right: 8px;
+}
+
+.btn-google:hover,
+.btn-facebook:hover {
+    opacity: 0.8;
 }

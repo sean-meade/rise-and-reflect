@@ -16,18 +16,21 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <div class="row justify-content-center">
-    <button type="submit" class="btn">{% trans "Sign Up" %}</button>
+    <button type="submit" class="btn btn-info">{% trans "Sign Up" %}</button>
 </div>
 </form>
-<div class="row justify-content-center pt-3">
-<button type="" class="btn">Sign up with Google</button>
-</div>
-<div class="row justify-content-center pt-3">
-<button type="" class="btn">Sign up with Facebook</button>
-</div>
+<h2 class="text-center pt-4">Or sign up with the following:</h2>
+        <div class="row justify-content-center pt-3">
+            <button type="" class="btn-google btn-info">
+                <i class="fab fa-google"></i>
+            </button>
+            <button type="" class="btn-facebook btn-info">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+        </div>
 
 <p class="text-center pt-3">
-{% blocktrans %}<a href="{{ login_url }}">Already signed up</a>.{% endblocktrans %}
+{% blocktrans %}<a href="{{ login_url }}">Already signed up</a>?{% endblocktrans %}
 </p>
 </div>
 
