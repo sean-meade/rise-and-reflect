@@ -46,8 +46,6 @@ def create_routine(request, routine_type):
         
         if routine_type == "Evening":
             obj = UserProfile.objects.get(user=request.user)
-            print("obj", obj)
-            print(obj.health_area)
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
 

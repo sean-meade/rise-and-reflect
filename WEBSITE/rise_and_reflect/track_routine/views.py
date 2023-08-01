@@ -56,16 +56,13 @@ def track_routine(request):
     # If a routine exists
     if routine:
         routine_check = RoutineTasks.objects.filter(day=timezone.now(), user=user).first()
-        print(routine_check)
         try:
             # check if routine exists for today
             routine_check = RoutineTasks.objects.filter(day=timezone.now(), user=user, routine_type="Morning").first()
-            print("A routine is already there for today")
         # If it is a custom one
         except:
             routine_check = RoutineTasks(user=user, routine_type="Morning")
             routine_check.save()
-            print("Created a new routine")
 
         # get duration and task_id of the users tasks
         all_user_tasks_tuple = PersonalTasks.objects.filter(
@@ -85,11 +82,7 @@ def track_routine(request):
             all_user_tasks_list[task].append(filtered_task.custom)
 
             filter_by_this_task = PersonalTasks.objects.get(task_id = filtered_task, user=request.user)
-            print()
-            print("filter_by_this_task",filter_by_this_task)
             tracked_task = TrackedTasks.objects.get(personal_task = filter_by_this_task,  personal_routine=routine_check)
-
-            print(tracked_task)
             
             all_user_tasks_list[task].append(tracked_task.completed)
 
