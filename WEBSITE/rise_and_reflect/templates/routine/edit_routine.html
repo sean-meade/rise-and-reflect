@@ -1,31 +1,62 @@
 {% extends 'base.html' %}
 
+{% block extra_js %}
+<script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+  
+
+  htmx.onLoad(function(content) {
+    var sortables = document.querySelectorAll(".sortable");
+    for (var i = 0; i < sortables.length; i++) {
+      var sortable = sortables[i];
+      new Sortable(sortable, {
+          animation: 150,
+          ghostClass: 'blue-background-class'
+      });
+    }
+})
+</script>
+
+{% endblock extra_js %}
+
+
 {% block content %}
 
 {{add_tasks}}
 
 <h2>Track task for {{user.username}}</h2>
 <br>
-<h4>{{routine.0.day}}</h4>
 
-
-<table id="sortable">
+{% comment %} <table class="w-75">
+  <thead >
     <tr>
       <th>Task Name</th>
       <th>Evening/Morning</th>
       <th>Duration</th>
       <th>Custom</th>
     </tr>
-{% for task in routine %}
-    <tr data-pk="{{ task.id }}">
-      <td>{{filtered_task.0.0}}</td>
-      <td>{{task.completed}}</td>
+  </thead>
+  <tbody> {% endcomment %}
+    <form class="sortable" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#film-list">
+      <div class="htmx-indicator">Updating...</div>
+{% for task in tasks %}
+
+<div>
+  <input type='hidden' name='film_order' value='{{task.id}}'/>
+  {{task.3}}
+    {% comment %} <tr>
+      <td>{{task.3}}</td>
       <td>{{task.2}}</td>
       <td>{{task.0}}</td>
-    </tr>
+      <td>{{task.0}}</td>
+    </tr> {% endcomment %}
+  </div>
 
     {% endfor %}
-</table>
+  </form>
+  {% comment %} </tbody>
+</table> {% endcomment %}
 
 
 {% endblock %}

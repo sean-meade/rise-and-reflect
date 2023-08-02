@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from track_routine.models import RoutineTasks
 from custom_login.models import UserProfile
@@ -49,7 +50,7 @@ def create_routine(request, routine_type):
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
 
-            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
+            return render(request, 'routine/edit_routine.html', {'tasks': area_tasks, 'routine_type': "Morning"})
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
@@ -90,7 +91,7 @@ def create_routine(request, routine_type):
             all_user_tasks_list[task].append(filtered_task.custom)
 
         # return all the users tasks
-        return render(request, "tasks/view_tasks.html",
+        return render(request, "routine/edit_routine.html",
         {
             "tasks": all_user_tasks_list,
         },)
@@ -111,16 +112,23 @@ def create_routine(request, routine_type):
         except:
             return render(
         request,
-        "tasks/view_tasks.html",
+        "routine/edit_routine.html",
         {
             "create_tasks": "You need to create tasks for the " + routine_type,
         },
     )
 
+    print("tasks", all_user_tasks_list)
     return render(
         request,
-        "tasks/view_tasks.html",
+        "routine/edit_routine.html",
         {
             "tasks": all_user_tasks_list,
         },
     )
+
+def sort(request):
+    tasks_pks_order = request.POST.getlist('film_order')
+    print(tasks_pks_order)
+    tasks = []
+    return HttpResponse("")
