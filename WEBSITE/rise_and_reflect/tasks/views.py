@@ -12,7 +12,6 @@ def set_morning_tasks(request):
     return render(request, 'tasks/set_tasks_morning.html')
 
 def create_routine(request, routine_type):
-
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
@@ -36,6 +35,7 @@ def create_routine(request, routine_type):
                     int(key)
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key, tasks[key + "_time"]])
+                    # TODO: Check to see if a Personal task exists with task_id
                     # Create the personal task
                     this_personal_task = PersonalTasks(
                         user=user,
@@ -53,10 +53,9 @@ def create_routine(request, routine_type):
         
         if routine_type == "Evening":
             obj = UserProfile.objects.get(user=request.user)
-            print("obj", obj)
-            print(obj.health_area)
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
+
             return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
 
         # Get the health area for the user

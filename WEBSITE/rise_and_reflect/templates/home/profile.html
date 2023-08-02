@@ -100,16 +100,33 @@
                     </div>
                 </div>   
             </div>
+            <div class="security-info rounded p-3">
+                <h3>Security</h3>
+                <p>If you'd like to reset your password, you can do so here</p>
+                <a href="{% url 'account_reset_password' %}" class="btn btn-primary">Reset Password</a>
+              </div>
+        </div>
 
     <!-- Tab 2 Content -->
-            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                <div class="d-flex flex-column align-items-center goals-container">
-                    <h3 class="mt-4">Set Your Goals</h3>
-                    <div class="rounded p-3 mb-4 text-center instructions">
-                        <h4>Instructions</h4>
-                        <p>
-                            Here, we'd like you to enter 4 goals you'd like to accomplish within the week. These can be a range of things from going for a short walk each day or even just sending someone a message each day.
-                        </p>
+        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+            <div class="container center-boxes">
+                <h1 class = "text-center">Set Your Goals</h1>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto">
+                        <div class="border border-dark rounded video-container square-box">
+                            <a href="{% url 'home' %}" class="text-center">
+                                {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 1"> {% endcomment %}
+                                <h3>Goal 1</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto">
+                        <div class="border border-dark rounded video-container square-box">
+                            <a href="{% url 'home' %}" class="text-center">
+                                {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 2"> {% endcomment %}
+                                <h3>Goal 2</h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
     

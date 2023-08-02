@@ -1,59 +1,83 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<h3>Create tasks for the {{routine_type}}</h3>
-<form action="{% url 'create_routine' routine_type=routine_type %}" method="POST">
-    {% csrf_token %} {% for task in tasks %}
-    <label for="{{task.id}}">{{task.task}}</label>
-    <input type="checkbox" id="{{task.id}}" name="{{task.id}}" />
-    <input
-        type="number"
-        id="{{task.id}}"
-        name="{{task.id}}_time"
-        placeholder="Duration"
-    />
-    <br />
-    {% endfor %}
+{% extends 'base.html' %} {% block content %} {% comment %} Set Tasks from Goals
+Section {% endcomment %}
 
-    {% comment %} TODO: Make it so a user can't just enter a number for a task (for view logic) {% endcomment %}
-    <label for="custom1">Custom Task 1</label>
-    <input
-        type="text"
-        id="custom1"
-        name="custom1"
-        placeholder="Task Name"
-    /><input
-        type="number"
-        id="custom1"
-        name="custom1_time"
-        placeholder="Duration"
-    /><br />
+<div class="container mt-5">
+    <form
+        action="{% url 'create_routine' routine_type=routine_type %}"
+        method="POST"
+    >
+        {% csrf_token %}
+        <h1 class="text-center">{{routine_type}} Tasks</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <table class="table table-bordered" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Task</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr>
+                            <td>{{task.task}}</td>
+                            <td>
+                                <input
+                                    type="number"
+                                    id="{{task.id}}"
+                                    name="{{task.id}}_time"
+                                    placeholder="Duration"
+                                />
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div id="input-cont"></div>
+                <div>
+                    <a
+                        class="btn btn-primary rounded-circle"
+                        onclick="addInput()"
+                    >
+                        +
+                    </a>
+                    <span class="ml-2">Add Task</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="text-center mt-4">
+                    <a class="btn btn-primary" id="previousBtn" href="{% url 'health-areas' %}">
+                        Previous
+                    </a>
+                    <button class="btn btn-primary" id="nextBtn" type="submit">Next</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
-    <label for="custom2">Custom Task 2</label>
-    <input
-        type="text"
-        id="custom2"
-        name="custom2"
-        placeholder="Task Name"
-    /><input
-        type="number"
-        id="custom2"
-        name="custom2_time"
-        placeholder="Duration"
-    /><br />
-
-    <label for="custom3">Custom Task 3</label>
-    <input
-        type="text"
-        id="custom13"
-        name="custom3"
-        placeholder="Task Name"
-    /><input
-        type="number"
-        id="custom3"
-        name="custom3_time"
-        placeholder="Duration"
-    /><br />
-
-    <button type="submit">Submit</button>
-</form>
+<script>
+  let startNum = 0;
+    // Call addInput() function on button click
+    function addInput() {
+      startNum++;
+        var tableRow = document.getElementById("table");
+        var row = tableRow.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        let task = document.createElement("input");
+        task.placeholder = "Custom Task";
+        task.setAttribute("id","custom" + startNum);
+        task.setAttribute("name","custom" + startNum);
+        cell1.appendChild(task);
+        let duration = document.createElement("input");
+        duration.setAttribute("id","custom" + startNum);
+        duration.setAttribute("name","custom" + startNum + "_time");
+        duration.placeholder = "Duration";
+        cell2.appendChild(duration);
+    }
+</script>
 
 {% endblock %}
