@@ -6,12 +6,15 @@
 <form action="{% url 'track_routine' %}" method="POST">
   {% csrf_token %}
 <table>
+  <thead>
     <tr>
       <th>Task Name</th>
       <th>Evening/Morning</th>
       <th>Duration</th>
       <th>Completed</th>
     </tr>
+  </thead>
+      <tbody>
 {% for task in routine %}
     <tr>
       <td>{{task.3}}</td>
@@ -25,6 +28,7 @@
     </tr>
 
     {% endfor %}
+  </tbody>
 </table>
 
       <button type="submit" class="btn btn-info">Submit</button>
