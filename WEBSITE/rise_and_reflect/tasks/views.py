@@ -197,13 +197,13 @@ def edit_tasks(request, routine_type):
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
     print("all_user_tasks_list ", )
-    all_user_tasks_list_type = []
+    all_user_tasks_list_type = {"Suggested": [], "Custom": []}
     
     for task in range(len(all_user_tasks_list)):
         print("Try ", task)
         try:
             filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
-            print("filtered_task ", filtered_task)
+            print("filtered_task ", filtered_task.custom)
             current_task = []
             current_task.append(all_user_tasks_list[task][0])
             print("Here is the list index out of range")
@@ -214,7 +214,10 @@ def edit_tasks(request, routine_type):
             print("Here is the list index out of range 3")
             current_task.append(filtered_task.task)
             current_task.append(filtered_task.custom)
-            all_user_tasks_list_type.append(current_task)
+            if filtered_task.custom == True:
+                all_user_tasks_list_type["Custom"].append(current_task)
+            else:
+                all_user_tasks_list_type["Evening"].append(current_task)
         except Exception as error:
             print("Error :", error)
     if all_user_tasks_list_type == []:
@@ -227,8 +230,9 @@ def edit_tasks(request, routine_type):
         )
     return render(
         request,
-        "tasks/view_tasks.html",
+        "tasks/edit_tasks.html",
         {
             "tasks": all_user_tasks_list_type,
+            "routine_type": routine_type,
         },
     )
