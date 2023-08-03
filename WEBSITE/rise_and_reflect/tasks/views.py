@@ -124,3 +124,33 @@ def create_routine(request, routine_type):
             "tasks": all_user_tasks_list,
         },
     )
+
+def edit_tasks(request, routine_type):
+     # Same as above to display tasks for a GET request instead of post
+    all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
+        "duration", "task_id"
+    )
+    all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
+
+    
+    for task in range(len(all_user_tasks_list)):
+        try:
+            filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
+            all_user_tasks_list[task].append(filtered_task.task_type)
+            all_user_tasks_list[task].append(filtered_task.task)
+            all_user_tasks_list[task].append(filtered_task.custom)
+        except:
+            return render(
+        request,
+        "tasks/view_tasks.html",
+        {
+            "create_tasks": "You need to create tasks for the " + routine_type,
+        },
+    )
+        return render(
+        request,
+        "tasks/view_tasks.html",
+        {
+            "tasks": all_user_tasks_list,
+        },
+    )
