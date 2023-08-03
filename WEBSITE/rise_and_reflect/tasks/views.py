@@ -256,7 +256,6 @@ def update_tasks(request, routine_type):
         health_area = UserHealthArea.objects.get(health_area=area)
 
         # Get ids and then update personal task with duration and/or name change
-        print(tasks)
 
         for key in tasks:
 
@@ -264,31 +263,21 @@ def update_tasks(request, routine_type):
                 pass
             elif key[:6] != "custom" and key[-4:] == "time" and tasks[key] != "":
                 
-                print("task_id ", int(re.search("\d+", key)[0]))
                 task_id = int(re.search("\d+", key)[0])
                 searched_task = Tasks.objects.get(pk=task_id)
-                print("This the task I am trying to update 222 ", PersonalTasks.objects.filter(task_id=searched_task))
                 if not searched_task:
                     searched_task = Tasks(health_area=health_area, task=tasks[str(task_id)], task_type=routine_type, custom=False)
                     searched_task.save()
-                    print("This is where I want to check  ", tasks[key])
                     personal_task = PersonalTasks(user=user, task_id=searched_task, duration=tasks[key], order=get_max_order(user))
                     personal_task.save()
                 else:
-
-                    print("searched_task", searched_task)
-                    print("Duration ", tasks[key])
-                    print("This the task I am trying to update ", PersonalTasks.objects.filter(task_id=searched_task))
                     updated_task = PersonalTasks.objects.filter(task_id=searched_task).update(duration=int(tasks[key]))
-                    print(updated_task)
                 # updated_task.update(duration=tasks[key])
 
             elif key[:6] == "custom" and key[-4:] == "time" and tasks[key] != "":
 
-                print(int(re.search("\d+", key)[0]))
                 task_id = int(re.search("\d+", key)[0])
                 searched_task=Tasks.objects.get(id=task_id)
-                print("not searched_task", searched_task)
                 
                 if not searched_task:
                     searched_task = Tasks(health_area=health_area, task=tasks["custom" + str(task_id)], task_type=routine_type, custom=True)
@@ -300,21 +289,7 @@ def update_tasks(request, routine_type):
                     # Add a check to see if personal task exists and if not create that and a tracked task (that uses the routine)
                     updated_personal_task = PersonalTasks.objects.filter(task_id=searched_task).update(duration=tasks[key])
                     updated_task = Tasks.objects.filter(id=task_id).update(task=tasks["custom" + str(task_id)])
-                    print(updated_task)
-                    # updated_task.update(duration=tasks[key])
-                    # updated_task.update(task=tasks["custom" + task_id])
-
-
-        # # use number on time without custom
-        # for key in tasks:
-        #     # ignore the csrf token
-        #     if key == "csrfmiddlewaretoken":
-        #         pass
-        #     else:
-        #         # if the key is just a number on it's own
-        #         try:
-        #             personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key))
-
+                    
 
         return render(
         request,
