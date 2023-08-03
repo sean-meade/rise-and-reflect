@@ -196,25 +196,39 @@ def edit_tasks(request, routine_type):
     )
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
+    print("all_user_tasks_list ", )
+    all_user_tasks_list_type = []
     
     for task in range(len(all_user_tasks_list)):
+        print("Try ", task)
         try:
             filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
-            all_user_tasks_list[task].append(filtered_task.task_type)
-            all_user_tasks_list[task].append(filtered_task.task)
-            all_user_tasks_list[task].append(filtered_task.custom)
-        except:
-            return render(
-        request,
-        "tasks/view_tasks.html",
-        {
-            "create_tasks": "You need to create tasks for the " + routine_type,
-        },
-    )
+            print("filtered_task ", filtered_task)
+            current_task = []
+            current_task.append(all_user_tasks_list[task][0])
+            print("Here is the list index out of range")
+            print(all_user_tasks_list_type)
+            current_task.append(all_user_tasks_list[task][1])
+            print("Here is the list index out of range 2")
+            current_task.append(filtered_task.task_type)
+            print("Here is the list index out of range 3")
+            current_task.append(filtered_task.task)
+            current_task.append(filtered_task.custom)
+            all_user_tasks_list_type.append(current_task)
+        except Exception as error:
+            print("Error :", error)
+    if all_user_tasks_list_type == []:
         return render(
+            request,
+            "tasks/view_tasks.html",
+            {
+                "create_tasks": "You need to create tasks for the " + routine_type,
+            },
+        )
+    return render(
         request,
         "tasks/view_tasks.html",
         {
-            "tasks": all_user_tasks_list,
+            "tasks": all_user_tasks_list_type,
         },
     )
