@@ -217,7 +217,7 @@ def edit_tasks(request, routine_type):
             if filtered_task.custom == True:
                 all_user_tasks_list_type["Custom"].append(current_task)
             else:
-                all_user_tasks_list_type["Evening"].append(current_task)
+                all_user_tasks_list_type["Suggested"].append(current_task)
         except Exception as error:
             print("Error :", error)
     if all_user_tasks_list_type == []:
