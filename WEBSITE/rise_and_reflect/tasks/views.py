@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from daily_commitments.models import UserHealthArea
 from track_routine.models import RoutineTasks
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 from django.utils import timezone
 from .utils import get_max_order
+import re
 
 
 def create_routine(request, routine_type):
@@ -86,8 +88,9 @@ def create_routine(request, routine_type):
             obj = UserProfile.objects.get(user=request.user)
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
+            last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
 
-            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning"})
+            return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning", "last_id": last_id})
 
         # get duration and task_id of the users tasks
         all_user_tasks_tuple = PersonalTasks.objects.filter(
@@ -195,13 +198,9 @@ def edit_tasks(request, routine_type):
 
     for suggested_task in range(len(all_suggested_tasks_list)):
         if all_suggested_tasks_list[suggested_task][0] not in all_user_task_ids_list:
-            print("all_suggested_tasks_list", all_user_task_ids_list)
-            print("suggested_task", suggested_task)
-            print("all_suggested_tasks_list[0][suggested_task]", all_suggested_tasks_list[suggested_task][0])
-            print("suggested_task not in all_user_tasks_list", suggested_task not in all_user_task_ids_list)
-            print("all_user_tasks_list", all_user_task_ids_list)
-
+            
             filtered_suggested_task = Tasks.objects.get(id=all_suggested_tasks_list[suggested_task][0], task_type=routine_type)
+
             current_task = []
             current_task.append("No time given")
             current_task.append(all_suggested_tasks_list[suggested_task][0])
@@ -235,11 +234,89 @@ def edit_tasks(request, routine_type):
                 "create_tasks": "You need to create tasks for the " + routine_type,
             },
         )
+    last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
     return render(
         request,
         "tasks/edit_tasks.html",
         {
             "tasks": all_user_tasks_list_type,
             "routine_type": routine_type,
+            "last_id": last_id
         },
+    )
+
+def update_tasks(request, routine_type):
+    if request.POST:
+        # turn json into a python dict
+        tasks = (request.POST).dict()
+
+        user = request.user
+        obj = UserProfile.objects.get(user=user)
+        area = getattr(obj, "health_area_id")
+        health_area = UserHealthArea.objects.get(health_area=area)
+
+        # Get ids and then update personal task with duration and/or name change
+        print(tasks)
+
+        for key in tasks:
+
+            if key == "csrfmiddlewaretoken":
+                pass
+            elif key[:6] != "custom" and key[-4:] == "time" and tasks[key] != "":
+                
+                print("task_id ", int(re.search("\d+", key)[0]))
+                task_id = int(re.search("\d+", key)[0])
+                searched_task = Tasks.objects.get(pk=task_id)
+                print("This the task I am trying to update 222 ", PersonalTasks.objects.filter(task_id=searched_task))
+                if not searched_task:
+                    searched_task = Tasks(health_area=health_area, task=tasks[str(task_id)], task_type=routine_type, custom=False)
+                    searched_task.save()
+                    print("This is where I want to check  ", tasks[key])
+                    personal_task = PersonalTasks(user=user, task_id=searched_task, duration=tasks[key], order=get_max_order(user))
+                    personal_task.save()
+                else:
+
+                    print("searched_task", searched_task)
+                    print("Duration ", tasks[key])
+                    print("This the task I am trying to update ", PersonalTasks.objects.filter(task_id=searched_task))
+                    updated_task = PersonalTasks.objects.filter(task_id=searched_task).update(duration=int(tasks[key]))
+                    print(updated_task)
+                # updated_task.update(duration=tasks[key])
+
+            elif key[:6] == "custom" and key[-4:] == "time" and tasks[key] != "":
+
+                print(int(re.search("\d+", key)[0]))
+                task_id = int(re.search("\d+", key)[0])
+                searched_task=Tasks.objects.get(id=task_id)
+                print("not searched_task", searched_task)
+                
+                if not searched_task:
+                    searched_task = Tasks(health_area=health_area, task=tasks["custom" + str(task_id)], task_type=routine_type, custom=True)
+                    searched_task.save()
+                    personal_task = PersonalTasks(user=user, task_id=searched_task, duration=tasks[key], order=get_max_order(user))
+                    personal_task.save()
+                else:
+                    
+                    # Add a check to see if personal task exists and if not create that and a tracked task (that uses the routine)
+                    updated_personal_task = PersonalTasks.objects.filter(task_id=searched_task).update(duration=tasks[key])
+                    updated_task = Tasks.objects.filter(id=task_id).update(task=tasks["custom" + str(task_id)])
+                    print(updated_task)
+                    # updated_task.update(duration=tasks[key])
+                    # updated_task.update(task=tasks["custom" + task_id])
+
+
+        # # use number on time without custom
+        # for key in tasks:
+        #     # ignore the csrf token
+        #     if key == "csrfmiddlewaretoken":
+        #         pass
+        #     else:
+        #         # if the key is just a number on it's own
+        #         try:
+        #             personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key))
+
+
+        return render(
+        request,
+        "home/index.html",
     )

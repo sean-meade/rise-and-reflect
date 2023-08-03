@@ -3,7 +3,7 @@ Section {% endcomment %}
 
 <div class="container mt-5">
     <form
-        action="{% url 'create_routine' routine_type=routine_type %}"
+        action="{% url 'update_tasks' routine_type=routine_type %}"
         method="POST"
     >
         {% csrf_token %}
@@ -80,7 +80,8 @@ Section {% endcomment %}
 </div>
 
 <script>
-  let startNum = 0;
+    let startNum = {{last_id}} + 1;
+    console.log(startNum)
     // Call addInput() function on button click
     function addInput() {
       startNum++;
