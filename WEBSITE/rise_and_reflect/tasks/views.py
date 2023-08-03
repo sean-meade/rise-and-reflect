@@ -20,11 +20,7 @@ def create_routine(request, routine_type):
         print(tasks)
         try:
             created_routine = RoutineTasks.objects.get(user=user, day=timezone.now(), routine_type=routine_type)
-            print(created_routine.routine_type)
         except:
-            created_routine = False
-        if not created_routine:
-            # Create user routine
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
             print("2",created_routine)
             created_routine.save()
@@ -44,18 +40,19 @@ def create_routine(request, routine_type):
                     print("selected_tasks ", selected_tasks)
                     # TODO: Check to see if a Personal task exists with task_id
                     # Create the personal task
-                    this_personal_task = PersonalTasks(
-                        user=user,
-                        task_id=Tasks.objects.get(id=key),
-                        duration=tasks[key + "_time"],
-                        order=get_max_order(user)
-                    )
-                    this_personal_task.save()
-                    this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
-                    this_trackable_task.save()
+                    if PersonalTasks.objects.filter(user=user,task_id=Tasks.objects.get(id=key)):
+                        
+                        this_personal_task = PersonalTasks(
+                            user=user,
+                            task_id=Tasks.objects.get(id=key),
+                            duration=tasks[key + "_time"],
+                            order=get_max_order(user)
+                        )
+                        this_personal_task.save()
+                        this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                        this_trackable_task.save()
                 # If it is a custom one
                 except:
-                    print("hit")
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
                         
                         # Add the task name and duration to custom_tasks list
@@ -66,14 +63,19 @@ def create_routine(request, routine_type):
         user_profile_obj = UserProfile.objects.get(user=request.user)
         # Add the custom tasks to the database based on the inputs from the user
         for task_name, duration in custom_tasks:
-            # Create the task
-            this_task = Tasks(
-                health_area=user_profile_obj.health_area,
+            if not Tasks.objects.filter(health_area=user_profile_obj.health_area,
                 task=task_name,
-                task_type=routine_type,
-                custom=True,
-            )
-            this_task.save()
+                task_type=routine_type,custom=True):
+                # Create the task
+                this_task = Tasks(
+                    health_area=user_profile_obj.health_area,
+                    task=task_name,
+                    task_type=routine_type,
+                    custom=True,
+                )
+                this_task.save()
+            else:
+                continue
             # Create the personal task
             this_personal_task = PersonalTasks(
                 order=get_max_order(user),
