@@ -180,7 +180,8 @@ def sort(request):
     return render(request, 'partials/order_tasks.html', {'tasks': all_user_tasks_list})
 
 def edit_tasks(request, routine_type):
-     # Same as above to display tasks for a GET request instead of post
+    
+    # Same as above to display tasks for a GET request instead of post
     all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
         "duration", "task_id"
     )
@@ -246,6 +247,7 @@ def edit_tasks(request, routine_type):
     )
 
 def update_tasks(request, routine_type):
+    # TODO: Delete custom task button
     if request.POST:
         # turn json into a python dict
         tasks = (request.POST).dict()
@@ -261,6 +263,18 @@ def update_tasks(request, routine_type):
 
             if key == "csrfmiddlewaretoken":
                 pass
+            elif key[:6] != "custom" and tasks[key] != "" and key[-4:] == "time":
+                task_id = int(re.search("\d+", key)[0])
+                searched_task = Tasks.objects.get(pk=task_id)
+                updated_personal_task = PersonalTasks.objects.filter(task_id=searched_task)
+                updated_personal_task.delete()
+
+            elif key[:6] == "custom" and tasks[key] != "" and key[-4:] == "time":
+                task_id = int(re.search("\d+", key)[0])
+                searched_task = Tasks.objects.get(pk=task_id)
+                updated_personal_task = PersonalTasks.objects.filter(task_id=searched_task)
+                updated_personal_task.delete()
+                searched_task.delete()
             elif key[:6] != "custom" and key[-4:] == "time" and tasks[key] != "":
                 
                 task_id = int(re.search("\d+", key)[0])
