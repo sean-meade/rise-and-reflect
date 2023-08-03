@@ -32,7 +32,7 @@ def health_areas(request):
         # Add health area
         user_profile.update(health_area=area)
         # Grab the tasks related to the health ares
-        area_tasks = Tasks.objects.all().filter(health_area=area)
+        area_tasks = Tasks.objects.all().filter(health_area=area, custom=False)
         # send tasks to page for user to choose what to add
         return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Evening"})
     # On GET request send data to create health area buttons

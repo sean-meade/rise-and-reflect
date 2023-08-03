@@ -17,7 +17,7 @@ def create_routine(request, routine_type):
 
         user = request.user
         try:
-            created_routine = RoutineTasks.objects.get(user=user, day=timezone.now(), routine_type=routine_type)
+            created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now(), routine_type=routine_type).first()
         except:
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
             created_routine.save()
