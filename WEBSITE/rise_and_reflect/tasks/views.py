@@ -8,7 +8,6 @@ from .utils import get_max_order
 
 
 def create_routine(request, routine_type):
-    print("routine_type", routine_type)
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
@@ -17,16 +16,13 @@ def create_routine(request, routine_type):
         custom_tasks = []
 
         user = request.user
-        print(tasks)
         try:
             created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now(), routine_type=routine_type).first()
-            print(created_routine.routine_type)
         except:
             created_routine = False
         if not created_routine:
             # Create user routine
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
-            print("2",created_routine)
             created_routine.save()
         # go through dict
         for key in tasks:
@@ -36,12 +32,9 @@ def create_routine(request, routine_type):
             else:
                 # if the key is just a number on it's own
                 try:
-                    print("here")
                     int(key)
-                    print("there")
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key, tasks[key + "_time"]])
-                    print("selected_tasks ", selected_tasks)
                     # TODO: Check to see if a Personal task exists with task_id
                     personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key))
                     # Create the personal task
@@ -57,12 +50,10 @@ def create_routine(request, routine_type):
                         this_trackable_task.save()
                 # If it is a custom one
                 except:
-                    print("hit")
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
                         
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
-                        print("custom_tasks ",custom_tasks)
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
@@ -126,7 +117,6 @@ def create_routine(request, routine_type):
     all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
         "duration", "task_id"
     )
-    print("tuple", all_user_tasks_tuple)
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
     
@@ -145,7 +135,6 @@ def create_routine(request, routine_type):
         },
     )
 
-    print("tasks", all_user_tasks_list)
     return render(
         request,
         "routine/edit_routine.html",
@@ -158,7 +147,6 @@ def sort(request):
     tasks_pks_order = request.POST.getlist('task_order')
     tasks = []
     for idx, task_pk in enumerate(tasks_pks_order, start=1):
-        print(idx, task_pk)
         user_ptask = PersonalTasks.objects.get(task_id=task_pk)
         user_ptask.order = idx
         user_ptask.save()
@@ -168,7 +156,6 @@ def sort(request):
     all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
         "duration", "task_id"
     )
-    print("tuple", all_user_tasks_tuple)
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
     
@@ -195,23 +182,43 @@ def edit_tasks(request, routine_type):
         "duration", "task_id"
     )
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
+    all_user_task_ids_list = [y[1] for y in all_user_tasks_list]
 
-    print("all_user_tasks_list ", )
     all_user_tasks_list_type = {"Suggested": [], "Custom": []}
-    
+
+    obj = UserProfile.objects.get(user=request.user)
+    area = getattr(obj, "health_area_id")
+    all_suggested_tasks_tuple = Tasks.objects.filter(health_area=area, custom=False, task_type=routine_type).values_list(
+        "id"
+    )
+    all_suggested_tasks_list = [list(k) for k in all_suggested_tasks_tuple]
+
+    for suggested_task in range(len(all_suggested_tasks_list)):
+        if all_suggested_tasks_list[suggested_task][0] not in all_user_task_ids_list:
+            print("all_suggested_tasks_list", all_user_task_ids_list)
+            print("suggested_task", suggested_task)
+            print("all_suggested_tasks_list[0][suggested_task]", all_suggested_tasks_list[suggested_task][0])
+            print("suggested_task not in all_user_tasks_list", suggested_task not in all_user_task_ids_list)
+            print("all_user_tasks_list", all_user_task_ids_list)
+
+            filtered_suggested_task = Tasks.objects.get(id=all_suggested_tasks_list[suggested_task][0], task_type=routine_type)
+            current_task = []
+            current_task.append("No time given")
+            current_task.append(all_suggested_tasks_list[suggested_task][0])
+   
+            current_task.append(filtered_suggested_task.task_type)
+            current_task.append(filtered_suggested_task.task)
+            current_task.append(filtered_suggested_task.custom)
+            all_user_tasks_list_type["Suggested"].append(current_task)
+
+
     for task in range(len(all_user_tasks_list)):
-        print("Try ", task)
         try:
             filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
-            print("filtered_task ", filtered_task.custom)
             current_task = []
             current_task.append(all_user_tasks_list[task][0])
-            print("Here is the list index out of range")
-            print(all_user_tasks_list_type)
             current_task.append(all_user_tasks_list[task][1])
-            print("Here is the list index out of range 2")
             current_task.append(filtered_task.task_type)
-            print("Here is the list index out of range 3")
             current_task.append(filtered_task.task)
             current_task.append(filtered_task.custom)
             if filtered_task.custom == True:
