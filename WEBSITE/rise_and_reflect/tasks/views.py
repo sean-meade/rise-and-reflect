@@ -8,7 +8,6 @@ from .utils import get_max_order
 
 
 def create_routine(request, routine_type):
-    print("routine_type", routine_type)
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
         # turn json into a python dict
@@ -17,12 +16,10 @@ def create_routine(request, routine_type):
         custom_tasks = []
 
         user = request.user
-        print(tasks)
         try:
             created_routine = RoutineTasks.objects.get(user=user, day=timezone.now(), routine_type=routine_type)
         except:
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
-            print("2",created_routine)
             created_routine.save()
         # go through dict
         for key in tasks:
@@ -32,12 +29,9 @@ def create_routine(request, routine_type):
             else:
                 # if the key is just a number on it's own
                 try:
-                    print("here")
                     int(key)
-                    print("there")
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key, tasks[key + "_time"]])
-                    print("selected_tasks ", selected_tasks)
                     # TODO: Check to see if a Personal task exists with task_id
                     # Create the personal task
                     if PersonalTasks.objects.filter(user=user,task_id=Tasks.objects.get(id=key)):
@@ -57,7 +51,6 @@ def create_routine(request, routine_type):
                         
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
-                        print("custom_tasks ",custom_tasks)
 
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
@@ -123,7 +116,6 @@ def create_routine(request, routine_type):
     all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
         "duration", "task_id"
     )
-    print("tuple", all_user_tasks_tuple)
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
     
@@ -142,7 +134,6 @@ def create_routine(request, routine_type):
         },
     )
 
-    print("tasks", all_user_tasks_list)
     return render(
         request,
         "routine/edit_routine.html",
@@ -155,7 +146,6 @@ def sort(request):
     tasks_pks_order = request.POST.getlist('task_order')
     tasks = []
     for idx, task_pk in enumerate(tasks_pks_order, start=1):
-        print(idx, task_pk)
         user_ptask = PersonalTasks.objects.get(task_id=task_pk)
         user_ptask.order = idx
         user_ptask.save()
@@ -165,7 +155,6 @@ def sort(request):
     all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
         "duration", "task_id"
     )
-    print("tuple", all_user_tasks_tuple)
     all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
 
     
