@@ -6,8 +6,30 @@ const workFormArray = [
   "#id_work_time_to",
 ];
 
+$(window).on('load', function() {
+  if(document.getElementById('toggleForm').checked) {
+    if ($("#id_wake_time").is(":required")) {
+      $("#id_wake_time").removeAttr("required");
+      $("#id_wake_time").val('');
+    }
+    $("#wakeUpTimeGroup").slideUp();
+    $("#workForm").slideDown();
+    for (let formElement of workFormArray) {
+      if (!$(formElement).is(":required")) {
+        $(formElement).attr("required", "required");
+      }
+    }
+} else {
+  if (!$("#id_wake_time").is(":required")) {
+    $("#id_wake_time").attr("required", "required");
+  }
+}
+ });
+
 // if checkbox ticked, workform appears with all required fields, else wake up with one required field
 $(document).ready(function () {
+  
+
   $("#toggleForm").on("change", function () {
     if ($(this).is(":checked")) {
       if ($("#id_wake_time").is(":required")) {
