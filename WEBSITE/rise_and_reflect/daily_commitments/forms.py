@@ -8,7 +8,7 @@ class CommitmentsForm(forms.ModelForm):
     work_time_from = forms.TimeField(widget=TimePickerInput,required=False)
     work_time_to = forms.TimeField(widget=TimePickerInput,required=False)
     commute_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Commute'}),required=False)
-    wake_time = forms.TimeField(widget=TimePickerInput)
+    wake_time = forms.TimeField(widget=TimePickerInput,required=False)
     get_ready_time = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Hours to Get Ready for work'}),required=False)
 
     
