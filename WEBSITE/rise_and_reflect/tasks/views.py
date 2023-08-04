@@ -7,6 +7,13 @@ from django.utils import timezone
 from .utils import get_max_order
 
 
+def set_evening_tasks(request):
+    return render(request, 'tasks/set_tasks_evening.html')
+
+
+def set_morning_tasks(request):
+    return render(request, 'tasks/set_tasks_morning.html')
+
 def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
