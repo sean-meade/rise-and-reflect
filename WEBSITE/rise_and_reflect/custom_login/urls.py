@@ -7,4 +7,5 @@ urlpatterns = [
     path('user-homepage/', views.user_homepage, name='user-homepage'),
     path('daily-commit/', views.daily_commit, name='daily-commit'),
     path('set_goals/', views.set_goals, name='set_goals'),
+    path('profile_summary/', views.profile_summary, name='profile_summary')
 ]

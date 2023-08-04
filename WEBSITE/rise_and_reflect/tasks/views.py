@@ -9,8 +9,6 @@ from .utils import get_max_order
 import re
 from django.contrib.auth.decorators import login_required
 
-
-
 @login_required(login_url='/accounts/login/')
 def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones

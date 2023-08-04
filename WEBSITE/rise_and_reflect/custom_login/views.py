@@ -19,3 +19,7 @@ def daily_commit(request):
 def set_goals(request):
     return render(request, 'set_goals/set_goals.html')
 
+
+def profile_summary(request):
+    return render(request, 'home/profile_summary.html')
+
