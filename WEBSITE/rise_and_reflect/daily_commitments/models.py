@@ -3,7 +3,7 @@ from django.db import models
 
 User = settings.AUTH_USER_MODEL
 
-# Choices for health areas
+# Choices for health areas ('name', 'value')
 HEALTH_AREAS = [
     ("Choice 1", "Choice 1"),
     ("Choice 2", "Choice 2"),
