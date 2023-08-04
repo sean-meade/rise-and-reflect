@@ -691,6 +691,12 @@ td {
   background-position: center;
   z-index: -1;
 }
+.image-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .gradient-overlay {
   position: absolute;

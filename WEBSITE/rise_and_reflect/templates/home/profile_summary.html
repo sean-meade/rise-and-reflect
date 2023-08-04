@@ -1,0 +1,82 @@
+{% extends "home/profile.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 right-content">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <div class = "housing-box">
+                        <div class="account-info rounded p-3 mb-4">
+                            <h3 class ="mb-1">Account Information</h3>
+                            <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Full Name: {{ user.fullname }}</p>
+                                        <p>Username: {{ user.username }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Phone Number: {{ user.phoneNumber }}</p>
+                                        <p>Email address: {{ user.email }}</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="container-fluid mt-4">
+                            <h3>Summary</h3>
+                            <!-- Progress Bars -->
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-goals" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Goals: 75%</div>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-routines" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Routines: 30%</div>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-tasks" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Tasks: 15%</div>
+                            </div>
+                        </div>
+                        <!-- Summary of Tasks -->
+                        <div class="summary-tasks">
+                            <h4>Summary of Tasks</h4>
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th>Morning Tasks</th>
+                                <th>Evening Tasks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td class="progress-cell">
+                                    <div class="progress">
+                                    <div class="progress-bar progress-morning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                    </div>
+                                </td>
+                                <td class="progress-cell">
+                                    <div class="progress">
+                                    <div class="progress-bar progress-evening" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="security-info rounded p-3">
+                        <h3>Security</h3>
+                        <hr>
+                        <p>If you'd like to reset your password, you can do so here</p>
+                        <a href="{% url 'account_reset_password' %}" class="btn btn-info">Reset Password</a>
+                        <h3 class ="mt-2">Account</h3>
+                        <hr>
+                        <p>If you'd like to delete your account, you can do so here</p>
+                        <button class="btn btn-info">Delete Account</button>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
