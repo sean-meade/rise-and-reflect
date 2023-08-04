@@ -1,99 +1,46 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-
-
-<div class="d-flex align-items-center justify-content-center vh-100">
-  <div class="container-fluid">
-    <div class="d-flex flex-column align-items-center justify-content-center">
-      <h1 class="text-center">Welcome</h1>
-      <div class="border border-dark rounded video-container d-flex align-items-center justify-content-center">
-        <p class="text-center">VIDEO HERE</p>
-      </div>
-      <div class="d-flex flex-column align-items-center mt-3">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-              Sign-Up!
-          </button>
-              <a href="{{ login_url }}" >Already signed up?</a>
-      </div>
-    </div>
-  </div>
+<div class="image-container-sign-up">
+  <div class="gradient-overlay"></div>
 </div>
-<!--Modal for sign up-->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 offset-md-6">
+      <h1 class="text-center mb-4">{% trans "Welcome" %}</h1>
+
+
+      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-info">{% trans "Sign Up" %}</button>
+        </div>
+      </form>
+
+      <h2 class="text-center pt-4">Or sign up with the following:</h2>
+      <div class="row justify-content-center pt-3">
+        <button type="" class="btn btn-google btn-info">
+          <i class="fab fa-google"></i>
+        </button>
+        <button type="" class="btn btn-facebook btn-info">
+          <i class="fab fa-facebook-f"></i>
         </button>
       </div>
-      <div class="modal-body">
-        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
 
-          {% csrf_token %}
-          {{ form.as_p }}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <div class="row justify-content-center">
-            <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
-        </div>
-        </form>
-        <div class="text-center">Or sign up with:</div>
-        <div class="d-flex justify-content-center mt-3">
-          <button type="button" class="btn btn-outline-primary mr-2">Google</button>
-          <button type="button" class="btn btn-outline-primary">Facebook</button>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      <p class="text-center pt-3 m-2">
+        {% blocktrans %}<a href="{{ login_url }}">Already signed up</a>?{% endblocktrans %}
+      </p>
     </div>
   </div>
 </div>
-<!-- Sign-In Modal -->
-<div class="modal fade" id="signInModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    
-  <form>
-          <div class="form-group">
-            <label for="emailInput">Email address</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label for="passwordInput">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Enter a password">
-          </div>
-          <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block">Sign in</button>
-          </div>
-        </form> 
-        <div class="text-center">Or sign in with:</div>
-        <div class="d-flex justify-content-center mt-3">
-          <button type="button" class="btn btn-outline-primary mr-2">Google</button>
-          <button type="button" class="btn btn-outline-primary">Facebook</button>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-</div>
-</div>
-</div>
-
 
 {% endblock %}
