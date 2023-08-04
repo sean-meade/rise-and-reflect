@@ -5,14 +5,14 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<div class="image-container">
+<div class="image-container-sign-up">
   <div class="gradient-overlay"></div>
 </div>
 
 <div class="container">
   <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="col-md-6 offset-md-6">
-      <h1 class="text-center">{% trans "Welcome" %}</h1>
+      <h1 class="text-center mb-4">{% trans "Welcome" %}</h1>
 
 
       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
@@ -36,7 +36,7 @@
         </button>
       </div>
 
-      <p class="text-center pt-3">
+      <p class="text-center pt-3 m-2">
         {% blocktrans %}<a href="{{ login_url }}">Already signed up</a>?{% endblocktrans %}
       </p>
     </div>

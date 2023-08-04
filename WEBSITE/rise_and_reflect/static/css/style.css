@@ -686,7 +686,19 @@ td {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/self_care_six.jpg");
+  background-image: url("../images/sign_in.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.image-container-sign-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/sign_in2.jpg");
   background-size: cover;
   background-position: center;
   z-index: -1;
