@@ -46,10 +46,8 @@ def health_areas(request):
         user_profile = UserProfile.objects.get(user=request.user)
         user_health_area = getattr(user_profile, "health_area")
         all_suggested_tasks = Tasks.objects.filter(health_area=user_health_area, custom=False).values_list("id")
-        print("all_suggested_tasks", all_suggested_tasks)
         if user_profile.health_area:
             for task in all_suggested_tasks:
-                print("task", task)
                 try:
                     PersonalTasks.objects.filter(user=request.user, task_id=Tasks.objects.get(id=task[0])).delete()
                 except:
