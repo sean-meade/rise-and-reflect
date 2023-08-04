@@ -2,9 +2,8 @@
 Section {% endcomment %}
 
 <div class="container mt-5">
-    {{tasks}}
     <form
-        action="{% url 'create_routine' routine_type=routine_type %}"
+        action="{% url 'update_tasks' routine_type=routine_type %}"
         method="POST"
     >
         {% csrf_token %}
@@ -19,15 +18,36 @@ Section {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for task in tasks %}
+                        {% for task in tasks.Suggested %}
                         <tr>
-                            <td>{{task.task}}</td>
+                            <td>{{task.3}}</td>
                             <td>
                                 <input
                                     type="number"
-                                    id="{{task.id}}"
-                                    name="{{task.id}}_time"
+                                    id="{{task.1}}"
+                                    name="{{task.1}}_time"
                                     placeholder="Duration"
+                                    value="{{task.0}}"
+                                />
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% for custom_task in tasks.Custom %}
+                        <tr>
+                            <td><input
+                                id="custom{{custom_task.1}}"
+                                name="custom{{custom_task.1}}"
+                                placeholder="Duration"
+                                value="{{custom_task.3}}"
+                            />
+                                </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    id="custom{{custom_task.1}}"
+                                    name="custom{{custom_task.1}}_time"
+                                    placeholder="Duration"
+                                    value="{{custom_task.0}}"
                                 />
                             </td>
                         </tr>
@@ -60,8 +80,8 @@ Section {% endcomment %}
 </div>
 
 <script>
-  let startNum = {{last_id}} + 1;
-  console.log(startNum)
+    let startNum = {{last_id}} + 1;
+    console.log(startNum)
     // Call addInput() function on button click
     function addInput() {
       startNum++;

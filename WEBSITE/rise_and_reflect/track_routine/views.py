@@ -7,12 +7,14 @@ from .models import RoutineTasks
 from tasks.models import PersonalTasks, Tasks, TrackedTasks
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 
 
 # TODO:
 # Separate evening from morning
 # create new view to handle changing days on page
-
+@login_required(login_url='/accounts/login/')
 def track_routine(request):
 
     # get user
