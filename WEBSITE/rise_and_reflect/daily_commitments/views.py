@@ -25,8 +25,7 @@ def submit_commitments(request):
         obj = UserProfile.objects.get(user=request.user)
         area = getattr(obj, "health_area_id")
         # Grab the tasks related to the health ares
-        area_tasks = Tasks.objects.all().filter(health_area=area, custom=False)
-
+        area_tasks = Tasks.objects.filter(health_area=area, custom=False, task_type="Evening")
         personal_tasks = PersonalTasks.objects.all()
         last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
         if last_id == None:

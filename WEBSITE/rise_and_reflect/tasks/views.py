@@ -37,17 +37,17 @@ def create_routine(request, routine_type):
             else:
                 # if the key is just a number on it's own
                 try:
-                    int(key)
+                    key_id = int(re.search("\d+", key)[0])
                     # it is an existing task and the user has selected it so add it selected_tasks
-                    selected_tasks.append([key, tasks[key + "_time"]])
+                    selected_tasks.append([key_id, tasks[key]])
                     # TODO: Check to see if a Personal task exists with task_id
-                    personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key))
+                    personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key_id))
                     # Create the personal task
                     if not personal_task_exists:
                         this_personal_task = PersonalTasks(
                             user=user,
-                            task_id=Tasks.objects.get(id=key),
-                            duration=tasks[key + "_time"],
+                            task_id=Tasks.objects.get(id=key_id),
+                            duration=tasks[key],
                             order=get_max_order(user)
                         )
                         this_personal_task.save()
