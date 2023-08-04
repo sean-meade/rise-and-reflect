@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime, timedelta
 import json
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
@@ -48,20 +48,22 @@ def display_routine(request):
 
     # Get either wake time or work commitments
     wake_time = list_of_commits["wake_time"]
-    # if wake_time != None:
+    if wake_time != None:
+    # for wake time:
+        # Eve
+        # wake time + 5 mins = start time
+        wake_time_fix = datetime.strptime(str(wake_time), '%H:%M:%S')
+        start_time = wake_time_fix + timedelta(minutes=5)
+        print(start_time.strftime('%H:%M:%S'))
+        # start time = time of first task
+        # time of 1st + duration (change to mins) = time of second
+        # continue
 
-        # for wake time:
-            # Eve
-            # wake time + 15 mins = start time
-            # start time = time of first task
-            # time of 1st + duration (change to mins) = time of second
-            # continue
-
-            # Morn
-            # wake time - sleep hours = bed time
-            # bed time - last task duration = start of last task
-            # start of last task - second last task duration = start of second last task
-            # continue
+        # Morn
+        # wake time - sleep hours = bed time
+        # bed time - last task duration = start of last task
+        # start of last task - second last task duration = start of second last task
+        # continue
 
     # for work commits
         # time start work - duration to get ready for work = time to get ready
