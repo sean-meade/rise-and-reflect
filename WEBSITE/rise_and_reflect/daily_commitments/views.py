@@ -38,6 +38,8 @@ def health_areas(request):
 
         personal_tasks = PersonalTasks.objects.all()
         last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+        if last_id == None:
+            last_id = 0
         # send tasks to page for user to choose what to add
         return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Evening", "last_id": last_id})
     # On GET request send data to create health area buttons

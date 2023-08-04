@@ -89,6 +89,8 @@ def create_routine(request, routine_type):
             area = getattr(obj, "health_area_id")
             area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
             last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+            if last_id == None:
+                last_id = 0
 
             return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning", "last_id": last_id})
 
@@ -236,6 +238,8 @@ def edit_tasks(request, routine_type):
             },
         )
     last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+    if last_id == None:
+        last_id = 0
     return render(
         request,
         "tasks/edit_tasks.html",
