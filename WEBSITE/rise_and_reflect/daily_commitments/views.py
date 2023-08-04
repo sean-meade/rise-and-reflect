@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 
 from tasks.models import PersonalTasks
 from .forms import CommitmentsForm
-from .models import HEALTH_AREAS
+from .models import HEALTH_AREAS, UserHealthArea
 from tasks.models import Tasks
 from custom_login.models import UserProfile
 from django.contrib.auth.decorators import login_required
@@ -41,10 +41,22 @@ def health_areas(request):
     if request.POST:
         # grab the health area
         area = request.POST['area']
+
         # Get the user profile of the user
-        user_profile = UserProfile.objects.filter(user=request.user)
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_health_area = getattr(user_profile, "health_area")
+        all_suggested_tasks = Tasks.objects.filter(health_area=user_health_area, custom=False).values_list("id")
+        print("all_suggested_tasks", all_suggested_tasks)
+        if user_profile.health_area:
+            for task in all_suggested_tasks:
+                print("task", task)
+                try:
+                    PersonalTasks.objects.filter(user=request.user, task_id=Tasks.objects.get(id=task[0])).delete()
+                except:
+                    pass
         # Add health area
-        user_profile.update(health_area=area)
+        user_profile.health_area=UserHealthArea(health_area=area)
+        user_profile.save()
         # Take user to the page where they can choose their health area
         return render(request, 'daily-commit/daily-commit.html', {'form': CommitmentsForm})
     # On GET request send data to create health area buttons
