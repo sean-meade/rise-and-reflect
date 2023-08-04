@@ -15,12 +15,32 @@ from django.contrib.auth.decorators import login_required
 def display_routine(request):
 
     # Get task, type (from Tasks) order,duration, task_id (PersonalTasks)
-    personal_tasks = PersonalTasks.objects.filter(user=request.user).values_list(
+    personal_tasks = PersonalTasks.objects.filter(user=request.user).values(
         "task_id", "duration", "order"
     )
-    # turn it to a list of lists
-    # all_user_tasks_list = [list(j) for j in personal_tasks]
-    print("all_user_tasks_list", personal_tasks)
+
+    morn_tasks = []
+
+    eve_tasks = []
+
+    for ptask in personal_tasks:
+        t = Tasks.objects.get(id=ptask['task_id'])
+        if t.task_type == "Morning":
+            morn_tasks.append({
+                'task_id': ptask['task_id'],
+                'task': t.task,
+                'duration': ptask['duration'],
+                'order': ptask['order'],
+            })
+        elif t.task_type == "Evening":
+            eve_tasks.append({
+                'task_id': ptask['task_id'],
+                'task': t.task,
+                'duration': ptask['duration'],
+                'order': ptask['order'],
+            })
+    print(morn_tasks)
+    print(eve_tasks)
 
     # Get hours of sleep
     list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
