@@ -9,7 +9,37 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/accounts/login/')
+def display_routine(request):
+    # Get hours of sleep
 
+    # Get either wake time or work commitments
+
+    # Get task, type (from Tasks) order,duration (PersonalTasks)
+
+    # for wake time:
+        # Eve
+        # wake time + 15 mins = start time
+        # start time = time of first task
+        # time of 1st + duration (change to mins) = time of second
+        # continue
+
+        # Morn
+        # wake time - sleep hours = bed time
+        # bed time - last task duration = start of last task
+        # start of last task - second last task duration = start of second last task
+        # continue
+
+    # for work commits
+        # time start work - duration to get ready for work = time to get ready
+        # time to get ready - duration of last morn task = start time of last morn task
+        # start time of last morn task - duration of second last morn task = start time of second last morn task
+        # continue for all morn tasks
+        # time of first morn task - 15mins = wake time
+        # wake time - hours of sleep = bed time
+        # bed time - duration of last eve task = start time of last eve task
+        # start time of last eve task - duration of second last eve task = start time of second last eve task
+        # contiue
 
 # TODO:
 # Separate evening from morning
