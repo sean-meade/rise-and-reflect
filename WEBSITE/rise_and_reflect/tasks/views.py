@@ -7,8 +7,11 @@ from .models import Tasks, PersonalTasks, TrackedTasks
 from django.utils import timezone
 from .utils import get_max_order
 import re
+from django.contrib.auth.decorators import login_required
 
 
+
+@login_required(login_url='/accounts/login/')
 def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
@@ -148,6 +151,7 @@ def create_routine(request, routine_type):
         },
     )
 
+
 def sort(request):
     tasks_pks_order = request.POST.getlist('task_order')
     tasks = []
@@ -181,6 +185,7 @@ def sort(request):
 
     return render(request, 'partials/order_tasks.html', {'tasks': all_user_tasks_list})
 
+@login_required(login_url='/accounts/login/')
 def edit_tasks(request, routine_type):
     
     # Same as above to display tasks for a GET request instead of post
@@ -250,6 +255,7 @@ def edit_tasks(request, routine_type):
         },
     )
 
+@login_required(login_url='/accounts/login/')
 def update_tasks(request, routine_type):
     # TODO: Delete custom task button
     if request.POST:
