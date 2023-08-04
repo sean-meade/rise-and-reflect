@@ -3,6 +3,8 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
+
+from daily_commitments.models import UserTimeCommitments
 from .models import RoutineTasks
 from tasks.models import PersonalTasks, Tasks, TrackedTasks
 from django.views.decorators.csrf import csrf_exempt
@@ -11,24 +13,35 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
 def display_routine(request):
+
+    # Get task, type (from Tasks) order,duration, task_id (PersonalTasks)
+    personal_tasks = PersonalTasks.objects.filter(user=request.user).values_list(
+        "task_id", "duration", "order"
+    )
+    # turn it to a list of lists
+    # all_user_tasks_list = [list(j) for j in personal_tasks]
+    print("all_user_tasks_list", personal_tasks)
+
     # Get hours of sleep
+    list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
+    hours_of_sleep = list_of_commits["hours_of_sleep"]
 
     # Get either wake time or work commitments
+    wake_time = list_of_commits["wake_time"]
+    # if wake_time != None:
 
-    # Get task, type (from Tasks) order,duration (PersonalTasks)
+        # for wake time:
+            # Eve
+            # wake time + 15 mins = start time
+            # start time = time of first task
+            # time of 1st + duration (change to mins) = time of second
+            # continue
 
-    # for wake time:
-        # Eve
-        # wake time + 15 mins = start time
-        # start time = time of first task
-        # time of 1st + duration (change to mins) = time of second
-        # continue
-
-        # Morn
-        # wake time - sleep hours = bed time
-        # bed time - last task duration = start of last task
-        # start of last task - second last task duration = start of second last task
-        # continue
+            # Morn
+            # wake time - sleep hours = bed time
+            # bed time - last task duration = start of last task
+            # start of last task - second last task duration = start of second last task
+            # continue
 
     # for work commits
         # time start work - duration to get ready for work = time to get ready
@@ -40,6 +53,7 @@ def display_routine(request):
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task
         # contiue
+    return render(request, 'home/index.html')
 
 # TODO:
 # Separate evening from morning

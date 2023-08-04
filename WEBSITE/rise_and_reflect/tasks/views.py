@@ -13,22 +13,27 @@ from django.contrib.auth.decorators import login_required
 def create_routine(request, routine_type):
     # TODO: Filter out suggested tasks and don't show custom ones
     if request.POST:
+        print("1")
         # turn json into a python dict
         tasks = (request.POST).dict()
         selected_tasks = []
         custom_tasks = []
+        print("tasks", tasks)
 
         user = request.user
         try:
             created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now(), routine_type=routine_type).first()
+            print("1 existing routine")
         except:
             created_routine = False
         if not created_routine:
             # Create user routine
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
             created_routine.save()
+            print("routine created")
         # go through dict
         for key in tasks:
+            print("key ", key)
             # ignore the csrf token
             if key == "csrfmiddlewaretoken":
                 pass
@@ -36,6 +41,7 @@ def create_routine(request, routine_type):
                 # if the key is just a number on it's own
                 try:
                     key_id = int(re.search("\d+", key)[0])
+                    print("key_id", key_id)
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key_id, tasks[key]])
                     # TODO: Check to see if a Personal task exists with task_id
@@ -49,12 +55,14 @@ def create_routine(request, routine_type):
                             order=get_max_order(user)
                         )
                         this_personal_task.save()
+                        print("personal task created", "key_id", key_id)
                         this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
                         this_trackable_task.save()
+                        print("tracked task created from area")
                 # If it is a custom one
                 except:
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
-                        
+                        print("custom added to list", key[:6], tasks[key])
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
 
@@ -62,8 +70,11 @@ def create_routine(request, routine_type):
         user_profile_obj = UserProfile.objects.get(user=request.user)
         # Add the custom tasks to the database based on the inputs from the user
         for task_name, duration in custom_tasks:
+            print("task_name, duration", task_name, duration)
             custom_task_exists = Tasks.objects.filter(task=task_name, task_type=routine_type)
+            print("not custom_task_exists", not custom_task_exists)
             if not custom_task_exists:
+
                 # Create the task
                 this_task = Tasks(
                     health_area=user_profile_obj.health_area,
@@ -72,7 +83,7 @@ def create_routine(request, routine_type):
                     custom=True,
                 )
                 this_task.save()
-            
+                print("custom task created", "task_name", task_name)
                 # Create the personal task
                 this_personal_task = PersonalTasks(
                     order=get_max_order(user),
@@ -81,17 +92,20 @@ def create_routine(request, routine_type):
                     user=user,
                 )
                 this_personal_task.save()
+                print("custom personal task created")
                 # this_personal_task.user.set([user])
                 this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
                 this_trackable_task.save()
+                print("custom tracked task created")
 
         if routine_type == "Evening":
             obj = UserProfile.objects.get(user=request.user)
             area = getattr(obj, "health_area_id")
-            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
+            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning", custom=False)
             last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
             if last_id == None:
                 last_id = 0
+            print("last_id",last_id)
 
             return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Morning", "last_id": last_id})
 
@@ -111,12 +125,15 @@ def create_routine(request, routine_type):
             all_user_tasks_list[task].append(filtered_task.task)
             all_user_tasks_list[task].append(filtered_task.custom)
 
-        
+        print("this is what is displayed")
+        last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+        if last_id == None:
+            last_id = 0
 
         # return all the users tasks
         return render(request, "routine/edit_routine.html",
         {
-            "tasks": all_user_tasks_list,
+            "tasks": all_user_tasks_list, "last_id": last_id, "routine_type": routine_type
         },)
 
     # Same as above to display tasks for a GET request instead of post
@@ -140,12 +157,16 @@ def create_routine(request, routine_type):
             "create_tasks": "You need to create tasks for the " + routine_type,
         },
     )
-
+        
+    print("got as far as here")
+    last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+    if last_id == None:
+        last_id = 0
     return render(
         request,
         "routine/edit_routine.html",
         {
-            "tasks": all_user_tasks_list,
+            "tasks": all_user_tasks_list, "last_id": last_id
         },
     )
 
@@ -177,7 +198,7 @@ def sort(request):
         request,
         "routine/edit_routine.html",
         {
-            "create_tasks": "You need to create tasks for the " + routine_type,
+            "create_tasks": "You need to create tasks",
         },
     )
 
