@@ -3,7 +3,7 @@ Section {% endcomment %}
 
 <div class="container mt-5">
     <form
-        action="{% url 'update_tasks' routine_type=routine_type %}"
+        action="{% url 'create_routine' routine_type=routine_type %}"
         method="POST"
     >
         {% csrf_token %}
@@ -69,9 +69,15 @@ Section {% endcomment %}
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="text-center mt-4">
-                    <a class="btn btn-primary" id="previousBtn" href="{% url 'health-areas' %}">
+                    {% if routine_type == "Evening" %}
+                    <a class="btn btn-primary" id="previousBtn" href="{% url 'daily-commit' %}">
                         Previous
                     </a>
+                    {% else %}
+                    <a class="btn btn-primary" id="previousBtn" href="{% url 'create_routine' routine_type='Evening' %}">
+                        Previous
+                    </a>
+                    {% endif %}
                     <button class="btn btn-primary" id="nextBtn" type="submit">Next</button>
                 </div>
             </div>
@@ -85,6 +91,7 @@ Section {% endcomment %}
     // Call addInput() function on button click
     function addInput() {
       startNum++;
+      console.log(startNum)
         var tableRow = document.getElementById("table");
         var row = tableRow.insertRow(-1);
         var cell1 = row.insertCell(0);
