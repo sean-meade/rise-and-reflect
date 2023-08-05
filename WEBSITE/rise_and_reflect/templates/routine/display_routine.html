@@ -55,6 +55,8 @@
                                     <td>{{task.duration}}</td> <!-- Duration for Evening Task 1 -->
                                 </tr>
                                 {% endfor %}
+
+                                {% if commitments.get_ready_start %}
                                 <tr>
                                     <td>{{commitments.get_ready_start}}</td>
                                     <td>
@@ -69,6 +71,7 @@
                                     </td>
                                     <td>{{commitments.work_hours}} (hours)</td> <!-- Duration for Evening Task 1 -->
                                 </tr>
+                                {% endif %}
                                 
                                 <!-- Add more evening tasks as needed -->
                             </tbody>
