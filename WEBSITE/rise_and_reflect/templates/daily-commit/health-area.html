@@ -1,36 +1,51 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 {% comment %} Set Goals Section {% endcomment %}
 <div class="container center-boxes">
-    <h1 class = "text-center">Set Your Goals</h1>
+    <h1 class="text-center">Set Your Goals</h1>
     <form action="{% url 'health-areas' %}" method="POST">
         {% csrf_token %}
-    {% for area in areas %}
-    {% if forloop.counter0|divisibleby:"2" %}
+    
+        <div class="row">
+            <button type='submit' value="{{ area.0.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+                <div class="border border-dark rounded video-container square-box">
+                    <a class="text-center">
+                        <img src="{% static 'images/self_care.jpg' %}" class="img-fluid" alt="Goal 1">
+                        <h3>{{areas.0.0}}</h3>
+                    </a>
+                </div>
+            </button>
 
-    <div class="row">
-        <button type ='submit' value="{{ area.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
-            <div class="border border-dark rounded video-container square-box">
-                <a class="text-center">
-                    {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 1"> {% endcomment %}
-                    <h3>{{area.0}}</h3>
-                </a>
-            </div>
-        </button>
-        {% else %}
-        <button type ='submit' value="{{ area.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
-            <div class="border border-dark rounded video-container square-box">
-                <a class="text-center">
-                    {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 2"> {% endcomment %}
-                    <h3>{{area.0}}</h3>
-                </a>
-            </div>
-        </button>
-    </div>
-        {% endif %} 
-        {% endfor %}
-</form>
+            <button type='submit' value="{{ area.1.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+                <div class="border border-dark rounded video-container square-box">
+                    <a class="text-center">
+                        <img src="{% static 'images/self_care.jpg' %}" class="img-fluid" alt="Goal 2">
+                        <h3>{{areas.1.0}}</h3>
+                    </a>
+                </div>
+            </button>
+
+            <button type='submit' value="{{ area.2.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+                <div class="border border-dark rounded video-container square-box">
+                    <a class="text-center">
+                        <img src="{% static 'images/self_care_six.jpg' %}" class="img-fluid" alt="Goal 2">
+                        <h3>{{areas.2.0}}</h3>
+                    </a>
+                </div>
+            </button>
+
+            <button type='submit' value="{{ area.3.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+                <div class="border border-dark rounded video-container square-box">
+                    <a class="text-center">
+                        <img src="{% static 'images/self_care_five.jpg' %}" class="img-fluid" alt="Goal 2">
+                        <h3>{{areas.3.0}}</h3>
+                    </a>
+                </div>
+            </button>
+        </div>
+    
+    </form>
 </div>
 {% endblock %}

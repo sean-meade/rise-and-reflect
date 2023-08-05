@@ -134,12 +134,15 @@ if os.environ.get('DEVELOPMENT') == 'True':
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    print("Development Testing")
 
 else:
 
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
+
+    print("Dev Testing 2")
 
 
 # Password validation
