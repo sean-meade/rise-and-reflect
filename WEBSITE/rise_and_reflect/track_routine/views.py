@@ -79,14 +79,8 @@ def display_routine(request):
             duration = int(eve_task['duration'])
             eve_start_time = eve_start_time - timedelta(minutes=duration)
             eve_task['start_time'] = eve_start_time.time()
-            
-
-    
-        print(eve_tasks)
-        
+                    
     else:
-        print(morn_tasks)
-        print(eve_tasks)
         
     # for work commits
         work_time_from = list_of_commits["work_time_from"]
@@ -97,7 +91,6 @@ def display_routine(request):
         # time start work - duration to get ready for work = time to get ready
         work_time_from_fix = datetime.strptime(str(work_time_from), '%H:%M:%S')
         get_ready_start = work_time_from_fix - timedelta(minutes=get_ready_time)
-        print("get_ready_start", get_ready_start.time())
         commitments['get_ready_start'] = get_ready_start.time()
         commitments['get_ready_time'] = get_ready_time
         commitments['work_time_from'] = work_time_from
@@ -117,7 +110,6 @@ def display_routine(request):
             duration = int(morn_task['duration'])
             morn_start_time = morn_start_time - timedelta(minutes=duration)
             morn_task['start_time'] = morn_start_time.time()
-        print(morn_tasks)        
         # start time of last morn task - duration of second last morn task = start time of second last morn task
         # continue for all morn tasks
         # time of first morn task - 15mins = wake time
@@ -127,7 +119,6 @@ def display_routine(request):
         bed_time_fix = wake_time - timedelta(hours=int(hours_of_sleep))
         
         commitments['bed_time'] = bed_time_fix.time()
-        print("commitments", commitments)
 
         eve_start_time = bed_time_fix
 
@@ -136,8 +127,6 @@ def display_routine(request):
             eve_start_time = eve_start_time - timedelta(minutes=duration)
             eve_task['start_time'] = eve_start_time.time()
         
-        print(morn_tasks)
-        print(eve_tasks)
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task
         # continue
