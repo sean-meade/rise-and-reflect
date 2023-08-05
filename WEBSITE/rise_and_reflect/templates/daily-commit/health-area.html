@@ -1,14 +1,36 @@
-{% extends "base.html" %} 
-{% load static %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<form action="{% url 'health-areas' %}" method="POST">
-    {% csrf_token %}
+{% comment %} Set Goals Section {% endcomment %}
+<div class="container center-boxes">
+    <h1 class = "text-center">Set Your Goals</h1>
+    <form action="{% url 'health-areas' %}" method="POST">
+        {% csrf_token %}
     {% for area in areas %}
-        <button type ='submit' value="{{ area.0 }}" name="area" class='btn btn-outline-info' > 
-{{area.0}} </button>
-    {% endfor %}
-</form> 
+    {% if forloop.counter0|divisibleby:"2" %}
 
+    <div class="row">
+        <button type ='submit' value="{{ area.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+            <div class="border border-dark rounded video-container square-box">
+                <a class="text-center">
+                    {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 1"> {% endcomment %}
+                    <h3>{{area.0}}</h3>
+                </a>
+            </div>
+        </button>
+        {% else %}
+        <button type ='submit' value="{{ area.0 }}" name="area" class="col-md-6 col-lg-6 mb-4 d-flex align-items-center justify-content-center mx-auto health-btn">
+            <div class="border border-dark rounded video-container square-box">
+                <a class="text-center">
+                    {% comment %} <img src="{% static 'images/goal1.jpg' %}" class="img-fluid" alt="Goal 2"> {% endcomment %}
+                    <h3>{{area.0}}</h3>
+                </a>
+            </div>
+        </button>
+    </div>
+        {% endif %} 
+        {% endfor %}
+</form>
+</div>
 {% endblock %}

@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Daily Commitments Setup</h1>
-<form method="POST" action="{% url 'daily-commit-submit' %}" enctype = "multipart/form-data">
+<form method="POST" action="{% url 'daily-commit' %}" enctype = "multipart/form-data">
     {% csrf_token %}
     <div class="form-group form-inline" id="hoursOfSleepGroup">
         <label class="mr-2" for="id_hours_of_sleep">Hours of sleep</label>
@@ -18,11 +18,20 @@
 
     <div class="form-group row">
         <div class="form-check">
+            {% if wake_time == True %}
             <input
                 class="form-check-input"
                 type="checkbox"
                 id="toggleForm"
             />
+            {% else %}
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="toggleForm"
+                checked
+            />
+            {% endif %}
             <label class="form-check-label" for="toggleForm">
                 Show Work Form
             </label>

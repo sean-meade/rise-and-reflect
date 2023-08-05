@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_js %}
+<script src="{% static 'js/routineDate.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+      <!-- Left Column: Image, Username -->
+        <div class="col-md-2 fixed-left-column user-column">
+            <img src="{% static 'img/default.png' %}" alt="User Image" class="img-fluid mb-2 profile-image">
+            <h4>{{ user.username }}</h4>
+
+            <!-- Nav Tabs -->
+            <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="tab1-tab" data-toggle="pill" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Summary</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab2-tab" data-toggle="pill" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Goals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab3-tab" data-toggle="pill" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Routines</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab4-tab" data-toggle="pill" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false">Tasks</a>
+            </li>
+            <!-- Add more tabs as needed -->
+            </ul>
+        </div>
+      <!-- Right Column: Tab Content -->
+        <div class="col-md-10 right-content">
+            <div class="tab-content" id="myTabContent">
+          <!-- Tab 1 Content -->
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <div class = "housing-box">
+                        <div class="account-info rounded p-3 mb-4">
+                            <h3 class ="mb-1">Account Information</h3>
+                            <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Full Name: {{ user.fullname }}</p>
+                                        <p>Username: {{ user.username }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Phone Number: {{ user.phoneNumber }}</p>
+                                        <p>Email address: {{ user.email }}</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="container-fluid mt-4">
+                            <h3>Summary</h3>
+                            <!-- Progress Bars -->
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-goals" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Goals: 75%</div>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-routines" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Routines: 30%</div>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-tasks" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Tasks: 15%</div>
+                            </div>
+                        </div>
+                        <!-- Summary of Tasks -->
+                        <div class="summary-tasks">
+                            <h4>Summary of Tasks</h4>
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th>Morning Tasks</th>
+                                  <th>Evening Tasks</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="progress-cell">
+                                    <div class="progress">
+                                      <div class="progress-bar progress-morning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                    </div>
+                                  </td>
+                                  <td class="progress-cell">
+                                    <div class="progress">
+                                      <div class="progress-bar progress-evening" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="security-info rounded p-3">
+                        <h3>Security</h3>
+                        <hr>
+                        <p>If you'd like to reset your password, you can do so here</p>
+                        <a href="{% url 'account_reset_password' %}" class="btn btn-info">Reset Password</a>
+                        <h3 class ="mt-2">Account</h3>
+                        <hr>
+                        <p>If you'd like to delete your account, you can do so here</p>
+                        <button class="btn btn-info">Delete Account</button>
+                    </div>
+                </div>   
+            </div>
+        </div>
+
+        <!-- Tab 2 Content -->
+        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+            <div class="container center-boxes">
+                <h1 class = "text-center">Set Your Goals</h1>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 mb-4">
+                        <div class="border rounded p-3 text-center goal-box">
+                            <h4 class="mt-0">Goal 1</h4>
+                            <!-- Add content related to Goal 1 -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mb-4">
+                        <div class="border rounded p-3 text-center goal-box">
+                            <h4 class="mt-0">Goal 2</h4>
+                            <!-- Add content related to Goal 2 -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mb-4 goal-border">
+                        <div class="border rounded p-3 text-center goal-box">
+                            <h4 class="mt-0">Goal 3</h4>
+                            <!-- Add content related to Goal 3 -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mb-4">
+                        <div class="border rounded p-3 text-center goal-box">
+                            <h4 class="mt-0">Goal 4</h4>
+                            <!-- Add content related to Goal 4 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>         
+          <!-- Tab 3 Content -->
+        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+            <div class="container routine-border">
+                <div class="title">Routines</div>
+        
+                <div class="main-box">
+                    <div class="arrow arrow-left" onclick="changeWeek(-1)">&#x25C0;</div>
+                    <div class="arrow arrow-right" onclick="changeWeek(1)">&#x25B6;</div>
+                    <div class="date-box" id="selected-date">Selected Date</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="routine-box">Morning routine</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="routine-box">Evening routine</div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="task-box">Task one</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="task-box">Task two</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="task-box">Task three</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="task-box">Task four</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Tab 4 Content (Morning and Evening Tasks) -->
+        <div class="tab-pane fade full-task" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+            <ul class="nav nav-tabs" id="tasksTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="morning-tasks-tab" data-toggle="tab" href="#morning-tasks-content" role="tab" aria-controls="morning-tasks-content" aria-selected="true">Morning Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="evening-tasks-tab" data-toggle="tab" href="#evening-tasks-content" role="tab" aria-controls="evening-tasks-content" aria-selected="false">Evening Tasks</a>
+                </li>
+            </ul>
+
+            <!-- Tab Content for Morning and Evening Tasks -->
+            <div class="tab-content" id="tasksTabContent">
+                <!-- Morning Tasks Content -->
+                <div class="tab-pane fade show active" id="morning-tasks-content" role="tabpanel" aria-labelledby="morning-tasks-tab">
+                    <div class="row">
+                        <!-- Task Suggestions and Duration (Minutes) Table -->
+                        <div class="col-md-12">
+                            <h4 class="mt-4 task-title">Task Suggestions</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Task</th>
+                                            <th>Duration (Min)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Add morning task rows here as shown in the previous example -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evening Tasks Content -->
+                <div class="tab-pane fade" id="evening-tasks-content" role="tabpanel" aria-labelledby="evening-tasks-tab">
+                    <div class="row">
+                        <!-- Task Suggestions and Duration (Minutes) Table -->
+                        <div class="col-md-12">
+                            <h4 class="mt-4">Task Suggestions</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Task</th>
+                                            <th>Duration (Min)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Add evening task rows here -->
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="evening-task1">
+                                                    <label class="form-check-label" for="evening-task1">Evening Task 1</label>
+                                                </div>
+                                            </td>
+                                            <td>30</td> <!-- Duration for Evening Task 1 -->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="evening-task2">
+                                                    <label class="form-check-label" for="evening-task2">Evening Task 2</label>
+                                                </div>
+                                            </td>
+                                            <td>20</td> <!-- Duration for Evening Task 2 -->
+                                        </tr>
+                                        <!-- Add more evening tasks as needed -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+{% endblock %}

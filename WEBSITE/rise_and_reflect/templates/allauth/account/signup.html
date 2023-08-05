@@ -1,34 +1,46 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
+<div class="image-container-sign-up">
+  <div class="gradient-overlay"></div>
+</div>
+
 <div class="container">
-    <h1 class="text-center">{% trans "Welcome" %}</h1>
+  <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 offset-md-6">
+      <h1 class="text-center mb-4">{% trans "Welcome" %}</h1>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
 
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <div class="row justify-content-center">
-    <button type="submit" class="btn">{% trans "Sign Up" %}</button>
-</div>
-</form>
-<div class="row justify-content-center pt-3">
-<button type="" class="btn">Sign up with Google</button>
-</div>
-<div class="row justify-content-center pt-3">
-<button type="" class="btn">Sign up with Facebook</button>
-</div>
+      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-info">{% trans "Sign Up" %}</button>
+        </div>
+      </form>
 
-<p class="text-center pt-3">
-{% blocktrans %}<a href="{{ login_url }}">Already signed up</a>.{% endblocktrans %}
-</p>
+      <h2 class="text-center pt-4">Or sign up with the following:</h2>
+      <div class="row justify-content-center pt-3">
+        <button type="" class="btn btn-google btn-info">
+          <i class="fab fa-google"></i>
+        </button>
+        <button type="" class="btn btn-facebook btn-info">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+      </div>
+
+      <p class="text-center pt-3 m-2">
+        {% blocktrans %}<a href="{{ login_url }}">Already signed up</a>?{% endblocktrans %}
+      </p>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

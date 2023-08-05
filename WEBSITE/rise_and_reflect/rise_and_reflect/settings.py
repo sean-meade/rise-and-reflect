@@ -115,9 +115,9 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/health-area/'
 
-ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
+# ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
 
 
 WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'

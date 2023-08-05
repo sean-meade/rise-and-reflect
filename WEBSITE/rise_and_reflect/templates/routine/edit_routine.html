@@ -1,31 +1,14 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
-{{add_tasks}}
+<div class="align-center col-10 offset-1">
 
-<h2>Track task for {{user.username}}</h2>
-<br>
-<h4>{{routine.0.day}}</h4>
-
-
-<table id="sortable">
-    <tr>
-      <th>Task Name</th>
-      <th>Evening/Morning</th>
-      <th>Duration</th>
-      <th>Custom</th>
-    </tr>
-{% for task in routine %}
-    <tr data-pk="{{ task.id }}">
-      <td>{{filtered_task.0.0}}</td>
-      <td>{{task.completed}}</td>
-      <td>{{task.2}}</td>
-      <td>{{task.0}}</td>
-    </tr>
-
-    {% endfor %}
-</table>
-
-
+  <main class="d-flex">
+      <section id="film-list" class="col-12">
+          {% include 'partials/order_tasks.html' %}
+      </section>
+  </main>
+</div>
 {% endblock %}
