@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Daily Commitments Setup</h1>
-<form method="POST" action="{% url 'daily-commit' %}" enctype = "multipart/form-data">
+<form method="POST" action="{% url 'edit_tasks' routine_type='Evening' %}" enctype = "multipart/form-data">
     {% csrf_token %}
     <div class="form-group form-inline" id="hoursOfSleepGroup">
         <label class="mr-2" for="id_hours_of_sleep">Hours of sleep</label>

@@ -12,10 +12,6 @@ def user_homepage(request):
     return render(request, 'user_home/user-homepage.html')
 
 
-def daily_commit(request):
-    return render(request, 'daily-commit/daily-commit.html')
-
-
 def set_goals(request):
     return render(request, 'set_goals/set_goals.html')
 
