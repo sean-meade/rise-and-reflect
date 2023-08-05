@@ -39,8 +39,6 @@ def display_routine(request):
                 'duration': ptask['duration'],
                 'order': ptask['order'],
             })
-    print(morn_tasks)
-    print(eve_tasks)
 
     # Get hours of sleep
     list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
@@ -53,20 +51,43 @@ def display_routine(request):
         # Eve
         # wake time + 5 mins = start time
         wake_time_fix = datetime.strptime(str(wake_time), '%H:%M:%S')
-        start_time = wake_time_fix + timedelta(minutes=5)
-        print(start_time.strftime('%H:%M:%S'))
+        morn_start_time = wake_time_fix + timedelta(minutes=5)
         # start time = time of first task
-        # time of 1st + duration (change to mins) = time of second
-        # continue
+        morn_tasks[0]['start_time'] = morn_start_time.time()
+        duration = int(morn_tasks[0]['duration'])
 
+        for morn_task in morn_tasks[1:]:
+       
+            # time of 1st + duration (change to mins) = time of second
+            morn_start_time = morn_start_time + timedelta(minutes=duration)
+            morn_task['start_time'] = morn_start_time.time()
+            duration = int(morn_task['duration'])
+            
+            # continue
         # Morn
         # wake time - sleep hours = bed time
-        # bed time - last task duration = start of last task
-        # start of last task - second last task duration = start of second last task
-        # continue
+        eve_start_time = wake_time_fix - timedelta(hours=hours_of_sleep)
 
+        for eve_task in reversed(eve_tasks):
+            duration = int(eve_task['duration'])
+            eve_start_time = eve_start_time - timedelta(minutes=duration)
+            eve_task['start_time'] = eve_start_time.time()
+            
+
+        print(morn_tasks)
+        print(eve_tasks)
+        
+    else:
     # for work commits
+        work_time_from = list_of_commits["work_time_from"]
+        work_time_to = list_of_commits["work_time_to"]
+        commute_time = list_of_commits["commute_time"]
+        get_ready_time = list_of_commits["get_ready_time"]
+
         # time start work - duration to get ready for work = time to get ready
+        work_time_from_fix = datetime.strptime(str(work_time_from), '%H:%M:%S')
+        get_ready_start = work_time_from_fix - timedelta(minutes=get_ready_time)
+        print("get_ready_start", get_ready_start.time())
         # time to get ready - duration of last morn task = start time of last morn task
         # start time of last morn task - duration of second last morn task = start time of second last morn task
         # continue for all morn tasks
