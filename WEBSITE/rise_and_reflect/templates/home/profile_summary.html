@@ -22,10 +22,10 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <h5 class="card-title">Full Name</h5>
-                            <p class="card-text">Username: YourUsername</p>
-                            <p class="card-text">Email: example@example.com</p>
-                            <p class="card-text">Phone: +123 456 7890</p>
+                            <h5 class="card-title">{{user_profile.name}}</h5>
+                            <p class="card-text">Username: {{request.user}}</p>
+                            <p class="card-text">Email: {{request.user.email}}</p>
+                            <p class="card-text">Phone: {{user_profile.phone}}</p>
                             <!-- You can add other user details here as needed -->
                         </div>
                     </div>
@@ -74,7 +74,11 @@
                     <h4 class="mt-3">Account</h4> <!-- Changed mt-2 to mt-3 for additional spacing -->
                     <hr>
                     <p>If you'd like to delete your account, you can do so here</p>
-                    <button class="btn btn-info">Delete Account</button>
+                    <form method="post" action="{% url 'delete_account' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-info" type="submit">Delete Account</button>
+                    </form>
+
                 </div>
             </div>
         </div>
