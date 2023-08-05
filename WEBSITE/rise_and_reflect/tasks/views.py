@@ -265,7 +265,7 @@ def sort(request):
             all_user_tasks_list[task].append(filtered_task.custom)
         except Exception as error:
             print("Error :", error)
-    if all_user_tasks_list_type == []:
+    if all_user_tasks_list == []:
             return render(
         request,
         "routine/edit_routine.html",
