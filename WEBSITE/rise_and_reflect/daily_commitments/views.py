@@ -99,6 +99,7 @@ def daily_commit(request):
                     all_user_tasks_list_type["Suggested"].append(current_task)
             except Exception as error:
                 print("Error :", error)
+        print(all_user_tasks_list_type)
         # send tasks to page for user to choose what to add
         return render(request, 'tasks/edit_tasks.html', {'tasks': all_user_tasks_list_type, 'routine_type': "Evening", "last_id": last_id})
 

@@ -69,9 +69,15 @@ Section {% endcomment %}
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="text-center mt-4">
-                    <a class="btn btn-primary" id="previousBtn" href="{% url 'health-areas' %}">
+                    {% if routine_type == "Evening" %}
+                    <a class="btn btn-primary" id="previousBtn" href="{% url 'daily-commit' %}">
                         Previous
                     </a>
+                    {% else %}
+                    <a class="btn btn-primary" id="previousBtn" href="{% url 'create_routine' routine_type='Evening' %}">
+                        Previous
+                    </a>
+                    {% endif %}
                     <button class="btn btn-primary" id="nextBtn" type="submit">Next</button>
                 </div>
             </div>
