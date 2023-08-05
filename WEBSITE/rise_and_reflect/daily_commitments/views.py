@@ -92,22 +92,24 @@ def health_areas(request):
         # Add health area
         user_profile.health_area=UserHealthArea(health_area=area)
         user_profile.save()
-        users_commitments = UserTimeCommitments.objects.get(user=request.user)
-        if users_commitments:
-            form = CommitmentsForm(initial={
-                "hours_of_sleep": getattr(users_commitments, "hours_of_sleep"),
-                "work_time_from": getattr(users_commitments, "work_time_from"),
-                "work_time_to": getattr(users_commitments, "work_time_to"),
-                "commute_time": getattr(users_commitments, "commute_time"),
-                "wake_time": getattr(users_commitments, "wake_time"),
-                "get_ready_time": getattr(users_commitments, "get_ready_time"),
-            })
-            if getattr(users_commitments, "wake_time") == None:
-                wake_time=False
-            else:
-                wake_time=True
-        else:
+        try:
+            users_commitments = UserTimeCommitments.objects.get(user=request.user)
+            if users_commitments:
+                form = CommitmentsForm(initial={
+                    "hours_of_sleep": getattr(users_commitments, "hours_of_sleep"),
+                    "work_time_from": getattr(users_commitments, "work_time_from"),
+                    "work_time_to": getattr(users_commitments, "work_time_to"),
+                    "commute_time": getattr(users_commitments, "commute_time"),
+                    "wake_time": getattr(users_commitments, "wake_time"),
+                    "get_ready_time": getattr(users_commitments, "get_ready_time"),
+                })
+                if getattr(users_commitments, "wake_time") == None:
+                    wake_time=False
+                else:
+                    wake_time=True
+        except:
             form = CommitmentsForm
+            wake_time=True
         # Take user to the page where they can choose their health area
         return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
     # On GET request send data to create health area buttons

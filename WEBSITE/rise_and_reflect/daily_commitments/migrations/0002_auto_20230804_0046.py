@@ -5,9 +5,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.conf import settings
 from daily_commitments.models import HEALTH_AREAS
-import time
 
-# User = settings.AUTH_USER_MODEL
 
 def create_health_areas(apps, schema_editor):
     UserHealthArea = apps.get_model('daily_commitments', 'UserHealthArea')

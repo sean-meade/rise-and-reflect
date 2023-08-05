@@ -54,7 +54,6 @@ def create_routine(request, routine_type):
                 # If it is a custom one
                 except:
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
-                        
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
 
@@ -64,6 +63,7 @@ def create_routine(request, routine_type):
         for task_name, duration in custom_tasks:
             custom_task_exists = Tasks.objects.filter(task=task_name, task_type=routine_type)
             if not custom_task_exists:
+
                 # Create the task
                 this_task = Tasks(
                     health_area=user_profile_obj.health_area,
@@ -72,7 +72,6 @@ def create_routine(request, routine_type):
                     custom=True,
                 )
                 this_task.save()
-            
                 # Create the personal task
                 this_personal_task = PersonalTasks(
                     order=get_max_order(user),
@@ -88,7 +87,7 @@ def create_routine(request, routine_type):
         if routine_type == "Evening":
             obj = UserProfile.objects.get(user=request.user)
             area = getattr(obj, "health_area_id")
-            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning")
+            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning", custom=False)
             last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
             if last_id == None:
                 last_id = 0
@@ -111,12 +110,14 @@ def create_routine(request, routine_type):
             all_user_tasks_list[task].append(filtered_task.task)
             all_user_tasks_list[task].append(filtered_task.custom)
 
-        
+        last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+        if last_id == None:
+            last_id = 0
 
         # return all the users tasks
         return render(request, "routine/edit_routine.html",
         {
-            "tasks": all_user_tasks_list,
+            "tasks": all_user_tasks_list, "last_id": last_id, "routine_type": routine_type
         },)
 
     # Same as above to display tasks for a GET request instead of post
@@ -140,12 +141,15 @@ def create_routine(request, routine_type):
             "create_tasks": "You need to create tasks for the " + routine_type,
         },
     )
-
+        
+    last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
+    if last_id == None:
+        last_id = 0
     return render(
         request,
         "routine/edit_routine.html",
         {
-            "tasks": all_user_tasks_list,
+            "tasks": all_user_tasks_list, "last_id": last_id
         },
     )
 
@@ -177,7 +181,7 @@ def sort(request):
         request,
         "routine/edit_routine.html",
         {
-            "create_tasks": "You need to create tasks for the " + routine_type,
+            "create_tasks": "You need to create tasks",
         },
     )
 

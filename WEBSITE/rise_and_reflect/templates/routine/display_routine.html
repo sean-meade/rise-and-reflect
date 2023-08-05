@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+<div class="tab-pane full-task" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+    <div class="tab-content" id="tasksTabContent">
+        <div class="tab-pane fade show active" id="morning-tasks-content" role="tabpanel" aria-labelledby="morning-tasks-tab">
+            <div class="row">
+                <!-- Task Suggestions and Duration (Minutes) Table -->
+                <div class="col-md-12">
+                    <h4 class="mt-4 task-title">Your Routine</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Task</th>
+                                    <th>Duration (Mins)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for task in eve_tasks %}
+                                <tr>
+                                    <td>{{task.start_time}}</td>
+                                    <td>
+                                        {{task.task}}
+                                    </td>
+                                    <td>{{task.duration}}</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td>{{commitments.bed_time}}</td>
+                                    <td>
+                                        Go to Bed
+                                    </td>
+                                    <td>{{commitments.hours_of_sleep}} (hours)</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                <tr>
+                                    <td>{{commitments.wake_time}}</td>
+                                    <td>
+                                        Wake up
+                                    </td>
+                                    <td>5</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+
+                                {% for task in morn_tasks %}
+                                <tr>
+                                    <td>{{task.start_time}}</td>
+                                    <td>
+                                        {{task.task}}
+                                    </td>
+                                    <td>{{task.duration}}</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                {% endfor %}
+
+                                {% if commitments.get_ready_start %}
+                                <tr>
+                                    <td>{{commitments.get_ready_start}}</td>
+                                    <td>
+                                        Get ready for work
+                                    </td>
+                                    <td>{{commitments.get_ready_time}}</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                <tr>
+                                    <td>{{commitments.work_time_from}}</td>
+                                    <td>
+                                        Work
+                                    </td>
+                                    <td>{{commitments.work_hours}} (hours)</td> <!-- Duration for Evening Task 1 -->
+                                </tr>
+                                {% endif %}
+                                
+                                <!-- Add more evening tasks as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+
+{% endblock %}
