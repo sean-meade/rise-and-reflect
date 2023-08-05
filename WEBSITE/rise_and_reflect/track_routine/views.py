@@ -44,13 +44,20 @@ def display_routine(request):
     list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
     hours_of_sleep = list_of_commits["hours_of_sleep"]
 
+    commitments ={}
+    commitments['hours_of_sleep'] = hours_of_sleep
+
     # Get either wake time or work commitments
     wake_time = list_of_commits["wake_time"]
     if wake_time != None:
+        commitments['wake_time'] = wake_time
+        
     # for wake time:
         # Eve
         # wake time + 5 mins = start time
         wake_time_fix = datetime.strptime(str(wake_time), '%H:%M:%S')
+        commitments['bed_time'] = wake_time_fix - timedelta(hours=int(hours_of_sleep))
+
         morn_start_time = wake_time_fix + timedelta(minutes=5)
         # start time = time of first task
         morn_tasks[0]['start_time'] = morn_start_time.time()
@@ -74,10 +81,13 @@ def display_routine(request):
             eve_task['start_time'] = eve_start_time.time()
             
 
-        print(morn_tasks)
+    
         print(eve_tasks)
         
     else:
+        print(morn_tasks)
+        print(eve_tasks)
+        
     # for work commits
         work_time_from = list_of_commits["work_time_from"]
         work_time_to = list_of_commits["work_time_to"]
@@ -88,15 +98,50 @@ def display_routine(request):
         work_time_from_fix = datetime.strptime(str(work_time_from), '%H:%M:%S')
         get_ready_start = work_time_from_fix - timedelta(minutes=get_ready_time)
         print("get_ready_start", get_ready_start.time())
+        commitments['get_ready_start'] = get_ready_start.time()
+        commitments['get_ready_time'] = get_ready_time
+        commitments['work_time_from'] = work_time_from
+
+        # Create datetime objects for each time (a and b)
+        dateTimeA = datetime.strptime(str(work_time_to), '%H:%M:%S') 
+        dateTimeB = datetime.strptime(str(work_time_from), '%H:%M:%S') 
+        # Get the difference between datetimes (as timedelta)
+        dateTimeDifference = dateTimeA - dateTimeB
+        # Divide difference in seconds by number of seconds in hour (3600)  
+        dateTimeDifferenceInHours = dateTimeDifference.total_seconds() / 3600
+
+        commitments['work_hours'] = dateTimeDifferenceInHours
         # time to get ready - duration of last morn task = start time of last morn task
+        morn_start_time = get_ready_start
+        for morn_task in reversed(morn_tasks):
+            duration = int(morn_task['duration'])
+            morn_start_time = morn_start_time - timedelta(minutes=duration)
+            morn_task['start_time'] = morn_start_time.time()
+        print(morn_tasks)        
         # start time of last morn task - duration of second last morn task = start time of second last morn task
         # continue for all morn tasks
         # time of first morn task - 15mins = wake time
+        wake_time = morn_start_time - timedelta(minutes=5)
+        commitments['wake_time'] = wake_time.time()
         # wake time - hours of sleep = bed time
+        bed_time_fix = wake_time - timedelta(hours=int(hours_of_sleep))
+        
+        commitments['bed_time'] = bed_time_fix.time()
+        print("commitments", commitments)
+
+        eve_start_time = bed_time_fix
+
+        for eve_task in reversed(eve_tasks):
+            duration = int(eve_task['duration'])
+            eve_start_time = eve_start_time - timedelta(minutes=duration)
+            eve_task['start_time'] = eve_start_time.time()
+        
+        print(morn_tasks)
+        print(eve_tasks)
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task
-        # contiue
-    return render(request, 'home/index.html')
+        # continue
+    return render(request, 'routine/display_routine.html', {'morn_tasks':morn_tasks, 'eve_tasks': eve_tasks, 'commitments': commitments})
 
 # TODO:
 # Separate evening from morning
