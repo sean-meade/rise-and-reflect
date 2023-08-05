@@ -46,13 +46,61 @@ def daily_commit(request):
 
         obj = UserProfile.objects.get(user=request.user)
         area = getattr(obj, "health_area_id")
-        # Grab the tasks related to the health ares
-        area_tasks = Tasks.objects.filter(health_area=area, custom=False, task_type="Evening")
+        routine_type = "Evening"
+        # Grab the tasks related to the health area
+        area_tasks = Tasks.objects.filter(health_area=area, custom=False, task_type=routine_type)
         last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
         if last_id == None:
             last_id = 0
+
+        # Same as above to display tasks for a GET request instead of post
+        all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
+            "duration", "task_id"
+        )
+        all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
+        all_user_task_ids_list = [y[1] for y in all_user_tasks_list]
+
+        all_user_tasks_list_type = {"Suggested": [], "Custom": []}
+
+        obj = UserProfile.objects.get(user=request.user)
+        area = getattr(obj, "health_area_id")
+        all_suggested_tasks_tuple = Tasks.objects.filter(health_area=area, custom=False, task_type=routine_type).values_list(
+            "id"
+        )
+        all_suggested_tasks_list = [list(k) for k in all_suggested_tasks_tuple]
+
+        for suggested_task in range(len(all_suggested_tasks_list)):
+            if all_suggested_tasks_list[suggested_task][0] not in all_user_task_ids_list:
+                
+                filtered_suggested_task = Tasks.objects.get(id=all_suggested_tasks_list[suggested_task][0], task_type=routine_type)
+
+                current_task = []
+                current_task.append("No time given")
+                current_task.append(all_suggested_tasks_list[suggested_task][0])
+    
+                current_task.append(filtered_suggested_task.task_type)
+                current_task.append(filtered_suggested_task.task)
+                current_task.append(filtered_suggested_task.custom)
+                all_user_tasks_list_type["Suggested"].append(current_task)
+
+
+        for task in range(len(all_user_tasks_list)):
+            try:
+                filtered_task = Tasks.objects.get(id=all_user_tasks_list[task][1], task_type=routine_type)
+                current_task = []
+                current_task.append(all_user_tasks_list[task][0])
+                current_task.append(all_user_tasks_list[task][1])
+                current_task.append(filtered_task.task_type)
+                current_task.append(filtered_task.task)
+                current_task.append(filtered_task.custom)
+                if filtered_task.custom == True:
+                    all_user_tasks_list_type["Custom"].append(current_task)
+                else:
+                    all_user_tasks_list_type["Suggested"].append(current_task)
+            except Exception as error:
+                print("Error :", error)
         # send tasks to page for user to choose what to add
-        return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Evening", "last_id": last_id})
+        return render(request, 'tasks/edit_tasks.html', {'tasks': all_user_tasks_list_type, 'routine_type': "Evening", "last_id": last_id})
 
     try:
         users_commitments = UserTimeCommitments.objects.get(user=request.user)
