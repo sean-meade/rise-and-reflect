@@ -22,7 +22,9 @@
     {% endfor %}
   </form>
 
-  
+  <a class="btn btn-primary" id="previousBtn" href="{% url 'display_routine' %}">
+    View Routine
+</a>
 
 <script>
   document.body.addEventListener('htmx:configRequest', (event) => {
