@@ -25,7 +25,9 @@ def get_commitments(request):
             wake_time=False
         else:
             wake_time=True
-        return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
+    else:
+        form = CommitmentsForm
+    return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
 
 @login_required(login_url='/accounts/login/')
 def daily_commit(request):
@@ -52,8 +54,23 @@ def daily_commit(request):
         # send tasks to page for user to choose what to add
         return render(request, 'tasks/add_tasks.html', {'tasks': area_tasks, 'routine_type': "Evening", "last_id": last_id})
 
-    # display an empty form on GET request
-    return render(request, 'daily-commit/daily-commit.html', {'form': CommitmentsForm})
+    users_commitments = UserTimeCommitments.objects.get(user=request.user)
+    if users_commitments:
+        form = CommitmentsForm(initial={
+            "hours_of_sleep": getattr(users_commitments, "hours_of_sleep"),
+            "work_time_from": getattr(users_commitments, "work_time_from"),
+            "work_time_to": getattr(users_commitments, "work_time_to"),
+            "commute_time": getattr(users_commitments, "commute_time"),
+            "wake_time": getattr(users_commitments, "wake_time"),
+            "get_ready_time": getattr(users_commitments, "get_ready_time"),
+        })
+        if getattr(users_commitments, "wake_time") == None:
+            wake_time=False
+        else:
+            wake_time=True
+    else:
+        form = CommitmentsForm
+    return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
 
 @login_required(login_url='/accounts/login/')
 def health_areas(request):
