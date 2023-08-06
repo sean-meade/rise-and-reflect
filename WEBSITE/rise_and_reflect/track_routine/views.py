@@ -181,7 +181,7 @@ def track_routine(request):
     if routine:
         try:
             # check if routine exists for today
-            routine_check = RoutineTasks.objects.filter(day=timezone.now(), user=user, routine_type="Morning").first()
+            routine_check = RoutineTasks.objects.filter(day=timezone.now().date(), user=user, routine_type="Morning").first()
             
             if routine_check == None:
                 routine_check = RoutineTasks(user=user, routine_type="Morning")

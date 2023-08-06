@@ -20,7 +20,7 @@ def create_routine(request, routine_type):
 
         user = request.user
         try:
-            created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now(), routine_type=routine_type).first()
+            created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now().date(), routine_type=routine_type).first()
         except:
             created_routine = False
         if not created_routine:

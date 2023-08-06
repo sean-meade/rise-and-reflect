@@ -28,8 +28,8 @@ def profile_summary(request):
     user_profile = UserProfile.objects.get(user=user)
 
     num_of_tasks = PersonalTasks.objects.filter(user=user).count()
-    num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now() ), completed=True).count()
-    num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now() ), completed=True).count()
+    num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
+    num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
     percent_of_tasks_completed_today= round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
 
     # Get number of Personal tasks that have a Task with custom=False
@@ -41,11 +41,18 @@ def profile_summary(request):
     goal_tasks_completed = 0
     total_goal_tasks = 0
     for task in all_user_tasks_list:
-        task[0]
-        if Tasks.objects.get(id=task[0]).custom == False:
+        print(task[0])
+        print(timezone.now().date())
+        print(Tasks.objects.get(id=task[0]))
+        
+        query_task = Tasks.objects.get(id=task[0])
+        if query_task.custom == False:
             total_goal_tasks+=1
+            task_type = query_task.task_type
+            print(TrackedTasks.objects.filter(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )))
+
             try:
-                if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=task[0]), completed=True, personal_routine=RoutineTasks(day=timezone.now() )):
+                if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )):
                     goal_tasks_completed+=1
             except:
                 pass
