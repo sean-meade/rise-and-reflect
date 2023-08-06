@@ -5,10 +5,10 @@ User = settings.AUTH_USER_MODEL
 
 # Choices for health areas ('name', 'value')
 HEALTH_AREAS = [
-    ("Choice 1", "Choice 1"),
-    ("Choice 2", "Choice 2"),
-    ("Choice 3", "Choice 3"),
-    ("Choice 4", "Choice 4"),
+    ("Relieve Stress or Anxiety", "Relieve Stress or Anxiety"),
+    ("Improve Self-Awareness", "Improve Self-Awareness"),
+    ("Have a Balanced Lifestyle", "Have a Balanced Lifestyle"),
+    ("Manage Time Effectively", "Manage Time Effectively"),
 ]
 
 # Database table that holds all the users info on their time commitments
@@ -24,4 +24,4 @@ class UserTimeCommitments(models.Model):
 
 class UserHealthArea(models.Model):
     
-    health_area = models.CharField(max_length=9, choices=HEALTH_AREAS, unique=True, primary_key=True, default='None')
+    health_area = models.CharField(max_length=30, choices=HEALTH_AREAS, unique=True, primary_key=True, default='None')
