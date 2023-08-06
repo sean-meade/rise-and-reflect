@@ -10,7 +10,6 @@ html,
 body {
   display: flex;
   flex-direction: column;
-
   font-family: 'Comfortaa', cursive;
 }
 
@@ -169,41 +168,6 @@ footer a:hover {
   font-family: 'Comfortaa', cursive;
 }
 
-/*
-.video-container {
-  width: 100vw;
-  max-width: 80%;
-  /* Set height as a percentage of the width to maintain aspect ratio of 1:1 (square) 
-  padding-bottom: 80vw;
-  /* You can adjust this value to control the size 
-  border: 2px solid black;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* Hide overflowing content 
-}
-
-.video-container img {
-  /* Ensure the image covers the container while maintaining the aspect ratio 
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* .video-container {
-  width: 80vw;
-  max-width: 80%;
-  height: 70vh;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-
-.video-container p {
-  text-align: center;
-} */
-
 /* PROFILE PAGE */
 
 
@@ -327,7 +291,7 @@ footer a:hover {
   text-align: center;
 }
 
-.health-btn {
+/* .health-btn {
 
   background: none;
   color: inherit;
@@ -337,7 +301,7 @@ footer a:hover {
   cursor: pointer;
   outline: inherit;
 
-}
+} */
 
 .profile-image {
   width: 275px;
@@ -538,23 +502,6 @@ footer a:hover {
   margin: 20px auto;
 }
 
-/* .square-box {
-  padding-top: 100%;
-  /* Set padding-top to a percentage value to maintain aspect ratio 
-  position: relative;
-  overflow: hidden;
-}
-
-.square-box a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  /* Set height to 100% to fill the square box 
-  width: 100%;
-  /* Set width to 100% to fill the square box 
-} */
-
 table,
 th,
 td {
@@ -570,59 +517,7 @@ td {
   background: #bedfdb;
 }
 
-/* Testing images on home page
-.self-care {
-  max-width: 100%;
-  height: auto;
-}*/
-
-/* .video-container {
-  width: 80vw;
-  max-width: 80%;
-  height: 70vh;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-
-.video-container p {
-  text-align: center;
-} */
-
-/* .square-box {
-  padding-top: 100%;
-  /* Set padding-top to a percentage value to maintain aspect ratio 
-  position: relative;
-  overflow: hidden;
-}
-
-.square-box a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  /* Set height to 100% to fill the square box 
-  width: 100%;
-  /* Set width to 100% to fill the square box 
-} */
-
-
-/* .video-container {
-  /* Set the dimensions for the square container 
-  width: 300px;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-}
-
-.video-container img {
-  /* Ensure the image covers the square container 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
+/* Health Area */
 
 .center-boxes {
   display: flex;
@@ -633,7 +528,7 @@ td {
 
 .health-btn {
   flex: 1;
-  max-width: 300px; /* Adjust the max-width to your preference */
+  max-width: 300px;
   margin: 10px;
   padding: 0;
   border: none;
@@ -648,7 +543,6 @@ td {
   width: 100%;
   padding-bottom: 100%;
   overflow: hidden;
-  background
 }
 
 .square-box img {
@@ -663,6 +557,30 @@ td {
 .text-center {
   text-align: center;
   color: black;
+}
+
+.goals-border {
+  background-color: #66afa5;
+}
+
+.health-btn a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.health-btn h3 {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid black;
+  background-color: #b3a3c3;
+  color: black;
+  border-radius: 8px; /* Add border-radius for rounded corners */
+}
+
+.health-btn h3:hover {
+  background-color: #99b4df;
 }
 
 table,
