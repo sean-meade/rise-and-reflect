@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from track_routine.models import RoutineTasks
+from tasks.models import PersonalTasks, TrackedTasks, Tasks
 from custom_login.models import UserProfile
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import logout as auth_logout, get_user_model
+from django.utils import timezone
 
 def index(request):
     return render(request, 'home/index.html')
@@ -21,8 +24,41 @@ def set_goals(request):
 
 
 def profile_summary(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'home/profile_summary.html', {'user_profile': user_profile})
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+
+    num_of_tasks = PersonalTasks.objects.filter(user=user).count()
+    num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now() ), completed=True).count()
+    num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now() ), completed=True).count()
+    percent_of_tasks_completed_today= round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
+
+    # Get number of Personal tasks that have a Task with custom=False
+    # How many of them are completed = True
+    all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
+        "task_id"
+    )
+    all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
+    goal_tasks_completed = 0
+    total_goal_tasks = 0
+    for task in all_user_tasks_list:
+        task[0]
+        if Tasks.objects.get(id=task[0]).custom == False:
+            total_goal_tasks+=1
+            try:
+                if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=task[0]), completed=True, personal_routine=RoutineTasks(day=timezone.now() )):
+                    goal_tasks_completed+=1
+            except:
+                pass
+    print(goal_tasks_completed)
+    print(total_goal_tasks)
+    percent_of_goal_tasks_completed= round((goal_tasks_completed/total_goal_tasks) * 100)
+    print(percent_of_goal_tasks_completed)
+
+
+
+    return render(request, 'home/profile_summary.html', 
+                  {'user_profile': user_profile, 
+                   'values': [percent_of_goal_tasks_completed, percent_of_tasks_completed_today, 37]})
 
 @login_required(login_url='/accounts/login/')
 @require_http_methods(['POST'])

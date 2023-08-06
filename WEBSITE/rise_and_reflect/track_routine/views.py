@@ -213,7 +213,7 @@ def track_routine(request):
             try:
                 tracked_task = TrackedTasks.objects.get(personal_task = filter_by_this_task,  personal_routine=routine_check)
             except:
-                tracked_task = TrackedTasks(personal_task=filter_by_this_task, personal_routine=routine_check)
+                tracked_task = TrackedTasks(personal_task=filter_by_this_task, personal_routine=routine_check, user=request.user)
                 tracked_task.save()
             
             all_user_tasks_list[task].append(tracked_task.completed)

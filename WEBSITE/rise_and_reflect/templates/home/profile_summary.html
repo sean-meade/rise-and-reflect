@@ -2,10 +2,6 @@
 
 {% load static %}
 
-{% block extra_js %}
-<script src="{% static 'js/progress.js' %}"></script>
-{% endblock %}
-
 {% block content %}
 
 <div class="profile-bg">
@@ -40,22 +36,22 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress">
-                            <span class="progress-value">0%</span>
+                            <div class="circular-progress" id="goal">
+                            <span class="progress-value" id="goal-progress">0%</span>
                             </div>
                             <span class="progress-title mt-2">Goals</span>
                         </div>
                 
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress">
-                            <span class="progress-value">0%</span>
+                            <div class="circular-progress" id="tasks">
+                            <span class="progress-value" id="tasks-progress">0%</span>
                             </div>
-                            <span class="progress-title mt-2">Tasks</span>
+                            <span class="progress-title mt-2">Todays Tasks</span>
                         </div>
                 
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress">
-                            <span class="progress-value">0%</span>
+                            <div class="circular-progress" id="routine">
+                            <span class="progress-value" id="routine-progress">0%</span>
                             </div>
                             <span class="progress-title mt-2">Routines</span>
                         </div>
@@ -85,4 +81,35 @@
 
     </div>
 </div>    
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        
+        const circleIds = ["goal", "tasks", "routine"]
+        const valueIds = ["goal-progress", "tasks-progress", "routine-progress"]
+        const progressEndValues = {{values}}
+
+    circleIds.forEach((circleId, index) => {
+        if (progressEndValues[index] > 0){
+        let circleProgress = document.getElementById(circleId);
+        let progressValue = document.getElementById(valueIds[index]);
+
+        let speed = 30;
+        let progressStartValueGoal = 0;
+        let progressEndValueGoal = progressEndValues[index];
+        let progressGoal = setInterval(() => {
+            progressStartValueGoal++;
+    
+            progressValue.textContent = `${progressStartValueGoal}%`;
+            circleProgress.style.background = `conic-gradient(#99b4df ${progressStartValueGoal * 3.6}deg, #ededed 0deg)`;
+    
+          if (progressStartValueGoal === progressEndValueGoal) {
+            clearInterval(progressGoal);
+          }
+        }, speed);
+    }
+    });
+
+      });
+</script>
 {% endblock %}

@@ -49,7 +49,7 @@ def create_routine(request, routine_type):
                             order=get_max_order(user)
                         )
                         this_personal_task.save()
-                        this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                        this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine, user=request.user)
                         this_trackable_task.save()
                 # If it is a custom one
                 except:
@@ -81,7 +81,7 @@ def create_routine(request, routine_type):
                 )
                 this_personal_task.save()
                 # this_personal_task.user.set([user])
-                this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine, user=request.user)
                 this_trackable_task.save()
 
         if routine_type == "Evening":
