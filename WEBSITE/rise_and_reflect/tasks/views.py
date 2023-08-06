@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from daily_commitments.forms import CommitmentsForm
 from daily_commitments.models import UserHealthArea
@@ -20,13 +19,14 @@ def create_routine(request, routine_type):
 
         user = request.user
         try:
-            created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now(), routine_type=routine_type).first()
+            created_routine = RoutineTasks.objects.filter(user=user, day=timezone.now().date(), routine_type=routine_type).first()
         except:
             created_routine = False
         if not created_routine:
             # Create user routine
             created_routine = RoutineTasks(user=user, routine_type=routine_type)
             created_routine.save()
+        print(tasks)
         # go through dict
         for key in tasks:
             # ignore the csrf token
@@ -35,13 +35,16 @@ def create_routine(request, routine_type):
             else:
                 # if the key is just a number on it's own
                 try:
-                    key_id = int(re.search("\d+", key)[0])
+                    if key[-4:] == "time":
+                        key_id = int(re.search("\d+", key)[0])
+                        print("key_id", key_id)
                     # it is an existing task and the user has selected it so add it selected_tasks
                     selected_tasks.append([key_id, tasks[key]])
                     # TODO: Check to see if a Personal task exists with task_id
                     personal_task_exists = PersonalTasks.objects.filter(task_id=Tasks.objects.get(id=key_id))
                     # Create the personal task
                     if not personal_task_exists:
+                        print(personal_task_exists)
                         this_personal_task = PersonalTasks(
                             user=user,
                             task_id=Tasks.objects.get(id=key_id),
@@ -49,21 +52,22 @@ def create_routine(request, routine_type):
                             order=get_max_order(user)
                         )
                         this_personal_task.save()
-                        this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                        this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine, user=request.user)
                         this_trackable_task.save()
                 # If it is a custom one
                 except:
                     if key[:6] == "custom" and key[-4:] != "time" and tasks[key] != "":
                         # Add the task name and duration to custom_tasks list
                         custom_tasks.append([tasks[key], tasks[key + "_time"]])
-
+        print(custom_tasks)
         # Get the health area for the user
         user_profile_obj = UserProfile.objects.get(user=request.user)
         # Add the custom tasks to the database based on the inputs from the user
         for task_name, duration in custom_tasks:
             custom_task_exists = Tasks.objects.filter(task=task_name, task_type=routine_type)
             if not custom_task_exists:
-
+                print("create task", custom_task_exists)
+                
                 # Create the task
                 this_task = Tasks(
                     health_area=user_profile_obj.health_area,
@@ -80,15 +84,14 @@ def create_routine(request, routine_type):
                     user=user,
                 )
                 this_personal_task.save()
+                print("this_personal_task", this_personal_task)
                 # this_personal_task.user.set([user])
-                this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine)
+                this_trackable_task = TrackedTasks(personal_task=this_personal_task, personal_routine=created_routine, user=request.user)
                 this_trackable_task.save()
 
         if routine_type == "Evening":
             routine_type = "Morning"
-            obj = UserProfile.objects.get(user=request.user)
-            area = getattr(obj, "health_area_id")
-            area_tasks = Tasks.objects.filter(health_area=area, task_type="Morning", custom=False)
+            
             last_id = PersonalTasks.objects.all().values_list('id', flat=True).order_by('-id').first()
             if last_id == None:
                 last_id = 0
@@ -99,7 +102,7 @@ def create_routine(request, routine_type):
             )
             all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
             all_user_task_ids_list = [y[1] for y in all_user_tasks_list]
-
+            print("all_user_task_ids_list ", all_user_task_ids_list)
             all_user_tasks_list_type = {"Suggested": [], "Custom": []}
 
             obj = UserProfile.objects.get(user=request.user)
@@ -108,8 +111,9 @@ def create_routine(request, routine_type):
                 "id"
             )
             all_suggested_tasks_list = [list(k) for k in all_suggested_tasks_tuple]
-
+            print("all_suggested_tasks_list ", all_suggested_tasks_list)
             for suggested_task in range(len(all_suggested_tasks_list)):
+                print("all_suggested_tasks_list[suggested_task][0]", all_suggested_tasks_list[suggested_task][0])
                 if all_suggested_tasks_list[suggested_task][0] not in all_user_task_ids_list:
                     
                     filtered_suggested_task = Tasks.objects.get(id=all_suggested_tasks_list[suggested_task][0], task_type=routine_type)
@@ -135,11 +139,11 @@ def create_routine(request, routine_type):
                     current_task.append(filtered_task.custom)
                     if filtered_task.custom == True:
                         all_user_tasks_list_type["Custom"].append(current_task)
-                    else:
-                        all_user_tasks_list_type["Suggested"].append(current_task)
+                    
                 except Exception as error:
                     print("Error :", error)
             # send tasks to page for user to choose what to add
+            print("all_user_tasks_list_type", all_user_tasks_list_type)
             return render(request, 'tasks/edit_tasks.html', {'tasks': all_user_tasks_list_type, 'routine_type': routine_type, "last_id": last_id})
 
         # get duration and task_id of the users tasks
@@ -216,8 +220,7 @@ def create_routine(request, routine_type):
             current_task.append(filtered_task.custom)
             if filtered_task.custom == True:
                 all_user_tasks_list_type["Custom"].append(current_task)
-            else:
-                all_user_tasks_list_type["Suggested"].append(current_task)
+            
         except Exception as error:
             print("Error :", error)
     if all_user_tasks_list_type == []:
@@ -347,8 +350,7 @@ def edit_tasks(request, routine_type):
             current_task.append(filtered_task.custom)
             if filtered_task.custom == True:
                 all_user_tasks_list_type["Custom"].append(current_task)
-            else:
-                all_user_tasks_list_type["Suggested"].append(current_task)
+            
         except Exception as error:
             print("Error :", error)
     if all_user_tasks_list_type == []:
