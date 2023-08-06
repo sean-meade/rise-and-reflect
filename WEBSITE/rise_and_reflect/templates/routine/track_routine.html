@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Track task for {{user.username}}</h2>
+<h2>Track tasks for {{user.username}}</h2>
 <br>
 <form action="{% url 'track_routine' %}" method="POST">
   {% csrf_token %}

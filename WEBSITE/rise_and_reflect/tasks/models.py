@@ -41,7 +41,7 @@ class PersonalTasks(models.Model):
 
 
 class TrackedTasks(models.Model):
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     personal_task = models.ForeignKey(
         PersonalTasks, verbose_name="personal_task", related_name="personal_task", on_delete=models.CASCADE
     )

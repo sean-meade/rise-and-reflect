@@ -1,6 +1,6 @@
 {{add_tasks}}
 
-<h2>Track task for {{user.username}}</h2>
+<h2>Order tasks for {{user.username}}</h2>
 <br>
 
     <form class="sortable" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target='#film-list'>
@@ -10,19 +10,21 @@
 
 <div>
   <input type='hidden' name='task_order' value='{{task.1}}'/>
-  <span >{{task}}</span>
-    {% comment %} <tr>
-      <td>{{task.3}}</td>
-      <td>{{task.2}}</td>
-      <td>{{task.0}}</td>
-      <td>{{task.0}}</td>
-    </tr> {% endcomment %}
+  {% comment %} <span >{{task}}</span> {% endcomment %}
+   <tr>
+      <p>{{task.3}}</p>
+      <p>{{task.2}}</p>
+      <p>{{task.0}}</p>
+      <p>{{task.1}}</p>
+    </tr> 
   </div>
 
     {% endfor %}
   </form>
 
-  
+  <a class="btn btn-primary" id="previousBtn" href="{% url 'display_routine' %}">
+    View Routine
+</a>
 
 <script>
   document.body.addEventListener('htmx:configRequest', (event) => {

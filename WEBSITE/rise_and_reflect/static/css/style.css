@@ -91,16 +91,15 @@ header {
 
 /* FOOTER */
 
-footer {
+/* footer {
   background-color: #bedfdb;
   text-decoration: none;
   padding: 20px;
   margin-top: auto;
-  bottom: 0;
-  left: 0;
+
   width: 100%;
   z-index: 1;
-}
+} */
 .navbar {
   z-index: 1;
 }
