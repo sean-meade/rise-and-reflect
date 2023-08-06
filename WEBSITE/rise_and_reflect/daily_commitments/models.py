@@ -7,8 +7,8 @@ User = settings.AUTH_USER_MODEL
 HEALTH_AREAS = [
     ("Relieve Stress or Anxiety", "Relieve Stress or Anxiety"),
     ("Improve Self-Awareness", "Improve Self-Awareness"),
-    ("Create a Balanced Lifestyle", "Create a Balanced Lifestyle"),
-    ("Manage Time More Effectively", "Manage Time More Effectively"),
+    ("Have a Balanced Lifestyle", "Have a Balanced Lifestyle"),
+    ("Manage Time Effectively", "Manage Time Effectively"),
 ]
 
 # Database table that holds all the users info on their time commitments
