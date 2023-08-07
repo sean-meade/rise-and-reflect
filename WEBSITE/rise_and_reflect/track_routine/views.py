@@ -132,7 +132,7 @@ def display_routine(request, user=None):
             eve_task['start_time'] = eve_start_time.time()
 
         if app_display:
-            return JsonResponse({'morn_tasks':morn_tasks, 'eve_tasks': eve_tasks, 'commitments': commitments}, safe=False)
+            return JsonResponse({{'morn_tasks':str(morn_tasks)}, {'eve_tasks': str(eve_tasks)}, {'commitments': str(commitments)}})
         
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task
