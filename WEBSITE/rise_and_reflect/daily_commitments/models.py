@@ -9,6 +9,7 @@ HEALTH_AREAS = [
     ("Choice 2", "Choice 2"),
     ("Choice 3", "Choice 3"),
     ("Choice 4", "Choice 4"),
+    ("None", "None"),
 ]
 
 # Database table that holds all the users info on their time commitments
