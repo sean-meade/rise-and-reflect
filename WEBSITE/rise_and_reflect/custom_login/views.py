@@ -28,8 +28,12 @@ def profile_summary(request):
     user_profile = UserProfile.objects.get(user=user)
 
     num_of_tasks = PersonalTasks.objects.filter(user=user).count()
-    num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
-    num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
+    try:
+        num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
+        num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
+    except:
+        num_of_tasks_completed_morn = 0
+        num_of_tasks_completed_eve = 0
     if num_of_tasks == 0:
         percent_of_tasks_completed_today = 0
     else:
@@ -45,29 +49,22 @@ def profile_summary(request):
     goal_tasks_completed = 0
     total_goal_tasks = 0
     for task in all_user_tasks_list:
-        print(task[0])
-        print(timezone.now().date())
-        print(Tasks.objects.get(id=task[0]))
         
         query_task = Tasks.objects.get(id=task[0])
         if query_task.custom == False:
             total_goal_tasks+=1
             task_type = query_task.task_type
-            print(TrackedTasks.objects.filter(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )))
 
             try:
                 if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )):
                     goal_tasks_completed+=1
             except:
                 pass
-    print(goal_tasks_completed)
-    print(total_goal_tasks)
 
     if total_goal_tasks == 0:
         percent_of_goal_tasks_completed = 0
     else:
         percent_of_goal_tasks_completed = round((goal_tasks_completed/total_goal_tasks) * 100)
-    print(percent_of_goal_tasks_completed)
 
     return render(request, 'home/profile_summary.html', 
                   {'user_profile': user_profile, 

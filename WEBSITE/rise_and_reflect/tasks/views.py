@@ -97,19 +97,20 @@ def create_routine(request, routine_type, evening=False):
             else:
                 task_obj = Tasks.objects.get(id=task_to_add)
                 task_time = tasks[str(task_to_add) + "_time"]
-            # Then create a personal task 
-            personal_task = PersonalTasks(
-                                        user=user,
-                                        task_id=task_obj,
-                                        duration=task_time)
-            personal_task.save()
-            # Create a tracked task
-            tracked_task = TrackedTasks(
-                user=user,
-                personal_task=personal_task,
-                personal_routine=routine
-            )
-            tracked_task.save()
+            if task_time != '':
+                # Then create a personal task 
+                personal_task = PersonalTasks(
+                                            user=user,
+                                            task_id=task_obj,
+                                            duration=task_time)
+                personal_task.save()
+                # Create a tracked task
+                tracked_task = TrackedTasks(
+                    user=user,
+                    personal_task=personal_task,
+                    personal_routine=routine
+                )
+                tracked_task.save()
 
 
         # Delete these:
@@ -123,19 +124,7 @@ def create_routine(request, routine_type, evening=False):
             else:
                 delete_task = PersonalTasks.objects.get(task_id = task_to_delete)
                 delete_task.delete()
-
-
-
-
-
-
-
-
-
-
-
         if routine_type == "Morning":
-
             all_user_tasks = {"Morning": [], "Evening": []}
             # For all task ids
             for task_id in all_users_task_ids:
@@ -147,7 +136,7 @@ def create_routine(request, routine_type, evening=False):
                     task_id = getattr(this_task, "id")
                     task["name"] = task_name
                     task["id"] = task_id
-                    this_ptask = PersonalTasks.objects.get(task_id=this_task)
+                    this_ptask = PersonalTasks.objects.get(user=request.user, task_id=this_task)
                     task_time = getattr(this_ptask, "duration")
                     task["time"] = task_time
                     all_user_tasks["Morning"].append(task)
@@ -232,7 +221,6 @@ def sort(request):
     tasks_pks_order = request.POST.getlist('task_order')
     tasks = []
     for idx, task_pk in enumerate(tasks_pks_order, start=1):
-        print(task_pk)
         user_ptask = PersonalTasks.objects.get(task_id=task_pk)
         user_ptask.order = idx
         user_ptask.save()
