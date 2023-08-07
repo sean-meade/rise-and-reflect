@@ -1,6 +1,6 @@
 # Rise & Reflect
 
-![]()
+![Rise & Reflect](WEBSITE/rise_and_reflect/static/images/site.png)
 
 [Click here to view the live web application](https://rise-and-reflect.onrender.com/)
 
