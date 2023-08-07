@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from daily_commitments.models import UserHealthArea
+from django.contrib.auth.models import AbstractUser
 
 User = settings.AUTH_USER_MODEL
 
@@ -14,3 +15,12 @@ class UserProfile(models.Model):
     health_area = models.ForeignKey(UserHealthArea, verbose_name='user_health_area', 
                                     to_field='health_area', null=True,
                                     related_name='user_health_area', on_delete=models.PROTECT)
+    
+
+class CustomUser(AbstractUser):
+
+    auth_token = models.CharField(max_length=255, null=True, blank=True)
+
+    def set_auth_token(self, auth_token):
+        self.auth_token = auth_token
+        self.save()
