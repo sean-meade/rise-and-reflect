@@ -4,58 +4,61 @@
 
 
 {% comment %} Set Goals Section {% endcomment %}
-<div class="border border-dark rounded container center-boxes">
-    <div class="border border-dark rounded goals-border">
-    <h1 class="text-center">Choose Your Goal</h1></div>
-    <form action="{% url 'health-areas' %}" method="POST">
-        {% csrf_token %}
 
+<div class="profile-bg">
+    <div class="profile-bg-gradient">
 
+        <div class="container center-boxes">
+            
+            <h1 class="text-center goal-title">Choose Your Goal</h1>
 
-        <div class="row">
-            <button type='submit' value="{{ area.0.0 }}" name="area"
-                class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
-                <a class="text-center">
-                    
-                    <h3>{{areas.0.0}}</h3>
+            <form action="{% url 'health-areas' %}" method="POST">
+                {% csrf_token %}
 
-                    <div class="border border-dark rounded video-container square-box">
-                        <img src="{% static 'images/calm.jpg' %}" class="img-fluid" alt="Goal 1">
-                    </div>
-                </a>
-            </button>
+                <div class="row">
+                    <button type='submit' value="{{ areas.0.1 }}" name="area"
+                        class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
+                        <a class="text-center text-decoration-none">
+                            <h3>{{areas.0.0}}</h3>
+                            <div class="border border-dark rounded video-container square-box">
+                                <img src="{% static 'images/calm.jpg' %}" class="img-fluid" alt="Goal 1">
+                            </div>
+                        </a>
+                    </button>
 
-            <button type='submit' value="{{ area.1.0 }}" name="area"
-                class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
-                <a class="text-center">
-                    <h3>{{areas.1.0}}</h3>
-                <div class="border border-dark rounded video-container square-box">
-                    <img src="{% static 'images/journal.jpg' %}" class="img-fluid" alt="Goal 1">
+                    <button type='submit' value="{{ areas.1.0 }}" name="area"
+                        class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
+                        <a class="text-center text-decoration-none">
+                            <h3>{{areas.1.0}}</h3>
+                            <div class="border border-dark rounded video-container square-box">
+                                <img src="{% static 'images/journal.jpg' %}" class="img-fluid" alt="Goal 1">
+                            </div>
+                        </a>
+                    </button>
+
+                    <button type='submit' value="{{ areas.2.0 }}" name="area"
+                        class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
+                        <a class="text-center text-decoration-none">
+                            <h3>{{areas.2.0}}</h3>
+                            <div class="border border-dark rounded video-container square-box">
+                                <img src="{% static 'images/balance.jpg' %}" class="img-fluid" alt="Goal 1">
+                            </div>
+                        </a>
+                    </button>
+
+                    <button type='submit' value="{{ areas.3.0 }}" name="area"
+                        class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
+                        <a class="text-center text-decoration-none">
+                            <h3>{{areas.3.0}}</h3>
+                            <div class="border border-dark rounded video-container square-box">
+                                <img src="{% static 'images/time.jpg' %}" class="img-fluid" alt="Goal 1">
+                            </div>
+                        </a>
+                    </button>
                 </div>
-            </a>
-            </button>
 
-            <button type='submit' value="{{ area.2.0 }}" name="area"
-                class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
-                <a class="text-center">
-                    <h3>{{areas.2.0}}</h3>
-                <div class="border border-dark rounded video-container square-box">
-                    <img src="{% static 'images/balance.jpg' %}" class="img-fluid" alt="Goal 1">
-                </div>
-            </a>
-            </button>
-
-            <button type='submit' value="{{ area.3.0 }}" name="area"
-                class="col-md-6 col-lg-6 mb-4 d-flex flex-column align-items-center justify-content-center mx-auto health-btn">
-                <a class="text-center">
-                    <h3>{{areas.3.0}}</h3>
-                <div class="border border-dark rounded video-container square-box">
-                    <img src="{% static 'images/time.jpg' %}" class="img-fluid" alt="Goal 1">
-                </div>
-            </a>
-            </button>
+            </form>
         </div>
-
-    </form>
-</div>
+    </div>
+</div>        
 {% endblock %}
