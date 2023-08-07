@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import json
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 
@@ -12,14 +12,10 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
-def display_routine(request, user=None):
-    app_display=True
-    if user == None:
-        user = request.user
-        app_display=False
+def display_routine(request):
 
     # Get task, type (from Tasks) order,duration, task_id (PersonalTasks)
-    personal_tasks = PersonalTasks.objects.filter(user=user).values(
+    personal_tasks = PersonalTasks.objects.filter(user=request.user).values(
         "task_id", "duration", "order"
     )
 
@@ -45,7 +41,7 @@ def display_routine(request, user=None):
             })
 
     # Get hours of sleep
-    list_of_commits = UserTimeCommitments.objects.get(user=user).__dict__
+    list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
     hours_of_sleep = list_of_commits["hours_of_sleep"]
 
     commitments ={}
@@ -130,9 +126,6 @@ def display_routine(request, user=None):
             duration = int(eve_task['duration'])
             eve_start_time = eve_start_time - timedelta(minutes=duration)
             eve_task['start_time'] = eve_start_time.time()
-
-        if app_display:
-            return JsonResponse({{'morn_tasks':str(morn_tasks)}, {'eve_tasks': str(eve_tasks)}, {'commitments': str(commitments)}})
         
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task

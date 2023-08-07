@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from track_routine.views import display_routine
 from custom_login.models import CustomUser
 from track_routine.models import RoutineTasks
 from tasks.models import PersonalTasks, TrackedTasks, Tasks
@@ -139,10 +138,11 @@ def display_tasks(request):
 
         try:
             user = CustomUser.objects.get(auth_token=auth_token)
-            response_data = display_routine(request, user)
+            username = user.username
 
             # Return the username as a JSON response
-            return JsonResponse((response_data))
+            response_data = {'username': username}
+            return JsonResponse(response_data)
 
         except CustomUser.DoesNotExist:
             return JsonResponse({'error': 'Invalid authentication token'})
