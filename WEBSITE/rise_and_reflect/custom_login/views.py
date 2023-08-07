@@ -142,7 +142,7 @@ def display_tasks(request):
             response_data = display_routine(request, user)
 
             # Return the username as a JSON response
-            return JsonResponse(response_data)
+            return JsonResponse(dict(response_data))
 
         except CustomUser.DoesNotExist:
             return JsonResponse({'error': 'Invalid authentication token'})

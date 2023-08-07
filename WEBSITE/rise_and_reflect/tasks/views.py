@@ -82,7 +82,16 @@ def create_routine(request, routine_type, evening=False):
                     Tasks.objects.filter(id=task_to_edit).update(task=tasks["custom" + str(task_to_edit)])
             # Update time if suggested
             else:
-                PersonalTasks.objects.filter(task_id=task_to_edit).update(duration=tasks[str(task_to_edit) + "_time"])
+                if tasks[str(task_to_edit) + "_time"] != '':
+                    PersonalTasks.objects.filter(task_id=task_to_edit).update(duration=tasks[str(task_to_edit) + "_time"])
+                else:
+                    try:
+                        delete_ptask = PersonalTasks.objects.get(task_id = task_to_edit)
+                        tracked_task_to_delete = TrackedTasks.objects.get(personal_task=delete_ptask)
+                        tracked_task_to_delete.delete()
+                        delete_ptask.delete()
+                    except:
+                        pass
         
         # Add these tasks:
         add_these_tasks = ids_coming_in - users_routine_type_task_ids
