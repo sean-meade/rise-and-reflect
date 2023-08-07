@@ -163,16 +163,19 @@ Our choice of font was Comfortaa. The light font style was used for all paragrap
 This website was developed using the frameworks of Django and Bootstrap 4, as well as some web tools for the initial planning. A list of those included in the project can be seen as follows: 
 
 ### Frameworks
+
 - [Django](https://en.wikipedia.org/wiki/Django)
 - [Bootstrap](https://en.wikipedia.org/wiki/Bootstrap)
 
 ### Languages 
+
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 - [Python](https://en.wikipedia.org/wiki/Python)
 
 ### Tools 
+
 - [Git](https://git-scm.com/)
     - Git was used for version control via GitPod, by using the terminal to Git and Push to GitHub.
 - [GitHub](https://github.com/)
@@ -371,13 +374,16 @@ The project will now be cloned locally for you to use.
 Render makes deploying your application as easy as pushing your code to source control. Once you connect your GitHub or GitLab account to your Render account, Render will automatically build and deploy your services with every push. For more information on connecting your Git accounts to Render, see our docs for GitHub and GitLab.
 
 #### One-time setup
+
 - Fork the starter app on GitHub.
 - Fork https://github.com/render-examples/fastai-v3 into your GitHub account.
 
 #### Create a Render account
+
 - Sign up for a Render account. You don’t need a credit card to get started.
 
 #### Per-project setup
+
 - Upload your trained model file
 - Upload the trained model file created with learner.export (for example export.pkl) to a cloud service like Google Drive or Dropbox. Copy the download link for the file.
 - Note the download link should start the file download directly—and is typically different from the share link (which presents you with a view to download the file).
@@ -385,6 +391,7 @@ Render makes deploying your application as easy as pushing your code to source c
     - Dropbox: Use this link generator
 
 #### Customize the app for your model
+
 - Check what versions of packages you are using with following command in the Jupyter Notebook you built your model in: ! pip list
 - Edit the file requirements.txt inside the repo and update the package versions so that they correspond to the ones used by your Jupyter Notebook.
 - Edit the file server.py inside the app directory and update the export_file_url variable with the URL copied above.
@@ -393,6 +400,7 @@ Render makes deploying your application as easy as pushing your code to source c
 - Make sure to keep the GitHub repo you created above current. Render integrates with your GitHub repo and automatically builds and deploys changes every time you push a change.
 
 #### Deploy
+
 Create a new Web Service on Render and use the repo you created above. You will need to grant Render permission to access your repo in this step.
 
 On the deployment screen, pick a name for your service and use Docker for the Environment. The URL will be created using this service name. The service name can be changed if necessary, but the URL initially created can’t be edited.
