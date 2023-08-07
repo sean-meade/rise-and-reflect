@@ -49,14 +49,22 @@ header {
   position: absolute;
   right: 0;
   z-index: 1000;
+  color: #7e679b;
 }
 
 .custom-dropdown-menu {
-  background-color: #bedfdb !important;
+  background-color: #7e679b !important;
+  color: #7e679b !important;
 }
-
+.dropdown-item {
+  color: white !important;
+}
+.dropdown-item:hover {
+  color: #7e679b !important;
+}
 .dropdown:hover .dropdown-menu {
   display: block;
+  color: #7e679b;
 }
 
 .nav-logo {
@@ -294,8 +302,6 @@ footer a:hover {
 }
 
 .full-task {
-  background-color: #66afa5;
-  border: 2px solid black;
   Margin: 5px;
 }
 
@@ -600,10 +606,10 @@ footer a:hover {
 .health-btn h3 {
   margin: 0;
   padding: 5px;
-  border: 1px solid black;
-  background-color: #b3a3c3;
-  color: black;
-  border-radius: 8px; /* Add border-radius for rounded corners */
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 }
 
 .health-btn h3:hover {
