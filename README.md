@@ -2,7 +2,7 @@
 
 ![]()
 
-[Click here to view the live web application](LIVE LINK HERE)
+[Click here to view the live web application](https://rise-and-reflect.onrender.com/)
 
 ### Hello and Welcome!
 
@@ -36,15 +36,6 @@ Please use the table of contents below to navigate through all of the planning, 
         - [Favicon](#favicon)
         - [Footer](#footer)
     - [Welcome Section](#welcome-section)
-    - [Quiz Section](#quiz-section)
-        - [Progress Bar](#progress-bar)
-        - [Questions and Options](#questions-and-options)
-    - [Results Section](#results-section)
-        - [Supervillian Personality Reveal](#supervillain-personality-reveal)
-        - [Retake Quiz Button](#retake-quiz-button)
-        - [Return Home Button](#return-home-button)
-    - [Other Pages](#other-pages)
-        - [404 page](#404-page)
     - [Future Features](#future-features)
 4. [Testing](#testing)
     - [Automated Testing](#automated-testing)
@@ -163,16 +154,19 @@ Our choice of font was Comfortaa. The light font style was used for all paragrap
 This website was developed using the frameworks of Django and Bootstrap 4, as well as some web tools for the initial planning. A list of those included in the project can be seen as follows: 
 
 ### Frameworks
+
 - [Django](https://en.wikipedia.org/wiki/Django)
 - [Bootstrap](https://en.wikipedia.org/wiki/Bootstrap)
 
 ### Languages 
+
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 - [Python](https://en.wikipedia.org/wiki/Python)
 
 ### Tools 
+
 - [Git](https://git-scm.com/)
     - Git was used for version control via GitPod, by using the terminal to Git and Push to GitHub.
 - [GitHub](https://github.com/)
@@ -217,19 +211,19 @@ _Favicon_
 
 <details><summary>Screenshots</summary>
 
-<img src="docs/footer_desktop.png">
+<img src="">
 
 _Footer on Desktop_
 
-<img src="docs/footer_ipad.png">
+<img src="">
 
 _Footer on iPad_
 
-<img src="docs/footer_mobile.png">
+<img src="">
 
 _Footer on Phone_
 
-<img src="docs/social_link_hover.png">
+<img src="">
 
 _Hover effect on social links_
 
@@ -239,185 +233,38 @@ _Hover effect on social links_
 
 This section contains the following features:
 
-- A brief introduction and information about the quiz, how it works and some persuasion for the user to take it.
+- A brief introduction and information about the site, how it works and some persuasion for the user to sign up.
+- A carousel with images pertaining to the mental wellness and routines.
 - The layout is responsive on all devices, with margins widening on larger devices.
-- The semi-circles with the supervillain images in this section expand to full squares on larger screens. This is because the expansion of the semi-circles did not contain the images well on larger screens.
-- Name input section:
-    - User must enter a name to start the quiz - An alert div box appears below the input field if the user tries to take the quiz without entering their name.
-    - The input field only accepts names with or without spaces, to prevent users from filling in numbers or characters. 
-    - The name limits the number of characters to a minimum of 2 and a maximum of 15.
-- Take Quiz button 
-    - Launches the quiz
-    - Has a hover effect which enlarges the button on non-touchscreen devices, so users know that they can click the button.
+- Sign Up and Sign In button
 
 <details><summary>Screenshots</summary>
 
-<img src="docs/instructions_desktop.png">
+<img src="">
 
 _Welcome section on Desktop_
 
-<img src="docs/instructions_ipad.png">
+<img src="">
 
 _Welcome section on iPad_
 
-<img src="docs/instructions_area_phone.png">
+<img src="">
 
 _Welcome section on Phone_
 
-<img src="docs/input_quiz_button.png">
-
-_Name Input and Take Quiz button_
-
-<img src="docs/alert.png">
-
-_Alert div box_
-
 </details>
 
-### Quiz Section
+### User Log In Account and Sign Up Page
 
-The quiz section is fully responsive with the answers increasing in font size and expanding in width on larger devices. I used [Adobe Illustrator](https://www.adobe.com/products/illustrator.html) to choose the shade of green for the option buttons. This colour was selected because it was matched as a complimentary colour to the shade of red (#880808) chosen as the background. 
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/quiz_ipad.png">
-
-_Quiz section on Desktop_
-
-<img src="docs/quiz_desktop.png">
-
-_Quiz section on iPad_
-
-<img src="docs/quiz_phone.png">
-
-_Quiz section on Phone_
-
-</details>
-
-#### Progress Bar
-
-- Gives the user an indication of where they are in the quiz and how many questions are left.
-- Contains both a visual reference in the length of the colour bar and a number reference in the question number.
-- Updates when a user selects an answer and the question is repopulated.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/progress_bar.png">
-
-_Progress Bar Design_
-
-</details>
-
-#### Questions & Options
-
-- Displays the question with four options, and updates with the next question and a set of options each time the user makes a selection.
-- Has a different colour hover effect on the answers on non touchscreen devices with a smooth transition.
-- Once the user has chosen an option, they are immediately taken to the next question, to keep them engaged and interested. This is all part of creating an intuitive and positive user experience.
-- A separate 'next question' button was excluded from the options, as it adds an extra click for the user which they may find irritating.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/question_options.png">
-
-_Questions and options section_
-
-<img src="docs/options_hover.png">
-
-_Answer hover effect_
-
-</details>
-
-### Results Section
-
-#### Supervillian Personality Reveal
-
-- This section gives detailed information about the user's supervillain personality match.
-- The total score calculated once the user has answered all 10 questions is calculated and matched with one of eight possible supervillains (see the list above).
-- The result includes a picture of the supervillain chosen, as well as information about the personality type associated with that supervillain match.
-- The supervillain personality results are fully responsive, expanding in size on larger screens.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/results_section_desktop.png">
-
-_Results section on Desktop_
-
-<img src="docs/results_section_ipad.png">
-
-_Results section on iPad_
-
-<img src="docs/result_section_mobile.png">
-
-_Results section on Phone_
-
-</details>
-
-#### Retake Quiz Button
-
-- This button is displayed below the results section and allows the user to restart the quiz.
-- It has the same design, colour and hover effect as the Take Quiz button, to maintain consistency throughout the quiz. 
-- It is only displayed in the results section once the user has finished taking the quiz, to prevent the user from accidentally restarting the quiz when they have not yet completed all of the questions.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/retake_button.png">
-
-_Retake Quiz Button_
-
-</details>
-
-#### Return Home Button
-
-- This button is displayed below the results section and allows the user to return to the welcome section if they wish so.
-- It has the same design, colour and hover effect as the Go Home Button on the 404 page, to maintain consistency throughout the quiz.
-- The colour is purposefully different to the Retake Quiz button, to avoid the user accidentally pressing the wrong button.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/return_home_btn.png">
-
-_Return Home Button_
-
-</details>
-
-### 404 Page
-
-- The 404 page was set up to smoothly handle user's who have ended up on a non-existent part of the site.
-- This page provides a positive emotional response to the user and a better user experience.
-- It has the same design as the rest of the site, so the users don't feel like they have left the site, encouraging them to return to the home page.
-- The design, colour and text all match the supervillain theme of the quiz in order to maintain consistency.
-- The Go Home button takes the user back to the home page so there is no need for the user to use the browser back button.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/404_desktop.png">
-
-_404 Page on Desktop_
-
-<img src="docs/404_ipad.png">
-
-_404 Page on iPad_
-
-<img src="docs/404_phone.png">
-
-_404 Page on Phone_
-
-</details>
+This gives the user the ability to create a secure account and log in so that they can re-access their data.
 
 ## Future Features 
 
-I would like to add additional features to expand the site. This unfortunately fell out of the scope of this project, but would be useful to users in the future. 
+We would like to add additional features to expand the site. This unfortunately fell out of the scope of this project, but would be useful to users in the future. 
 
-#### User Log In Account and Sign Up Page
+### Mental Health Resources
 
-This would give the user the ability to save their results and recommendations, creating a secure account and log in so that they can re-access their data.
-
-#### Additional Personality Quizzes
-
-As was mentioned previously, this quiz is a simple design, but would ideally be part of a larger, more complex quiz website. Therefore, for future features, I would like to add:
-- Different types of personality quizzes, so the user can learn about their personality in a variety of different contexts.
-- Add a navigation bar that would help the user navigate through the different quizzes.
-- Add more detailed information, backed by psychological research, about the different personality types in the quiz results sections.
+We would like to add actual resources, such as meditation audios and videos, journal prompts and other things for the users to actually have access to on the site, after they have created their routine. 
 
 ## Testing
 
@@ -425,15 +272,15 @@ As was mentioned previously, this quiz is a simple design, but would ideally be 
 
 #### HTML Validator Testing 
 
-I ran my HTML code for each page through the [W3C HTML Validator](https://validator.w3.org/). Thankfully, no errors were displayed. There were some minor warnings, due to the use of multiple h1 elements, but once this was resolved, the results came back clean. 
+We ran my HTML code for each page through the [W3C HTML Validator](https://validator.w3.org/). Thankfully, no errors were displayed. There were some minor warnings, due to the use of multiple h1 elements, but once this was resolved, the results came back clean. 
 
 <details><summary>Screenshots</summary>
 
-<img src="docs/html_warnings.png">
+<img src="">
 
 _HTML Validator Warnings_
 
-<img src="docs/html_validator_result.png">
+<img src="">
 
 _HTML Validator Result_
 
@@ -441,79 +288,21 @@ _HTML Validator Result_
 
 #### CSS Validator Testing
 
-I ran my CSS code through the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). No errors were displayed, however there were two warnings shown regarding the use of vendor extended pseudo elements (see screenshot). This was kept in the file despite the warnings, as it was the only way to access the progress bar for styling. 
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/css_warning.png">
-
-_CSS Validator Warning_
-
-<img src="docs/css_validator_result.png">
-
-_CSS Validator Results_
-
-</details>
+We ran the CSS code through the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). No errors were displayed.
 
 #### JavaScript Validator Testing
 
-I ran my JavaScript code through [Jshint validator](https://jshint.com/). The only warnings shown initially were to use "-moz" instead of "let" for global variables. However, once I configured the settings to support "New JavaScript Features (ES6)" there were no further warnings or errors. 
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/jshint_result.png">
-
-_JS Validator Result_
-
-<img src="docs/configure.png">
-
-_Change of configuration_
-
-</details>
+We ran the JavaScript code through [Jshint validator](https://jshint.com/).
 
 #### Accessibility
 
-I tested accessibility of the website using Google Chrome Dev Tools Lighthouse, and the scores came out clean. I also ran the site through the [Wave Web Accessibility Evaulation Tool](https://wave.webaim.org/). No warnings or errors were shown. 
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/performance.png">
-
-_Accessibility result on Lighthouse_
-
-<img src="docs/wave_accessibility.png">
-
-_Accessibility result on Wave_
-
-</details>
+We tested accessibility of the website using Google Chrome Dev Tools Lighthouse, and the scores came out clean. We also ran the site through the [Wave Web Accessibility Evaulation Tool](https://wave.webaim.org/). No warnings or errors were shown. 
 
 #### Performance
 
-I tested the site's performance through Google Chrome Dev Tools Lighthouse. Thankfully, the performance, accessibility, SEO and best practices all produced good scores. 
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/performance.png">
-
-_Performance, accessibility, SEO and best practices result_
-
-</details>
+We tested the site's performance through Google Chrome Dev Tools Lighthouse. Thankfully, the performance, accessibility, SEO and best practices all produced good scores.
 
 ### Manual Testing
-
-#### Testing User Stories
-
-I ran manual tests on the website, based on the user stories mentioned above:
-
-| No. | User Goal | How is it achieved? |
-| :--- | :--- | :--- |
-| 1 | I want to take part in a fun and interesting quiz and learn more about my personality | The quiz is an engaging, online game which gives people an insight into their personality and how they would match with a supervillain. It has been designed to have limited questions to keep the user interested, and creates fun, unusual scenarios for the user to choose from. |
-| 2 | I want to find out what the quiz is about and what to expect before starting the quiz | The welcome section contains information about what the quiz is about, and is designed with the supervillain theme in mind so the user knows what to expect from the beginning. |
-| 3 | I want to learn more about why I was matched with a specific Supervillain at the end of the quiz | The personality results are detailed with a picture of the matched supervillain, as well as a clear description of their personality based on their choices. |
-| 4 | I want to access the quiz on any device | The quiz has been designed to be fully responsive across desktop, tablet and mobile devices and has been extensively tested on each. |
-| 5 | I want to navigate easily through the quiz questions | The site has a linear navigation where you follow the quiz through to the end with minimal clicks required to submit answers. |
-| 6 | I want to sign up with my name quickly and easily | The site has a simple name-input section which allows the user the enter their name, and upon submission, the quiz will start immediately. |
-| 7 | I want to have the option of retaking the quiz if I don't like the result | The site has a retake quiz button below the results, once the user has completed the quiz, to give them the option of taking the quiz again. |
 
 #### Browser Compatibility
 
@@ -539,38 +328,6 @@ The website was tested on the following devices:
 The website functioned as expected on all devices.
 
 ### Solved Bugs
-
-#### All results were displayed at once
-
-When the user retakes the quiz, all of the results were displaying at the same time, rather than just one. This was an issue with the displaying results function in the JavaScript code: The "hide" class was not being re-added to the unwanted results in the function. Once this was added, the results functioned as expected:
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/results_bug.png">
-
-_Results bug_
-
-<img src="docs/results_section_ipad.png">
-
-_Results fixed_
-
-</details>
-
-#### Retake Quiz button not working
-
-When the user clicked the retake quiz button, the user was taken to question 10 of 10, instead of question 1 of 10. This is because the score and progress bar were not reset to 0, so the questions were not reset to the beginning. To fix this, I reset the score and progress bar to 0 and the quiz worked as expected again.
-
-<details><summary>Screenshots</summary>
-
-<img src="docs/quiz_bug.png">
-
-_Quiz page shown after user clicked the retake quiz button_
-
-<img src="docs/quiz_desktop.png">
-
-_Quiz page shown after bug was fixed_
-
-</details>
 
 ## Deployment
 
@@ -603,6 +360,44 @@ You can clone the repository to use locally by following these steps:
 
 The project will now be cloned locally for you to use.
 
+### Render 
+
+Render makes deploying your application as easy as pushing your code to source control. Once you connect your GitHub or GitLab account to your Render account, Render will automatically build and deploy your services with every push. For more information on connecting your Git accounts to Render, see our docs for GitHub and GitLab.
+
+#### One-time setup
+
+- Fork the starter app on GitHub.
+- Fork https://github.com/render-examples/fastai-v3 into your GitHub account.
+
+#### Create a Render account
+
+- Sign up for a Render account. You don’t need a credit card to get started.
+
+#### Per-project setup
+
+- Upload your trained model file
+- Upload the trained model file created with learner.export (for example export.pkl) to a cloud service like Google Drive or Dropbox. Copy the download link for the file.
+- Note the download link should start the file download directly—and is typically different from the share link (which presents you with a view to download the file).
+    - Google Drive: Use this link generator.
+    - Dropbox: Use this link generator
+
+#### Customize the app for your model
+
+- Check what versions of packages you are using with following command in the Jupyter Notebook you built your model in: ! pip list
+- Edit the file requirements.txt inside the repo and update the package versions so that they correspond to the ones used by your Jupyter Notebook.
+- Edit the file server.py inside the app directory and update the export_file_url variable with the URL copied above.
+- In the same file, update the line classes = ['black', 'grizzly', 'teddys'] with the classes you expect from your model.
+- Commit and push your changes to GitHub.
+- Make sure to keep the GitHub repo you created above current. Render integrates with your GitHub repo and automatically builds and deploys changes every time you push a change.
+
+#### Deploy
+
+Create a new Web Service on Render and use the repo you created above. You will need to grant Render permission to access your repo in this step.
+
+On the deployment screen, pick a name for your service and use Docker for the Environment. The URL will be created using this service name. The service name can be changed if necessary, but the URL initially created can’t be edited.
+
+Click Save Web Service. That’s it! Your service will begin building and should be live in a few minutes at the URL displayed in your Render dashboard. You can follow its progress in the deploy logs.
+
 ## Credits
 
 ### Design and Planning
@@ -616,21 +411,16 @@ The project will now be cloned locally for you to use.
 - [W3C Schools](https://www.w3schools.com/w3css/w3css_progressbar.asp) helped in initial structure and styling of progress bar.
 - [JS Docs](https://jsdoc.app/about-getting-started.html) helped in naming the variables correctly in the javascript files.
 
-### Supervillain Images
+### Images
 
-- [Lord Voldemort](https://www.wallpaperbetter.com/en/hd-wallpaper-weflb/download/1920x1080)
-- [Magneto](https://learn.codeinstitute.net/dashboard)
-- [The Joker](https://www.wallpaperbetter.com/en/hd-wallpaper-shryv/download/1366x768)
-- [Joker Logo](https://icons8.com/icons/set/joker)
-- [The Green Goblin](https://www.wallpaperbetter.com/en/hd-wallpaper-peptw/download/1366x768)
-- [Thanos](https://www.wallpaperbetter.com/en/hd-wallpaper-sormx)
-- [Vecna](https://www.nawpic.com/vecna-10/)
-- [Maleficent](https://www.wallpaperbetter.com/en/hd-wallpaper-swlee/download/1366x768)
-- [Maleficent on Welcome page](https://www.wallpaperbetter.com/en/hd-wallpaper-cwcsi)
-- [Cruella](https://www.wallpaperbetter.com/en/hd-wallpaper-wfnbu/download/1366x768)
+All of the sites images were taken from [Pexels](https://www.pexels.com).
 
 ### Acknowledgements
 
-- My mentor, Rohit Sharma, for all of his help and advice throughout the project.
-- The whole team at [Code Institute](https://codeinstitute.net/) for their teaching and support.
+#### Our Team members
+
+- Sean Meade
+- Paul Clarke
+- Lauren Pechey
+- Tomislav Dukez
 
