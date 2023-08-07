@@ -1,88 +1,97 @@
 {% extends 'base.html' %} {% block content %} {% comment %} Set Tasks from Goals
 Section {% endcomment %}
-
-<div class="container mt-5">
-    <form
-        action="{% url 'create_routine' routine_type=routine_type %}"
-        method="POST"
-    >
-        {% csrf_token %}
-        <h1 class="text-center">{{routine_type}} Tasks</h1>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <table class="table table-bordered" id="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Task</th>
-                            <th scope="col">Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for task in tasks.Suggested %}
-                        <tr>
-                            <td>{{task.name}}</td>
-                            <td>
-                                <input
-                                    type="number"
-                                    id="{{task.id}}"
-                                    name="{{task.id}}_time"
-                                    placeholder="Duration"
-                                    value="{{task.duration}}"
-                                />
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        {% for custom_task in tasks.Custom %}
-                        <tr>
-                            <td><input
-                                id="custom{{custom_task.id}}"
-                                name="custom{{custom_task.id}}"
-                                placeholder="Duration"
-                                value="{{custom_task.name}}"
-                            />
-                                </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    id="custom{{custom_task.id}}"
-                                    name="custom{{custom_task.id}}_time"
-                                    placeholder="Duration"
-                                    value="{{custom_task.duration}}"
-                                />
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <div id="input-cont"></div>
-                <div>
-                    <a
-                        class="btn btn-primary rounded-circle"
-                        onclick="addInput()"
-                    >
-                        +
-                    </a>
-                    <span class="ml-2">Add Task</span>
+<div class="profile-bg">
+    <div class="profile-bg-gradient">
+        <div class="container mt-6">
+            <form action="{% url 'create_routine' routine_type=routine_type %}" method="POST">
+                {% csrf_token %}
+                <h1 class="text-center">{{routine_type}} Tasks</h1>
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <table class="table table-bordered" id="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for task in tasks.Suggested %}
+                                <tr>
+                                    <td>{{task.name}}</td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            id="{{task.id}}"
+                                            name="{{task.id}}_time"
+                                            placeholder="Duration"
+                                            value="{{task.duration}}"
+                                            class="form-control"
+                                        />
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% for custom_task in tasks.Custom %}
+                                <tr>
+                                    <td>
+                                        <input
+                                            id="custom{{custom_task.id}}"
+                                            name="custom{{custom_task.id}}"
+                                            placeholder="Task Name"
+                                            value="{{custom_task.name}}"
+                                            class="form-control"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            id="custom{{custom_task.id}}"
+                                            name="custom{{custom_task.id}}_time"
+                                            placeholder="Duration"
+                                            value="{{custom_task.duration}}"
+                                            class="form-control"
+                                        />
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div id="input-cont"></div>
+                        <div class="d-flex align-items-center">
+                            <a
+                                class="btn btn-primary rounded-circle"
+                                onclick="addInput()"
+                            >
+                                +
+                            </a>
+                            <span class="ml-2">Add Task</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="text-center mt-4">
-                    {% if routine_type == "Evening" %}
-                    <a class="btn btn-primary" id="previousBtn" href="{% url 'daily-commit' %}">
-                        Previous
-                    </a>
-                    {% else %}
-                    <a class="btn btn-primary" id="previousBtn" href="{% url 'create_routine' routine_type='Evening' %}">
-                        Previous
-                    </a>
-                    {% endif %}
-                    <button class="btn btn-primary" id="nextBtn" type="submit">Next</button>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="text-center mt-4">
+                            {% if routine_type == "Evening" %}
+                            <a class="btn btn-info" id="previousBtn" href="{% url 'daily-commit' %}">
+                                Previous
+                            </a>
+                            <a class="btn btn-info" id="nextBtn" href="{% url 'create_routine' routine_type='Morning' %}">
+                                Next
+                            </a>
+                            {% else %}
+                            <a class="btn btn-info" id="previousBtn" href="{% url 'create_routine' routine_type='Evening' evening='True' %}">
+                                Previous
+                            </a>
+                            <a class="btn btn-info" id="nextBtn" href="{% url 'display_routine' %}">
+                                Next
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 <script>

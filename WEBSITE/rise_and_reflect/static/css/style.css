@@ -315,7 +315,6 @@ footer a:hover {
 }
 
 .health-btn {
-
   background: none;
   color: inherit;
   border: none;
@@ -323,10 +322,13 @@ footer a:hover {
   font: inherit;
   cursor: pointer;
   outline: inherit;
-  transition: transform 1s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+ 
 }
-.health-btn a:hover {
-  transform: scale(1.05);
+
+.health-btn:hover {
+  transform: scale(1.05); /* Slightly increase size */
+
 }
 
 .profile-image {

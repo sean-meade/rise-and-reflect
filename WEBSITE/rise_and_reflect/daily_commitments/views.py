@@ -43,8 +43,35 @@ def daily_commit(request):
             commitments.user = request.user
             # then save
             commitments.save()
+            
+        return create_routine(request, routine_type="Evening", evening=True)
+    
+     # Get the user profile of the user
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_health_area = getattr(user_profile, "health_area")
+    # Add health area
+    user_profile.health_area=UserHealthArea(health_area=user_health_area)
+    user_profile.save()
+    try:
+        users_commitments = UserTimeCommitments.objects.get(user=request.user)
+        if users_commitments:
+            form = CommitmentsForm(initial={
+                "hours_of_sleep": getattr(users_commitments, "hours_of_sleep"),
+                "work_time_from": getattr(users_commitments, "work_time_from"),
+                "work_time_to": getattr(users_commitments, "work_time_to"),
+                "commute_time": getattr(users_commitments, "commute_time"),
+                "wake_time": getattr(users_commitments, "wake_time"),
+                "get_ready_time": getattr(users_commitments, "get_ready_time"),
+            })
+            if getattr(users_commitments, "wake_time") == None:
+                wake_time=False
+            else:
+                wake_time=True
+    except:
+        form = CommitmentsForm
+        wake_time=True
 
-    return create_routine(request, routine_type="Evening", evening=True)
+    return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
 
 @login_required(login_url='/accounts/login/')
 def health_areas(request):
