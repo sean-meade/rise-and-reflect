@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from WEBSITE.rise_and_reflect.track_routine.views import display_routine
+from track_routine.views import display_routine
 from custom_login.models import CustomUser
 from track_routine.models import RoutineTasks
 from tasks.models import PersonalTasks, TrackedTasks, Tasks
