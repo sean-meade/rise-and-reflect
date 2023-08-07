@@ -149,15 +149,18 @@ def create_routine(request, routine_type, evening=False):
                     task["time"] = task_time
                     all_user_tasks["Morning"].append(task)
                 except:
-                    this_task = Tasks.objects.get(id=task_id, task_type="Evening")
-                    task_name = getattr(this_task, "task")
-                    task_id = getattr(this_task, "id")
-                    task["name"] = task_name
-                    task["id"] = task_id
-                    this_ptask = PersonalTasks.objects.get(task_id=this_task)
-                    task_time = getattr(this_ptask, "duration")
-                    task["time"] = task_time
-                    all_user_tasks["Evening"].append(task)
+                    try:
+                        this_task = Tasks.objects.get(id=task_id, task_type="Evening")
+                        task_name = getattr(this_task, "task")
+                        task_id = getattr(this_task, "id")
+                        task["name"] = task_name
+                        task["id"] = task_id
+                        this_ptask = PersonalTasks.objects.get(task_id=this_task)
+                        task_time = getattr(this_ptask, "duration")
+                        task["time"] = task_time
+                        all_user_tasks["Evening"].append(task)
+                    except:
+                        pass
             
             return render(request, 'routine/edit_routine.html', {'tasks': all_user_tasks})
 
