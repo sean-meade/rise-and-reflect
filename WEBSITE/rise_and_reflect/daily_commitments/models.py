@@ -8,7 +8,7 @@ HEALTH_AREAS = [
     ("Relieve Stress or Anxiety", "Relieve Stress or Anxiety"),
     ("Improve Self-Awareness", "Improve Self-Awareness"),
     ("Have a Balanced Lifestyle", "Have a Balanced Lifestyle"),
-    ("Manage Time Effectively", "Manage Time Effectively"),
+    ("Reduce Anger", "Reduce Anger"),
     ("None", "None"),
 ]
 

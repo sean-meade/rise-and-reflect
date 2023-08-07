@@ -28,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <div class="container mt-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
@@ -37,29 +36,33 @@
                     <div class="row">
                         <div class="col-md-4 d-flex flex-column align-items-center">
                             <div class="circular-progress" id="goal">
-                            <span class="progress-value" id="goal-progress">0%</span>
+                                <span class="progress-value" id="goal-progress">0%</span>
                             </div>
                             <span class="progress-title mt-2">Goals</span>
                         </div>
-                
+                        
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress" id="tasks">
-                            <span class="progress-value" id="tasks-progress">0%</span>
-                            </div>
-                            <span class="progress-title mt-2">Todays Tasks</span>
+                            <a href="{% url 'track_routine' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
+                                <div class="circular-progress" id="tasks">
+                                    <span class="progress-value" id="tasks-progress">0%</span>
+                                </div>
+                                <span class="progress-title mt-2 text-center">Todays Tasks</span>
+                            </a>
                         </div>
-                
+                        
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress" id="routine">
-                            <span class="progress-value" id="routine-progress">0%</span>
-                            </div>
-                            <span class="progress-title mt-2">Routines</span>
+                            <a href="{% url 'display_routine' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
+                                <div class="circular-progress" id="routine">
+                                    <span class="progress-value" id="routine-progress">0%</span>
+                                </div>
+                                <span class="progress-title mt-2 text-center">Routines</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-          
+        
         <div class="container mt-4">
             <div class="card border-0 shadow">
                 <div class="rounded border p-3"> <!-- Added border and changed bg color -->
