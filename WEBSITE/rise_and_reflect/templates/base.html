@@ -28,10 +28,10 @@
     {% endblock %}
 
     {% block favicon %}
-    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dswowyotx/image/upload/v1691390176/favicon/apple-touch-icon_zpmn0n.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dswowyotx/image/upload/v1691390176/favicon/favicon-32x32_rlodv8.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dswowyotx/image/upload/v1691390176/favicon/favicon-16x16_iocyng.png">
-    <link rel="manifest" href="https://res.cloudinary.com/dswowyotx/raw/upload/v1691390259/favicon/site_raotep.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
     {% endblock %}
 
     {% block corecss %}
@@ -67,7 +67,7 @@
     <header>
         <nav class="navbar bg-navbar" id="navbar">
             <a href="#" class="nav-logo">
-                <img src="{% static 'images/cloud1.png' %}" alt="Cloud Image" class="cloud-image">
+                <img src="{% static 'images/Cloud1.png' %}" alt="Cloud Image" class="cloud-image">
                 <span class="text slide-in">Rise and Reflect</span>
             </a>
             <div class="ml-auto">
