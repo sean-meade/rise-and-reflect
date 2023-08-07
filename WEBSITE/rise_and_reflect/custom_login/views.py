@@ -97,9 +97,6 @@ def generate_token_or_retrieve_existing_token(user):
     token = jwt.encode(payload, 'SECRET_KEY', algorithm='HS256')
     user.set_auth_token(token)
 
-    # Save the token in the database or user model
-    print("user.auth_token", user.auth_token)
-
     return token
 
 @csrf_exempt
@@ -111,8 +108,6 @@ def app_login(request):
 
         # Authenticate the user
         user = authenticate(request, username=username, password=password)
-
-        print("user.username", user.username)
 
         if user is not None:
             # Login successful
