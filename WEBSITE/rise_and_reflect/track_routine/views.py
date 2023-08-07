@@ -12,10 +12,13 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
-def display_routine(request):
+def display_routine(request, user=None):
+
+    if user == None:
+        user = request.user
 
     # Get task, type (from Tasks) order,duration, task_id (PersonalTasks)
-    personal_tasks = PersonalTasks.objects.filter(user=request.user).values(
+    personal_tasks = PersonalTasks.objects.filter(user=user).values(
         "task_id", "duration", "order"
     )
 
@@ -41,7 +44,7 @@ def display_routine(request):
             })
 
     # Get hours of sleep
-    list_of_commits = UserTimeCommitments.objects.get(user=request.user).__dict__
+    list_of_commits = UserTimeCommitments.objects.get(user=user).__dict__
     hours_of_sleep = list_of_commits["hours_of_sleep"]
 
     commitments ={}
