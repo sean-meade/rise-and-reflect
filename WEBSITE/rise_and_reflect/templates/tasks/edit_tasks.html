@@ -20,14 +20,14 @@ Section {% endcomment %}
                     <tbody>
                         {% for task in tasks.Suggested %}
                         <tr>
-                            <td>{{task.3}}</td>
+                            <td>{{task.name}}</td>
                             <td>
                                 <input
                                     type="number"
-                                    id="{{task.1}}"
-                                    name="{{task.1}}_time"
+                                    id="{{task.id}}"
+                                    name="{{task.id}}_time"
                                     placeholder="Duration"
-                                    value="{{task.0}}"
+                                    value="{{task.duration}}"
                                 />
                             </td>
                         </tr>
@@ -35,19 +35,19 @@ Section {% endcomment %}
                         {% for custom_task in tasks.Custom %}
                         <tr>
                             <td><input
-                                id="custom{{custom_task.1}}"
-                                name="custom{{custom_task.1}}"
+                                id="custom{{custom_task.id}}"
+                                name="custom{{custom_task.id}}"
                                 placeholder="Duration"
-                                value="{{custom_task.3}}"
+                                value="{{custom_task.name}}"
                             />
                                 </td>
                             <td>
                                 <input
                                     type="number"
-                                    id="custom{{custom_task.1}}"
-                                    name="custom{{custom_task.1}}_time"
+                                    id="custom{{custom_task.id}}"
+                                    name="custom{{custom_task.id}}_time"
                                     placeholder="Duration"
-                                    value="{{custom_task.0}}"
+                                    value="{{custom_task.duration}}"
                                 />
                             </td>
                         </tr>

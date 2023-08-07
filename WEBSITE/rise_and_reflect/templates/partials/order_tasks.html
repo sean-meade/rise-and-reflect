@@ -6,16 +6,27 @@
     <form class="sortable" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target='#film-list'>
       {% csrf_token %}
       <div class="htmx-indicator">Updating...</div>
-{% for task in tasks %}
+{% for task in tasks.Evening %}
 
 <div>
-  <input type='hidden' name='task_order' value='{{task.1}}'/>
+  <input type='hidden' name='task_order' value='{{task.id}}'/>
   {% comment %} <span >{{task}}</span> {% endcomment %}
    <tr>
-      <p>{{task.3}}</p>
-      <p>{{task.2}}</p>
-      <p>{{task.0}}</p>
-      <p>{{task.1}}</p>
+      <p>{{task.name}}</p>
+      <p>{{task.duration}}</p>
+    </tr> 
+  </div>
+
+    {% endfor %}
+
+    {% for task in tasks.Morning %}
+
+<div>
+  <input type='hidden' name='task_order' value='{{task.id}}'/>
+  {% comment %} <span >{{task}}</span> {% endcomment %}
+   <tr>
+      <p>{{task.name}}</p>
+      <p>{{task.duration}}</p>
     </tr> 
   </div>
 

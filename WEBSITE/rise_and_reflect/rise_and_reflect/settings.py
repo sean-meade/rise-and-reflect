@@ -106,9 +106,7 @@ LOGIN_REDIRECT_URL = '/health-area/'
 
 # ACCOUNT_ADAPTER = 'custom_login.adapter.MyAccountAdapter'
 
-
 WSGI_APPLICATION = 'rise_and_reflect.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -127,7 +125,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

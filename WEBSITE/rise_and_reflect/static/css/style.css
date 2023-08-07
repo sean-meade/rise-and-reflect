@@ -10,7 +10,6 @@ html,
 body {
   display: flex;
   flex-direction: column;
-  
   font-family: 'Comfortaa', cursive;
 }
 
@@ -33,7 +32,7 @@ header {
   height: 50px;
   width: auto;
   margin-right: 10px;
-  
+
 }
 
 .nav-logo {
@@ -44,8 +43,8 @@ header {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   transition: color 0.3s ease;
   font-size: 27px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 @keyframes slideInFromBottom {
@@ -127,13 +126,20 @@ footer a:hover {
 }
 
 .container {
-  font-family:'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;
+  background: #bedfdb;
+  width: 100%;
 }
 
 .container-fluid {
   font-family: 'Comfortaa', cursive;
-  
+
 }
+
+/* .carousel-inner img {
+  max-height: 100vh;
+  object-fit: cover;
+} */
 
 .about-border {
   position: relative;
@@ -150,7 +156,7 @@ footer a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(102,175,165, 0.5);
+  background-color: rgba(102, 175, 165, 0.5);
   z-index: -1;
 }
 
@@ -160,18 +166,6 @@ footer a:hover {
   align-items: center;
   justify-content: center;
   font-family: 'Comfortaa', cursive;
-}
-
-.video-container {
-  width: 80vw;
-  max-width: 80%;
-  height: 70vh;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-
-.video-container p {
-  text-align: center;
 }
 
 /* PROFILE PAGE */
@@ -231,11 +225,14 @@ footer a:hover {
   margin: 0;
   padding: 0.5rem 1rem;
 }
-.housing-box{
-  border: 2px solid #000; /* 2px solid black border */
+
+.housing-box {
+  border: 2px solid #000;
+  /* 2px solid black border */
   background-color: #b3a3c3;
-  border-radius:10px;
+  border-radius: 10px;
 }
+
 .account-info {
   border: 2px solid #000;
   /* 2px solid black border */
@@ -263,8 +260,6 @@ footer a:hover {
   justify-content: center;
 }
 
-
-
 .tab-pane h4.text-center {
   width: 100%;
   margin: 0;
@@ -274,34 +269,39 @@ footer a:hover {
 .tab-pane table thead th.text-center {
   text-align: center;
 }
+
 .full-task {
   background-color: #66afa5;
   border: 2px solid black;
-  Margin:5px;
+  Margin: 5px;
 }
+
 .nav-tabs {
   display: flex;
   justify-content: center;
-  width:100%;
+  width: 100%;
 }
+
 .table-bordered {
   background-color: #bedfdb;
   border: 2px solid black;
 }
+
 .task-title {
   text-align: center;
 }
-.health-btn {
 
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+/* .health-btn {
 
-}
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+} */
 
 .profile-image {
   width: 275px;
@@ -311,22 +311,27 @@ footer a:hover {
   border-radius: 50%;
   background-color: #fff;
 }
+
 .tab-pane.fade.show {
   display: block;
 }
+
 .goals-container {
-  border: 2px solid #000; /* 2px solid black border */
+  border: 2px solid #000;
+  /* 2px solid black border */
   background-color: #66afa5;
-  border-radius:10px;
+  border-radius: 10px;
 }
+
 .routine-border {
-  border: 2px solid #000; /* 2px solid black border */
+  border: 2px solid #000;
+  /* 2px solid black border */
   background-color: #66afa5;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 
- .goal-box {
+.goal-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -335,12 +340,14 @@ footer a:hover {
   height: 200px;
   border: 2px solid black;
   background-color: #bedfdb;
-  
+
 }
 
 .instructions {
-  border: 2px solid #000; /* 2px solid black border */
-  padding: 10px; /* Optional: Add padding inside the border */
+  border: 2px solid #000;
+  /* 2px solid black border */
+  padding: 10px;
+  /* Optional: Add padding inside the border */
   margin: 5px;
   margin-top: 10px;
   background-color: #bedfdb;
@@ -349,8 +356,8 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .col-md-6.mb-4 {
-      flex: 0 0 100%;
-      max-width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 
@@ -372,25 +379,25 @@ footer a:hover {
 }
 
 .user-column {
-  text-align: center;  
+  text-align: center;
 }
 
 .user-column img {
-  width: 225px; 
-  height:225px; 
+  width: 225px;
+  height: 225px;
   border-radius: 50%;
-  overflow: hidden; 
+  overflow: hidden;
   border: 4px solid #7e679b;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   margin: 0 auto 20px;
   margin-top: 30px;
   margin-bottom: 30px;
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 
 .user-column img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /* Profile IMG end */
@@ -451,7 +458,7 @@ footer a:hover {
   background-color: #bedfdb;
   border-radius: 5px;
   margin-top: 20px;
-  
+
 }
 
 .routine-box:hover {
@@ -495,23 +502,6 @@ footer a:hover {
   margin: 20px auto;
 }
 
-.square-box {
-  padding-top: 100%;
-  /* Set padding-top to a percentage value to maintain aspect ratio */
-  position: relative;
-  overflow: hidden;
-}
-
-.square-box a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  /* Set height to 100% to fill the square box */
-  width: 100%;
-  /* Set width to 100% to fill the square box */
-}
-
 table,
 th,
 td {
@@ -527,39 +517,70 @@ td {
   background: #bedfdb;
 }
 
-/* Testing images on home page
-.self-care {
-  max-width: 100%;
-  height: auto;
-}*/
+/* Health Area */
 
-.video-container {
-  width: 80vw;
-  max-width: 80%;
-  height: 70vh;
-  border: 2px solid black;
-  border-radius: 5px;
+.center-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.video-container p {
-  text-align: center;
+.health-btn {
+  flex: 1;
+  max-width: 300px;
+  margin: 10px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .square-box {
-  padding-top: 100%;
-  /* Set padding-top to a percentage value to maintain aspect ratio */
   position: relative;
+  width: 100%;
+  padding-bottom: 100%;
   overflow: hidden;
 }
 
-.square-box a {
+.square-box img {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  /* Set height to 100% to fill the square box */
   width: 100%;
-  /* Set width to 100% to fill the square box */
+  height: 100%;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+  color: black;
+}
+
+.goals-border {
+  background-color: #66afa5;
+}
+
+.health-btn a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.health-btn h3 {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid black;
+  background-color: #b3a3c3;
+  color: black;
+  border-radius: 8px; /* Add border-radius for rounded corners */
+}
+
+.health-btn h3:hover {
+  background-color: #99b4df;
 }
 
 table,
@@ -576,32 +597,33 @@ td {
 /* Account info & PROGRESS BARS ON PROFILE PAGE */
 
 .circular-progress {
-    position:relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background: conic-gradient(#99b4df 3.6deg, #ededed 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: conic-gradient(#99b4df 3.6deg, #ededed 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .circular-progress::before {
-  content:"";
+  content: "";
   position: absolute;
   height: 160px;
-  width:160px;
+  width: 160px;
   border-radius: 50%;
   background-color: #fff;
 }
 
 .progress-value {
-  position:relative;
+  position: relative;
   font-size: 50px;
   font-weight: 600;
   color: #99b4df;
 
 }
+
 .progress-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -618,26 +640,26 @@ td {
 
 .btn-google,
 .btn-facebook {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 40px;
-    margin: 5px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .btn-google .fab,
 .btn-facebook .fab {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .btn-google:hover,
 .btn-facebook:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .image-container {
