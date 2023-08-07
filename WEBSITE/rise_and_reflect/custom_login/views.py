@@ -62,10 +62,12 @@ def profile_summary(request):
                 pass
     print(goal_tasks_completed)
     print(total_goal_tasks)
-    percent_of_goal_tasks_completed= round((goal_tasks_completed/total_goal_tasks) * 100)
+
+    if total_goal_tasks == 0:
+        percent_of_tasks_completed_today = 0
+    else:
+        percent_of_goal_tasks_completed = round((goal_tasks_completed/total_goal_tasks) * 100)
     print(percent_of_goal_tasks_completed)
-
-
 
     return render(request, 'home/profile_summary.html', 
                   {'user_profile': user_profile, 
