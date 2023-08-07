@@ -40,6 +40,13 @@ def create_health_areas(apps, schema_editor):
     suggested_task_for_4_morn = Tasks(health_area=user_health_area4, task="Morn task for " + HEALTH_AREAS[3][0], task_type="Morning")
     suggested_task_for_4_morn.save()
 
+    user_health_area = UserHealthArea(health_area=HEALTH_AREAS[4][0])
+    user_health_area.save()
+    suggested_task_for_eve = Tasks(health_area=user_health_area, task="Eve task for " + HEALTH_AREAS[4][0], task_type="Evening")
+    suggested_task_for_eve.save()
+    suggested_task_for_morn = Tasks(health_area=user_health_area, task="Morn task for " + HEALTH_AREAS[4][0], task_type="Morning")
+    suggested_task_for_morn.save()
+
 
 
 def generate_user(apps, schema_editor):

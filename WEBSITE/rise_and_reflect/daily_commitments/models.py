@@ -9,6 +9,7 @@ HEALTH_AREAS = [
     ("Improve Self-Awareness", "Improve Self-Awareness"),
     ("Have a Balanced Lifestyle", "Have a Balanced Lifestyle"),
     ("Manage Time Effectively", "Manage Time Effectively"),
+    ("None", "None"),
 ]
 
 # Database table that holds all the users info on their time commitments
