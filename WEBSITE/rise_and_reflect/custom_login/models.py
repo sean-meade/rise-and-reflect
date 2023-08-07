@@ -14,3 +14,8 @@ class UserProfile(models.Model):
     health_area = models.ForeignKey(UserHealthArea, verbose_name='user_health_area', 
                                     to_field='health_area', null=True,
                                     related_name='user_health_area', on_delete=models.PROTECT)
+    auth_token = models.CharField(max_length=255, null=True, blank=True)
+
+    def set_auth_token(self, auth_token):
+        self.auth_token = auth_token
+        self.save()
