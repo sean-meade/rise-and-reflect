@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
             name='Tasks',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('task', models.CharField(max_length=50)),
+                ('task', models.CharField(max_length=80)),
                 ('task_type', models.CharField(choices=[('Evening', 'Evening'), ('Morning', 'Morning')], max_length=9)),
                 ('custom', models.BooleanField(default=False)),
                 ('health_area', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='task_health_area', to='daily_commitments.userhealtharea', verbose_name='health_area')),
