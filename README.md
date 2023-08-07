@@ -386,6 +386,7 @@ All of the sites images were taken from [Pexels](https://www.pexels.com).
 ### Acknowledgements
 
 #### Our Team members
+
 - Sean Meade
 - Paul Clarke
 - Lauren Pechey
