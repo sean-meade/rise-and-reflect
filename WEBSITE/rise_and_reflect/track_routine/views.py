@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 
@@ -13,9 +13,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
 def display_routine(request, user=None):
-
+    app_display=True
     if user == None:
         user = request.user
+        app_display=False
 
     # Get task, type (from Tasks) order,duration, task_id (PersonalTasks)
     personal_tasks = PersonalTasks.objects.filter(user=user).values(
@@ -129,6 +130,9 @@ def display_routine(request, user=None):
             duration = int(eve_task['duration'])
             eve_start_time = eve_start_time - timedelta(minutes=duration)
             eve_task['start_time'] = eve_start_time.time()
+
+        if app_display:
+            return {'morn_tasks':morn_tasks, 'eve_tasks': eve_tasks, 'commitments': commitments}
         
         # bed time - duration of last eve task = start time of last eve task
         # start time of last eve task - duration of second last eve task = start time of second last eve task
