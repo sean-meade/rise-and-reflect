@@ -8,12 +8,12 @@ class MyAccountAdapter(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
         # Grab the users Profile
         user_profile = UserProfile(user=request.user)
-        path = "/health-area/"
+        path = "profile/"
         # This checks if this is the first time the user logs in
         if user_profile.logged_in == False:
             # TODO: change to True when working properly so on second login user is sent somewhere else like profile page or routine page
             user_profile.logged_in = True
             user_profile.save()
-            path = "profile/"
+            path = "/health-area/"
         
         return path

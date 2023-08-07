@@ -27,10 +27,13 @@ def profile_summary(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
 
-    num_of_tasks = PersonalTasks.objects.filter(user=user).count()
+    num_of_tasks = TrackedTasks.objects.filter(user=user).count()
+    print(num_of_tasks)
     try:
-        num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
+        num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, completed=True).count()
+        print(num_of_tasks_completed_morn)
         num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
+        print(num_of_tasks_completed_eve)
     except:
         num_of_tasks_completed_morn = 0
         num_of_tasks_completed_eve = 0
@@ -38,7 +41,6 @@ def profile_summary(request):
         percent_of_tasks_completed_today = 0
     else:
         percent_of_tasks_completed_today = round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
-
 
     # Get number of Personal tasks that have a Task with custom=False
     # How many of them are completed = True
