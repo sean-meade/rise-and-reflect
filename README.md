@@ -48,7 +48,6 @@ Please use the table of contents below to navigate through all of the planning, 
         - [Responsiveness / Device Testing](#responsiveness-/-device-testing)
         - [Browser Compatibility](#browser-compatibility)
         - [Solved Bugs](#solved-bugs)
-        - [Testing User Stories](#testing-user-stories)
 5. [Deployment](#deployment)
 6. [Credits](#credits)
 
