@@ -56,7 +56,7 @@ def display_routine(request):
         # Eve
         # wake time + 5 mins = start time
         wake_time_fix = datetime.strptime(str(wake_time), '%H:%M:%S')
-        commitments['bed_time'] = wake_time_fix - timedelta(hours=int(hours_of_sleep))
+        commitments['bed_time'] = (wake_time_fix - timedelta(hours=int(hours_of_sleep))).time()
 
         morn_start_time = wake_time_fix + timedelta(minutes=5)
         # start time = time of first task

@@ -21,7 +21,7 @@ class Tasks(models.Model):
         related_name="task_health_area",
         on_delete=models.PROTECT,
     )
-    task = models.CharField(max_length=50)
+    task = models.CharField(max_length=80)
     task_type = models.CharField(max_length=9, choices=TASK_TYPE)
     custom = models.BooleanField(default=False)
     users = models.ManyToManyField(User, related_name='users_ptasks', through='PersonalTasks')
