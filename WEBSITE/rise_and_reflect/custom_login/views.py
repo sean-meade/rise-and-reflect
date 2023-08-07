@@ -139,7 +139,7 @@ def display_tasks(request):
 
         try:
             user = CustomUser.objects.get(auth_token=auth_token)
-            response_data = display_routine(request=None, )
+            response_data = display_routine(request, user)
 
             # Return the username as a JSON response
             return JsonResponse(response_data)
