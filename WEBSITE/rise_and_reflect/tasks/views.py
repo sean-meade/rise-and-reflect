@@ -14,7 +14,6 @@ from django.contrib.auth.decorators import login_required
 def create_routine(request, routine_type, evening=False):
     # Get user and health area
     user = request.user
-    print(user)
     obj = UserProfile.objects.get(user=user)
     area = getattr(obj, "health_area_id")
     health_area = UserHealthArea.objects.get(health_area=area)
@@ -125,15 +124,10 @@ def create_routine(request, routine_type, evening=False):
             else:
                 delete_task = PersonalTasks.objects.get(task_id = task_to_delete)
                 delete_task.delete()
-        print(user)
-        print(request.user)
         if routine_type == "Morning":
-            print(all_users_task_ids)
             all_user_tasks = {"Morning": [], "Evening": []}
             # For all task ids
             for task_id in all_users_task_ids:
-                print(user)
-                print(request.user)
                 task = {}
                 # Add it to set if the task id has the right routine_type
                 try:
