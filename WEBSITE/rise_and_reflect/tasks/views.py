@@ -71,7 +71,10 @@ def create_routine(request, routine_type, evening=False):
             custom = getattr(current_task, "custom")
             # update time and name if custom task
             if custom:
-                if tasks["custom" + str(task_to_edit) + "_time"] == '':
+                if tasks["custom" + str(task_to_edit) + "_time"] == '' or tasks["custom" + str(task_to_edit)] == '':
+                    delete_ptask = PersonalTasks.objects.get(task_id = task_to_edit)
+                    tracked_task_to_delete = TrackedTasks.objects.get(personal_task=delete_ptask)
+                    tracked_task_to_delete.delete()
                     delete_task = Tasks.objects.get(id=task_to_edit)
                     delete_task.delete()
                 else:
