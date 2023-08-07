@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserHealthArea',
             fields=[
-                ('health_area', models.CharField(choices=[('Relieve Stress or Anxiety', 'Relieve Stress or Anxiety'), ('Improve Self-Awareness', 'Improve Self-Awareness'), ('Have a Balanced Lifestyle', 'Have a Balanced Lifestyle'), ('Manage Time Effectively', 'Manage Time Effectively'), ('None', 'None')], default='None', max_length=30, primary_key=True, serialize=False, unique=True)),
+                ('health_area', models.CharField(choices=[('Relieve Stress or Anxiety', 'Relieve Stress or Anxiety'), ('Improve Self-Awareness', 'Improve Self-Awareness'), ('Have a Balanced Lifestyle', 'Have a Balanced Lifestyle'), ('Reduce Anger', 'Reduce Anger'), ('None', 'None')], default='None', max_length=30, primary_key=True, serialize=False, unique=True)),
             ],
         ),
         migrations.CreateModel(
