@@ -118,12 +118,17 @@ def create_routine(request, routine_type, evening=False):
         for task_to_delete in delete_these_tasks:
             # If custom delete the Task and it will cascade
             if "custom" + str(task_to_delete) in tasks:
+                delete_ptask = PersonalTasks.objects.get(task_id = task_to_delete)
+                tracked_task_to_delete = TrackedTasks.objects.get(personal_task=delete_ptask)
+                tracked_task_to_delete.delete()
                 delete_task = Tasks.objects.get(id=task_to_delete)
                 delete_task.delete()
             # If suggested delete Personal and it will cascade
             else:
-                delete_task = PersonalTasks.objects.get(task_id = task_to_delete)
-                delete_task.delete()
+                delete_ptask = PersonalTasks.objects.get(task_id = task_to_delete)
+                tracked_task_to_delete = TrackedTasks.objects.get(personal_task=delete_ptask)
+                tracked_task_to_delete.delete()
+                delete_ptask.delete()
         if routine_type == "Morning":
             all_user_tasks = {"Morning": [], "Evening": []}
             # For all task ids
