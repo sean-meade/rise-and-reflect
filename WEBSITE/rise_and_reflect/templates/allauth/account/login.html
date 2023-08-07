@@ -20,15 +20,15 @@
             {% csrf_token %}
 
             <div class="form-group">
-              <label for="id_login">Email address</label>
-              <input type="text" name="login" class="form-control" placeholder="Enter your Email" autocomplete="username" maxlength="150" required="" id="id_login">
+              <label for="id_login">Username:</label>
+              <input type="text" name="login" class="form-control" placeholder="Enter your Username" autocomplete="username" maxlength="150" required="" id="id_login">
             </div>
 
             <div class="form-group">
               <label for="id_password">Password</label>
               <input type="password" class="form-control" name="password" placeholder="Enter your password" autocomplete="current-password" required="" id="id_password">
             </div>
-            
+
             {% if invalid %}
                 <p class="text-center text-danger">Username/password was incorrect. Please double-check your details and reenter.</p>
             {% endif %}
