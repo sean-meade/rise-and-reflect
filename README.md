@@ -29,6 +29,7 @@ Please use the table of contents below to navigate through all of the planning, 
         - [Font](#font)
 2. [Technologies Used](#technologies-used)
     - [Languages](#languages)
+    - [Frameworks](#frameworks)
     - [Tools](#tools)
 3. [Features](#features)
     - [Whole Site](#whole-site)
@@ -125,56 +126,51 @@ _Phone Wireframes_
 
 #### Structure and Layout
 
-The structure of this website was informed by the scope, principles of interactive design (IXD), as well as the user goals of the quiz. Keeping these important concepts in mind ensured that the website conformed to the user's expectations and needs. 
+The structure of this website was informed by the scope, principles of interactive design (IXD), as well as the user goals of the website. Keeping these important concepts in mind ensured that the website conformed to the user's expectations and needs. 
 
-The main site is a simple, single-page website with content displayed and hidden at different points in the quiz using JavaScript code. There are three main sections within the page which appear and disappear depending on where you are in the quiz. These are:
+The main site is a simple, multi-page website with content displayed and hidden at different points in the quiz using Django. There are three main sections within the page which appear and disappear depending on where you are in the site. These are:
 
-- Welcome and Instructions Area: 
-    - A brief introduction with a name capture input to personalise the user's results, as well as "take quiz" button to start the quiz.
-- Quiz Area: 
-    - The main quiz area, with a progress bar, question, question container, and four answer options to choose from.
-- Results Area: 
-    - The results of the quiz, showing the user's personality results breakdown in the form of a supervillain image and information about their personality match. 
-    - This section also contains a "Retake Quiz" button to take the user back to the start if they want to begin the quiz again.
-    - It also has a "Return Home" button, incase the user would like to be taken back to the welcome page
-- Footer Area: 
-    - Displays the title of the quiz, my name and details. It is only shown on the welcome and results sections, not on the quiz section. 
-
-There is also a 404 page for when a user lands on a non-existent page with a button to link back to index.html to start the quiz again.
+- Welcome, Sign Up and Sign In Area: 
+    - A brief introduction to the site, which allows the user to sign up or login if they are a returning user.
+- Routine Area: 
+    - The main routine area, which allows users to Create, Read, Update and Delete tasks, using the CRUD functionality.
+- Profile Page: 
+    - The user can see a summary of their routines, as well as review their progress
+    - The user can access their login information, and reset their password if necessary
 
 #### Design and Colour
 
-This site was designed using a mobile-first approach, because after conducting some research (using sites like [Adobe](https://xd.adobe.com/ideas/process/ui-design/what-is-mobile-first-design/)), it appears that most users use their mobile devices over desktop or iPad screens, especially when partaking in quizzes. 
+This site was designed for all screen sizes, and after conducting some research (using sites like [Adobe](https://xd.adobe.com/ideas/process/ui-design/what-is-mobile-first-design/)), it appears that most users use their mobile devices over desktop or iPad screens. 
 
-- The design was influenced by villain-inspired colours like deep and bright shades of red, black, gold and green which contrast well and allow for good legibility. 
-- A different colour palette was used for the progress bar to differentiate it from the rest of the quiz elements.
-- The welcome page has images of supervillains looking at the user through semi-circles (only on mobile and tablet screens), to create the perception that the supervillains are looking at the user through a window. 
-- I used the same border-radius for all buttons and options to give maintain consistency throughout the site. 
+- The design was influenced by calming colours like light purples, blues and greens which create a calming effect for the user. 
+- The welcome page has images of people engaging in morning and evening routines.
+- The same colours were used for all buttons and headings, to maintain consistency throughout the site. 
 
 <details><summary>Screenshots</summary>
 
-<img src="docs/color_palette.png">
+<img src="WEBSITE/rise_and_reflect/static/images/color_palette.png">
 
 _Colour Palette for entire website_
-
-<img src="docs/progress_color_palette.png">
-
-_Colour Palette for Progress Bar_
 
 </details>
 
 #### Font
 
-My choice of font was [Cormorant Garamond Light and Cormorant Garamond Bold](https://fonts.google.com/specimen/Cormorant+Garamond?query=cor). The light font was used for all paragraphs and and the bold font was used for all headings and buttons. This font choice was imported from [Google Fonts](https://fonts.google.com/) and had a backup font of Serif. I chose this font for my website because the cursive style contributed to the supervillain theme, whilst also providing a professional, legible finish.
+Our choice of font was Comfortaa. The light font style was used for all paragraphs and and the bold font was used for all headings and buttons. This font choice was imported from [Google Fonts](https://fonts.google.com/) and had a backup font of Cursive. We chose this font for my website because the cursive style contributed to the calming theme, whilst also providing a professional, legible finish.
 
 ## Technologies Used 
 
-This website used a combination of three different Front-End development languages, as well as some web tools for the initial planning. A list of those included in the project can be seen as follows: 
+This website was developed using the frameworks of Django and Bootstrap 4, as well as some web tools for the initial planning. A list of those included in the project can be seen as follows: 
+
+### Frameworks
+- [Django](https://en.wikipedia.org/wiki/Django)
+- [Bootstrap](https://en.wikipedia.org/wiki/Bootstrap)
 
 ### Languages 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [Python](https://en.wikipedia.org/wiki/Python)
 
 ### Tools 
 - [Git](https://git-scm.com/)
@@ -202,11 +198,11 @@ This website used a combination of three different Front-End development languag
 
 #### Favicon
 
-I included a Favicon for the site using the female supervillain graphic which had the same colours as the site's design. This helped to build the brand and continue the site design in the user's browser tab.
+We included a Favicon for the site using the an R&R graphic which had the same colours as the site's design. This helped to build the brand and continue the site design in the user's browser tab.
 
 <details><summary>Screenshots</summary>
 
-<img src="docs/favicon.png">
+<img src="WEBSITE/rise_and_reflect/static/favicon/favicon-32x32.png">
 
 _Favicon_
 
@@ -214,7 +210,7 @@ _Favicon_
 
 #### Footer 
 
-- The footer contains the text "Made By Lauren Pechey" and links to my relevant social media sites so that it can be used as a portfolio project.
+- The footer contains links to relevant social media sites.
 - The footer social icons have aria labels to improve accessibility.
 - The footer social icons have a hover effect with a smooth colour transition.
 - The footer is responsive on all screen sizes.
