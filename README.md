@@ -238,25 +238,13 @@ This section contains the following features:
 - The layout is responsive on all devices, with margins widening on larger devices.
 - Sign Up and Sign In button
 
-<details><summary>Screenshots</summary>
-
-<img src="">
-
-_Welcome section on Desktop_
-
-<img src="">
-
-_Welcome section on iPad_
-
-<img src="">
-
-_Welcome section on Phone_
-
-</details>
-
 ### User Log In Account and Sign Up Page
 
 This gives the user the ability to create a secure account and log in so that they can re-access their data.
+
+### Tasks Section
+
+Here users can create and edit their evening and morning routines to suit their mental health needs. They can also remove tasks that are no longer relevant.
 
 ## Future Features 
 
@@ -273,18 +261,6 @@ We would like to add actual resources, such as meditation audios and videos, jou
 #### HTML Validator Testing 
 
 We ran my HTML code for each page through the [W3C HTML Validator](https://validator.w3.org/). Thankfully, no errors were displayed. There were some minor warnings, due to the use of multiple h1 elements, but once this was resolved, the results came back clean. 
-
-<details><summary>Screenshots</summary>
-
-<img src="">
-
-_HTML Validator Warnings_
-
-<img src="">
-
-_HTML Validator Result_
-
-</details>
 
 #### CSS Validator Testing
 
@@ -330,35 +306,6 @@ The website functioned as expected on all devices.
 ### Solved Bugs
 
 ## Deployment
-
-### GitHub Pages
-
-The site was deployed to GitHub pages. The steps to deploy are as follows: 
-1. In the GitHub repository, navigate to the Settings tab.
-2. From the left hand menu select 'Pages'.
-3. From the source select Branch: main.
-4. Click 'Save'.
-5. A live link will be displayed when published successfully. 
-
-The live link can be found here: [The Ultimate Supervillain Personality Quiz](https://pecheylauren02.github.io/mp2-supervillain-personality-quiz/)
-
-### Forking the GitHub Repository
-
-You can fork the repository by following these steps:
-1. Go to the GitHub repository.
-1. Click on Fork button in upper right hand corner.
-
-### Cloning the GitHub Repository
-
-You can clone the repository to use locally by following these steps:
-1. Navigate to the GitHub Repository you want to clone.
-2. Click on the code drop down button.
-3. Click on HTTPS.
-4. Copy the repository link to the clipboard.
-5. Open your IDE of choice (git must be installed for the next steps).
-6. Type git clone copied-git-url into the IDE terminal.
-
-The project will now be cloned locally for you to use.
 
 ### Render 
 
