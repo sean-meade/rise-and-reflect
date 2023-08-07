@@ -64,7 +64,7 @@ def profile_summary(request):
     print(total_goal_tasks)
 
     if total_goal_tasks == 0:
-        percent_of_tasks_completed_today = 0
+        percent_of_goal_tasks_completed = 0
     else:
         percent_of_goal_tasks_completed = round((goal_tasks_completed/total_goal_tasks) * 100)
     print(percent_of_goal_tasks_completed)
