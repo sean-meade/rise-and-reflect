@@ -7,7 +7,7 @@ class MyAccountAdapter(DefaultAccountAdapter):
     # Function to control where a user is sent when they login
     def get_login_redirect_url(self, request):
         # Grab the users Profile
-        user_profile = UserProfile(user=request.user)
+        user_profile = UserProfile.objects.get(user=request.user)
         path = "profile/"
         # This checks if this is the first time the user logs in
         if user_profile.logged_in == False:
