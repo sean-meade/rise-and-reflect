@@ -11,7 +11,7 @@
     <div class="gradient-overlay"></div>
   </div>
 
-  <div class="container">
+  <div class="container container-login">
     <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="col-md-6 offset-md-6">
           <h1 class="text-center mb-2">{% trans "Welcome Back" %}</h1>
@@ -28,10 +28,19 @@
               <label for="id_password">Password</label>
               <input type="password" class="form-control" name="password" placeholder="Enter your password" autocomplete="current-password" required="" id="id_password">
             </div>
+            
+            {% if invalid %}
+                <p class="text-center text-danger">Username/password was incorrect. Please double-check your details and reenter.</p>
+            {% endif %}
 
             <div class="form-group">
               <button class="btn btn-primary btn-block btn-info" type="submit">{% trans "Sign In" %}</button>
             </div>
+            
+            <div class="text-center mt-3">
+              <a class="mx-auto" href="{% url 'account_reset_password' %}">{% trans "Forgot your password?" %}</a>
+            </div>
+            
 
             <h2 class="text-center pt-4">Or sign in with the following:</h2>
             <div class="row justify-content-center pt-3">
