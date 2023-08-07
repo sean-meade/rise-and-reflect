@@ -22,7 +22,7 @@ def user_homepage(request):
 def set_goals(request):
     return render(request, 'set_goals/set_goals.html')
 
-
+@login_required(login_url='/accounts/login/')
 def profile_summary(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
@@ -30,7 +30,11 @@ def profile_summary(request):
     num_of_tasks = PersonalTasks.objects.filter(user=user).count()
     num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
     num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
-    percent_of_tasks_completed_today= round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
+    if num_of_tasks == 0:
+        percent_of_tasks_completed_today = 0
+    else:
+        percent_of_tasks_completed_today = round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
+
 
     # Get number of Personal tasks that have a Task with custom=False
     # How many of them are completed = True
