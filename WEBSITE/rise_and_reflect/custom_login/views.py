@@ -108,8 +108,6 @@ def app_login(request):
         json_request = json.loads(request.body.decode('utf8'))
         username = json_request['username']
         password = json_request['password']
-        print("username", username)
-        print("password", password)
 
         # Authenticate the user
         user = authenticate(request, username=username, password=password)
@@ -120,8 +118,6 @@ def app_login(request):
             # Login successful
             # Generate or retrieve the authentication token
             token = generate_token_or_retrieve_existing_token(user)
-
-            print("token", str(JsonResponse({"token": token})))
 
             return JsonResponse({"token": token})
         else:

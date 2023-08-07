@@ -1,4 +1,3 @@
-import datetime
 from django.shortcuts import render
 from daily_commitments.forms import CommitmentsForm
 from daily_commitments.models import UserHealthArea
