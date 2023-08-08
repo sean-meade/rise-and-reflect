@@ -72,9 +72,9 @@
             </a>
             <div class="ml-auto">
                 {% if user.is_authenticated %}
-                    <div class="dropdown">
+                    <div class="dropdown" data-auto-close="false">
                         <span class="username">{{ user.username }}</span>
-                        <i class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <i class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" data-auto-close="false" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="userDropdown">
                             <a href="{% url 'profile_summary' %}" class="dropdown-item">Profile</a>
                             <a href="{% url 'track_routine' %}" class="dropdown-item">Track Tasks</a>

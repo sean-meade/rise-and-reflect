@@ -22,7 +22,7 @@
                             <p class="card-text">Username: {{request.user}}</p>
                             <p class="card-text">Email: {{request.user.email}}</p>
                             <p class="card-text">Phone: {{user_profile.phone}}</p>
-                            <!-- You can add other user details here as needed -->
+            
                         </div>
                     </div>
                 </div>
@@ -35,10 +35,21 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-4 d-flex flex-column align-items-center">
-                            <div class="circular-progress" id="goal">
-                                <span class="progress-value" id="goal-progress">0%</span>
-                            </div>
-                            <span class="progress-title mt-2">Goal Tasks Completed</span>
+                            <a href="{% url 'create_routine' routine_type='Morning' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
+                                <div class="circular-progress" id="routine">
+                                    <span class="progress-value" id="routine-progress">0%</span>
+                                </div>
+                                <span class="progress-title mt-2 text-center">Morning Tasks</span>
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 d-flex flex-column align-items-center">
+                            <a href="{% url 'create_routine' routine_type='Evening' evening='True' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
+                                <div class="circular-progress" id="routine">
+                                    <span class="progress-value" id="routine-progress">0%</span>
+                                </div>
+                                <span class="progress-title mt-2 text-center">Evening Tasks</span>
+                            </a>
                         </div>
                         
                         <div class="col-md-4 d-flex flex-column align-items-center">
@@ -49,15 +60,6 @@
                                 <span class="progress-title mt-2 text-center">All Tasks Completed</span>
                             </a>
                         </div>
-                        
-                        <div class="col-md-4 d-flex flex-column align-items-center">
-                            <a href="{% url 'display_routine' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
-                                <div class="circular-progress" id="routine">
-                                    <span class="progress-value" id="routine-progress">0%</span>
-                                </div>
-                                <span class="progress-title mt-2 text-center">Routines</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -65,12 +67,12 @@
         
         <div class="container mt-4">
             <div class="card border-0 shadow">
-                <div class="rounded border p-3"> <!-- Added border and changed bg color -->
+                <div class="rounded border p-3"> 
                     <h4>Security</h4>
                     <hr>
                     <p>If you'd like to reset your password, you can do so here</p>
                     <a href="{% url 'account_reset_password' %}" class="btn btn-info">Reset Password</a>
-                    <h4 class="mt-3">Account</h4> <!-- Changed mt-2 to mt-3 for additional spacing -->
+                    <h4 class="mt-3">Account</h4> 
                     <hr>
                     <p>If you'd like to delete your account, you can do so here</p>
                     <form method="post" action="{% url 'delete_account' %}">
