@@ -75,17 +75,12 @@ Section {% endcomment %}
                             <a class="btn btn-info" id="previousBtn" href="{% url 'daily-commit' %}">
                                 Previous
                             </a>
-                            <a class="btn btn-info" id="nextBtn" href="{% url 'create_routine' routine_type='Morning' %}">
-                                Next
-                            </a>
                             {% else %}
                             <a class="btn btn-info" id="previousBtn" href="{% url 'create_routine' routine_type='Evening' evening='True' %}">
                                 Previous
                             </a>
-                            <a class="btn btn-info" id="nextBtn" href="{% url 'display_routine' %}">
-                                Next
-                            </a>
                             {% endif %}
+                            <button class="btn btn-info" id="nextBtn" type="submit">Next</button>
                         </div>
                     </div>
                 </div>

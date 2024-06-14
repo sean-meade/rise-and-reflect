@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
 def create_routine(request, routine_type, evening=False):
-    print("SEAN - DIZ IS DEE WAY", evening)
     # Get user and health area
     user = request.user
     obj = UserProfile.objects.get(user=user)
@@ -228,7 +227,6 @@ def create_routine(request, routine_type, evening=False):
     last_id = Tasks.objects.all().values_list('id', flat=True).order_by('-id').first()
     if last_id == None:
         last_id = 0
-    print("HELLO SEAN, THIS IS BEING CAUGHT", all_user_tasks_list_type)
     return render(
         request,
         "tasks/edit_tasks.html",
@@ -262,7 +260,11 @@ def sort(request):
             this_ptask = PersonalTasks.objects.get(task_id=this_task)
             task_time = getattr(this_ptask, "duration")
             task["time"] = task_time
+            task_order = getattr(this_ptask, "order")
+            task["order"] = task_order
             all_user_tasks["Morning"].append(task)
+            sorted(all_user_tasks["Morning"]["order"].items())
+            all_user_tasks["Morning"]
         except:
             this_task = Tasks.objects.get(id=task_id, task_type="Evening")
             task_name = getattr(this_task, "task")
@@ -272,7 +274,11 @@ def sort(request):
             this_ptask = PersonalTasks.objects.get(task_id=this_task)
             task_time = getattr(this_ptask, "duration")
             task["time"] = task_time
+            task_order = getattr(this_ptask, "order")
+            task["order"] = task_order
             all_user_tasks["Evening"].append(task)
+            sorted(all_user_tasks["Evening"]["order"].items())
+            all_user_tasks["Evening"]
 
     if all_user_tasks == []:
             return render(
