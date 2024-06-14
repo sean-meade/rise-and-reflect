@@ -1,3 +1,4 @@
+import datetime
 from django.conf import settings
 from django.db import models
 from track_routine.models import RoutineTasks
@@ -54,3 +55,4 @@ class TrackedTasks(models.Model):
         null=True,
     )
     completed = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)

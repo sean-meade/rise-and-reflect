@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from custom_login.models import CustomUser
@@ -33,47 +34,57 @@ def profile_summary(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
 
+    percent_of_morn_tasks_completed = 20
+    percent_of_eve_tasks_completed = 30
+    percent_of_all_tasks_completed = 40
+
     num_of_tasks = TrackedTasks.objects.filter(user=user).count()
-    try:
-        num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
-        num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
-    except:
-        num_of_tasks_completed_morn = 0
-        num_of_tasks_completed_eve = 0
-    if num_of_tasks == 0:
-        percent_of_tasks_completed_today = 0
-    else:
-        percent_of_tasks_completed_today = round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
+    print("num_of_tasks: ", num_of_tasks)
 
-    # Get number of Personal tasks that have a Task with custom=False
-    # How many of them are completed = True
-    all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
-        "task_id"
-    )
-    all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
-    goal_tasks_completed = 0
-    total_goal_tasks = 0
-    for task in all_user_tasks_list:
+    num_of_tasks_complete = TrackedTasks.objects.filter(user=user, date=timezone.now()).count()
+    print("num_of_tasks_complete: ", num_of_tasks_complete)
+
+    # num_of_tasks = TrackedTasks.objects.filter(user=user).count()
+    # try:
+    #     num_of_tasks_completed_morn = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Morning", day=timezone.now().date() ), completed=True).count()
+    #     num_of_tasks_completed_eve = TrackedTasks.objects.filter(user=user, personal_routine=RoutineTasks.objects.get(user=user, routine_type="Evening", day=timezone.now().date() ), completed=True).count()
+    # except:
+    #     num_of_tasks_completed_morn = 0
+    #     num_of_tasks_completed_eve = 0
+    # if num_of_tasks == 0:
+    #     percent_of_tasks_completed_today = 0
+    # else:
+    #     percent_of_tasks_completed_today = round(((num_of_tasks_completed_morn+num_of_tasks_completed_eve)/num_of_tasks) * 100)
+
+    # # Get number of Personal tasks that have a Task with custom=False
+    # # How many of them are completed = True
+    # all_user_tasks_tuple = PersonalTasks.objects.filter(user=request.user).values_list(
+    #     "task_id"
+    # )
+    # all_user_tasks_list = [list(j) for j in all_user_tasks_tuple]
+    # goal_tasks_completed = 0
+    # total_goal_tasks = 0
+    # for task in all_user_tasks_list:
         
-        query_task = Tasks.objects.get(id=task[0])
-        if query_task.custom == False:
-            total_goal_tasks+=1
-            task_type = query_task.task_type
+    #     query_task = Tasks.objects.get(id=task[0])
+    #     if query_task.custom == False:
+    #         total_goal_tasks+=1
+    #         task_type = query_task.task_type
 
-            try:
-                if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )):
-                    goal_tasks_completed+=1
-            except:
-                pass
+    #         try:
+    #             if TrackedTasks.objects.get(user=user, personal_task=PersonalTasks.objects.get(task_id=Tasks.objects.get(id=task[0])), completed=True, personal_routine=RoutineTasks.objects.get(day=timezone.now().date(),routine_type=task_type )):
+    #                 goal_tasks_completed+=1
+    #         except:
+    #             pass
 
-    if total_goal_tasks == 0:
-        percent_of_goal_tasks_completed = 0
-    else:
-        percent_of_goal_tasks_completed = round((goal_tasks_completed/total_goal_tasks) * 100)
+    # if total_goal_tasks == 0:
+    #     percent_of_goal_tasks_completed = 0
+    # else:
+    #     percent_of_goal_tasks_completed = round((goal_tasks_completed/total_goal_tasks) * 100)
 
     return render(request, 'home/profile_summary.html', 
                   {'user_profile': user_profile, 
-                   'values': [percent_of_goal_tasks_completed, percent_of_tasks_completed_today, 37]})
+                   'values': [percent_of_morn_tasks_completed, percent_of_eve_tasks_completed, percent_of_all_tasks_completed]})
 
 @login_required(login_url='/accounts/login/')
 @require_http_methods(['POST'])

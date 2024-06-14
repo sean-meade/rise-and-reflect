@@ -7,28 +7,6 @@ from tasks.models import Tasks
 from custom_login.models import UserProfile
 from django.contrib.auth.decorators import login_required
 
-
-# @login_required(login_url='/accounts/login/')
-# def get_commitments(request):
-
-#     users_commitments = UserTimeCommitments.objects.get(user=request.user)
-#     if users_commitments:
-#         form = CommitmentsForm(initial={
-#             "hours_of_sleep": getattr(users_commitments, "hours_of_sleep"),
-#             "work_time_from": getattr(users_commitments, "work_time_from"),
-#             "work_time_to": getattr(users_commitments, "work_time_to"),
-#             "commute_time": getattr(users_commitments, "commute_time"),
-#             "wake_time": getattr(users_commitments, "wake_time"),
-#             "get_ready_time": getattr(users_commitments, "get_ready_time"),
-#         })
-#         if getattr(users_commitments, "wake_time") == None:
-#             wake_time=False
-#         else:
-#             wake_time=True
-#     else:
-#         form = CommitmentsForm
-#     return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
-
 @login_required(login_url='/accounts/login/')
 def daily_commit(request):
 

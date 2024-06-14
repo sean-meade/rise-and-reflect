@@ -36,8 +36,8 @@
                     <div class="row">
                         <div class="col-md-4 d-flex flex-column align-items-center">
                             <a href="{% url 'create_routine' routine_type='Morning' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
-                                <div class="circular-progress" id="routine">
-                                    <span class="progress-value" id="routine-progress">0%</span>
+                                <div class="circular-progress" id="morn">
+                                    <span class="progress-value" id="morn-progress">0%</span>
                                 </div>
                                 <span class="progress-title mt-2 text-center">Morning Tasks</span>
                             </a>
@@ -45,8 +45,8 @@
                         
                         <div class="col-md-4 d-flex flex-column align-items-center">
                             <a href="{% url 'create_routine' routine_type='Evening' evening='True' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
-                                <div class="circular-progress" id="routine">
-                                    <span class="progress-value" id="routine-progress">0%</span>
+                                <div class="circular-progress" id="eve">
+                                    <span class="progress-value" id="eve-progress">0%</span>
                                 </div>
                                 <span class="progress-title mt-2 text-center">Evening Tasks</span>
                             </a>
@@ -54,8 +54,8 @@
                         
                         <div class="col-md-4 d-flex flex-column align-items-center">
                             <a href="{% url 'track_routine' %}" class="text-decoration-none d-flex flex-column align-items-center custom-link">
-                                <div class="circular-progress" id="tasks">
-                                    <span class="progress-value" id="tasks-progress">0%</span>
+                                <div class="circular-progress" id="all">
+                                    <span class="progress-value" id="all-progress">0%</span>
                                 </div>
                                 <span class="progress-title mt-2 text-center">All Tasks Completed</span>
                             </a>
@@ -90,8 +90,8 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         
-        const circleIds = ["goal", "tasks", "routine"]
-        const valueIds = ["goal-progress", "tasks-progress", "routine-progress"]
+        const circleIds = ["morn", "eve", "all"]
+        const valueIds = ["morn-progress", "eve-progress", "all-progress"]
         const progressEndValues = {{values}}
 
     circleIds.forEach((circleId, index) => {
