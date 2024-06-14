@@ -628,6 +628,12 @@ td {
   height: 100%;
 }
 
+/* Tasks */
+
+.order-tasks {
+  min-height: 100vh;
+}
+
 /* Account info & PROGRESS BARS ON PROFILE PAGE */
 
 .circular-progress {
