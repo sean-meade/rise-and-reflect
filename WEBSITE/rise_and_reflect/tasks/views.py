@@ -1,3 +1,4 @@
+import operator
 from django.shortcuts import render
 from daily_commitments.forms import CommitmentsForm
 from daily_commitments.models import UserHealthArea
@@ -155,6 +156,8 @@ def create_routine(request, routine_type, evening=False):
                     this_ptask = PersonalTasks.objects.get(user=request.user, task_id=this_task)
                     task_time = getattr(this_ptask, "duration")
                     task["time"] = task_time
+                    task_order = getattr(this_ptask, "order")
+                    task["order"] = task_order
                     all_user_tasks["Morning"].append(task)
                 except:
                     try:
@@ -166,9 +169,14 @@ def create_routine(request, routine_type, evening=False):
                         this_ptask = PersonalTasks.objects.get(task_id=this_task)
                         task_time = getattr(this_ptask, "duration")
                         task["time"] = task_time
+                        task_order = getattr(this_ptask, "order")
+                        task["order"] = task_order
                         all_user_tasks["Evening"].append(task)
                     except:
                         pass
+            
+            all_user_tasks["Morning"].sort(key=operator.itemgetter('order'))
+            all_user_tasks["Evening"].sort(key=operator.itemgetter('order'))
             
             return render(request, 'routine/edit_routine.html', {'tasks': all_user_tasks})
 
@@ -207,6 +215,7 @@ def create_routine(request, routine_type, evening=False):
 
     # Check to see which ones are custom tasks
     for ctask in all_user_personal_tasks:
+        print("ctask: ", ctask)
         try:
             custom_task = Tasks.objects.get(id=ctask[0], custom=True, task_type=routine_type)
             task_name = getattr(custom_task, "task")
