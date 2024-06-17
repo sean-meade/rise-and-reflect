@@ -44,17 +44,10 @@ header {
   
 }
 
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  z-index: 1000;
-  color: #7e679b;
-}
-
 .custom-dropdown-menu {
   background-color: #7e679b !important;
   color: #7e679b !important;
+  top: 10px !important;
 }
 .dropdown-item {
   color: white !important;
@@ -62,10 +55,11 @@ header {
 .dropdown-item:hover {
   color: #7e679b !important;
 }
+
 .dropdown:hover .dropdown-menu {
-  display: block;
+  display: block !important;
   color: #7e679b;
-  z-index: 2;
+  z-index: 5 !important;
 }
 
 .nav-logo {
