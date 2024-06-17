@@ -109,7 +109,14 @@ def create_routine(request, routine_type, evening=False):
             else:
                 task_obj = Tasks.objects.get(id=task_to_add)
                 task_time = tasks[str(task_to_add) + "_time"]
+            
             if task_time != '':
+                try:
+                    ptask_exists = PersonalTasks.objects.get(user=user,
+                                                             task_id=task_obj)
+                    ptask_exists.delete()
+                except:
+                    pass
                 # Then create a personal task 
                 personal_task = PersonalTasks(
                                             user=user,
@@ -152,14 +159,17 @@ def create_routine(request, routine_type, evening=False):
                     task_name = getattr(this_task, "task")
                     task_id = getattr(this_task, "id")
                     task["name"] = task_name
+                    print("Check in Monring this_task: ", this_task)
                     task["id"] = task_id
                     this_ptask = PersonalTasks.objects.get(user=request.user, task_id=this_task)
+                    print("Check in Monring this_ptask: ", this_ptask)
                     task_time = getattr(this_ptask, "duration")
                     task["time"] = task_time
                     task_order = getattr(this_ptask, "order")
                     task["order"] = task_order
                     all_user_tasks["Morning"].append(task)
-                except:
+                except Exception as e: 
+                    print("Morning: ", e)
                     try:
                         this_task = Tasks.objects.get(id=task_id, task_type="Evening")
                         task_name = getattr(this_task, "task")
@@ -172,11 +182,12 @@ def create_routine(request, routine_type, evening=False):
                         task_order = getattr(this_ptask, "order")
                         task["order"] = task_order
                         all_user_tasks["Evening"].append(task)
-                    except:
-                        pass
+                    except Exception as e: print(e)
+                        
             
             all_user_tasks["Morning"].sort(key=operator.itemgetter('order'))
             all_user_tasks["Evening"].sort(key=operator.itemgetter('order'))
+            print("all_user_tasks: ", all_user_tasks)
             
             return render(request, 'routine/edit_routine.html', {'tasks': all_user_tasks})
 
@@ -199,7 +210,7 @@ def create_routine(request, routine_type, evening=False):
         current_task["id"] = stask[0]
 
         try:
-            ptask = PersonalTasks.objects.get(task_id=Tasks.objects.get(id=stask[0]))
+            ptask = PersonalTasks.objects.get(user=obj, task_id=Tasks.objects.get(id=stask[0]))
             task_duration = getattr(ptask, "duration")
         except:
             task_duration = "No time given"
