@@ -41,7 +41,6 @@ header {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   background-color: #bedfdb;
-  
 }
 
 .custom-dropdown-menu {
@@ -49,9 +48,11 @@ header {
   color: #7e679b !important;
   top: 10px !important;
 }
+
 .dropdown-item {
   color: white !important;
 }
+
 .dropdown-item:hover {
   color: #7e679b !important;
 }
@@ -196,7 +197,6 @@ footer a:hover {
 
 /* PROFILE PAGE */
 
-
 .fixed-left-column {
   position: fixed;
   left: 0;
@@ -324,12 +324,10 @@ footer a:hover {
   cursor: pointer;
   outline: inherit;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
- 
 }
 
 .health-btn:hover {
   transform: scale(1.05); /* Slightly increase size */
-
 }
 
 .profile-image {
@@ -359,7 +357,6 @@ footer a:hover {
   border-radius: 10px;
 }
 
-
 .goal-box {
   display: flex;
   flex-direction: column;
@@ -369,7 +366,6 @@ footer a:hover {
   height: 200px;
   border: 2px solid black;
   background-color: #bedfdb;
-
 }
 
 .instructions {
@@ -423,7 +419,6 @@ footer a:hover {
   margin-bottom: 30px;
   transition: transform 0.3s ease;
 }
-
 
 .user-column img:hover {
   transform: scale(1.1);
@@ -487,7 +482,6 @@ footer a:hover {
   background-color: #bedfdb;
   border-radius: 5px;
   margin-top: 20px;
-
 }
 
 .routine-box:hover {
@@ -604,7 +598,6 @@ footer a:hover {
   color: white;
   font-family: 'Comfortaa', cursive;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
 }
 
 .health-btn h3:hover {
@@ -655,7 +648,6 @@ td {
   font-size: 50px;
   font-weight: 600;
   color: #99b4df;
-
 }
 
 .progress-container {
