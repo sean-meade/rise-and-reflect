@@ -204,7 +204,7 @@ def create_tasks(request, routine_type, task_post=True):
         },
     )
 
-def order_eve_tasks(request, routine_type):
+def order_tasks(request, routine_type):
     user = UserProfile.objects.get(user=request.user)
     ptasks = PersonalTasks.objects.filter(user=user, task_id__task_type=routine_type).values(
                 "task_id__id", "task_id__task", "task_id__task_type", "duration", 
