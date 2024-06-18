@@ -20,3 +20,15 @@ def reorder(user):
     for order, user_film in zip(new_ordering, existing_ptasks):
         user_film.order = order
         user_film.save()
+
+def rename_keys(list_of_dicts):
+    new_list_of_dicts = []
+    print(list_of_dicts)
+    for current_dict in list_of_dicts:
+        new_dict = {}
+        for key, value in current_dict.items():
+            # Split the key by '__' and take the last part
+            new_key = key.split('__')[-1]
+            new_dict[new_key] = value
+        new_list_of_dicts.append(new_dict)
+    return new_list_of_dicts
