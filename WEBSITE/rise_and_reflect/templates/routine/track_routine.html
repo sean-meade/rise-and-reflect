@@ -6,8 +6,8 @@
     <div class="container">
       <div class="row justify-content-center align-items-start" style="min-height: 100vh;">
         <div class="col-md-8">
-          <h2 class="text-center mb-4">Track tasks for {{ user.username }}</h2>
-          <form action="{% url 'track_routine' %}" method="POST">
+          <h2 class="text-center mb-4">Track tasks</h2>
+          <form action="{% url 'edit_track_routine' %}" method="POST">
             {% csrf_token %}
             <table class="table table-bordered">
               <thead>
@@ -21,14 +21,14 @@
               <tbody>
                 {% for task in routine %}
                 <tr>
-                  <td>{{ task.3 }}</td>
-                  <td>{{ task.2 }}</td>
-                  <td>{{ task.0 }}</td>
+                  <td>{{ task.personal_task__task_id__task }}</td>
+                  <td>{{ task.personal_task__task_id__task_type }}</td>
+                  <td>{{ task.personal_task__duration }}</td>
                   <td>
-                    {% if task.5 == False %}
-                    <input type="checkbox" name="Task{{ task.1 }}" value="{{ task.1 }}">
+                    {% if task.completed == False %}
+                    <input type="checkbox" name="Task{{ task.id }}" value="{{ task.id }}">
                     {% else %}
-                    <input checked type="checkbox" name="Task{{ task.1 }}" value="{{ task.1 }}">
+                    <input checked type="checkbox" name="Task{{ task.id }}" value="{{ task.id }}">
                     {% endif %}
                   </td>
                 </tr>
@@ -36,7 +36,7 @@
               </tbody>
             </table>
             <div class="text-center">
-              <button class="btn btn-info" id="nextBtn" type="submit">Next</button>
+              <button class="btn btn-info" id="nextBtn" type="submit">Save</button>
           </div>
           </form>
         </div>
