@@ -1,15 +1,16 @@
 {{add_tasks}}
 
-<h2>Order tasks for {{tasks.0.task_id__task_type}}</h2>
+<h2>Order tasks for {{tasks.0.task_type}}</h2>
 <br />
 
 <form
   class="sortable"
   hx-trigger="end"
-  hx-post="{% url 'sort' %}"
+  hx-post="{% url 'sort' routine_type=routine_type %}"
   hx-target="#film-list"
 >
   {% csrf_token %}
+  <p>{{tasks}}</p>
   <div class="htmx-indicator">Updating...</div>
   {% for taske in tasks %}
 
@@ -17,19 +18,19 @@
     <input type="hidden" name="task_order" value="{{taske.id}}" />
     {% comment %} <span>{{task}}</span> {% endcomment %}
     <tr>
-      <p>{{taske.task_id__task}} | {{taske.duration}} mins</p>
+      <p>{{taske.task}} | {{taske.duration}} mins</p>
     </tr>
   </div>
 
   {% endfor %}
 </form>
-{% if tasks.0.task_id__task_type == "Morning" %}
+{% if tasks.0.task_type == "Morning" %}
   <a class="btn btn-primary" id="orderEveningTasks" href="{% url 'order_tasks' routine_type='Evening' %}">
     Order Evening Tasks
   </a>
 {% else %}
   <a class="btn btn-primary" id="orderMorningTasks" href="{% url 'order_tasks' routine_type='Morning' %}">
-    Order Evening Tasks
+    Order Morning Tasks
   </a>
 {% endif %}
 <a class="btn btn-primary" id="viewRoutine" href="{% url 'display_routine' %}">
