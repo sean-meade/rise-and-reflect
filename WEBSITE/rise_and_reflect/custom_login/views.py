@@ -38,10 +38,10 @@ def profile_summary(request):
     percent_of_eve_tasks_completed = 30
     percent_of_all_tasks_completed = 40
 
-    num_of_tasks = TrackedTasks.objects.filter(user=user).count()
+    num_of_tasks = TrackedTasks.objects.filter(user=user_profile).count()
     print("num_of_tasks: ", num_of_tasks)
 
-    num_of_tasks_complete = TrackedTasks.objects.filter(user=user, date=timezone.now()).count()
+    num_of_tasks_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now()).count()
     print("num_of_tasks_complete: ", num_of_tasks_complete)
 
     # num_of_tasks = TrackedTasks.objects.filter(user=user).count()
