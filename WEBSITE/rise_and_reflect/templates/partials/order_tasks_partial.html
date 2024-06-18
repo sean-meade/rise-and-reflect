@@ -10,7 +10,6 @@
   hx-target="#film-list"
 >
   {% csrf_token %}
-  <p>{{tasks}}</p>
   <div class="htmx-indicator">Updating...</div>
   {% for taske in tasks %}
 
