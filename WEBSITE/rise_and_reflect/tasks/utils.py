@@ -23,7 +23,6 @@ def reorder(user):
 
 def rename_keys(list_of_dicts):
     new_list_of_dicts = []
-    print(list_of_dicts)
     for current_dict in list_of_dicts:
         new_dict = {}
         for key, value in current_dict.items():
