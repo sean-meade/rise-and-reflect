@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from tasks.views import create_routine
+from tasks.views import create_tasks
 from tasks.models import PersonalTasks
 from .forms import CommitmentsForm
 from .models import HEALTH_AREAS, UserHealthArea, UserTimeCommitments
@@ -22,7 +22,7 @@ def daily_commit(request):
             # then save
             commitments.save()
             
-        return create_routine(request, routine_type="Evening", evening=True)
+        return create_tasks(request, routine_type="Evening", task_post=False)
     
      # Get the user profile of the user
     user_profile = UserProfile.objects.get(user=request.user)
