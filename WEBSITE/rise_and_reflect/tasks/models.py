@@ -1,10 +1,9 @@
 import datetime
 from django.conf import settings
 from django.db import models
+from custom_login.models import UserProfile
 from track_routine.models import RoutineTasks
 from daily_commitments.models import UserHealthArea
-
-User = settings.AUTH_USER_MODEL
 
 # Two categories for tasks
 TASK_TYPE = [
@@ -25,24 +24,32 @@ class Tasks(models.Model):
     task = models.CharField(max_length=80)
     task_type = models.CharField(max_length=9, choices=TASK_TYPE)
     custom = models.BooleanField(default=False)
-    users = models.ManyToManyField(User, related_name='users_ptasks', through='PersonalTasks')
+    users = models.ManyToManyField(UserProfile, related_name='users_ptasks', through='PersonalTasks')
+
+    def __str__(self):
+        # Return a string that represents the instance
+        return f"{self.id} | {self.task} | {self.task_type}"
 
 
 # What tasks a user has selected or created and with what duration
 class PersonalTasks(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     task_id = models.ForeignKey(
         Tasks, verbose_name="task_id", related_name="task_id", on_delete=models.CASCADE
     )
     duration = models.IntegerField(blank=True, null=True)
     order = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        # Return a string that represents the instance
+        return f"{self.task_id.task}"
+
     class Meta:
         ordering = ['order']
 
 
 class TrackedTasks(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     personal_task = models.ForeignKey(
         PersonalTasks, verbose_name="personal_task", related_name="personal_task", on_delete=models.CASCADE
     )
@@ -56,3 +63,7 @@ class TrackedTasks(models.Model):
     )
     completed = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        # Return a string that represents the instance
+        return f"{self.personal_task.task_id.task} | {self.completed}"
