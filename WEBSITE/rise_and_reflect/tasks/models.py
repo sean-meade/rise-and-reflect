@@ -62,7 +62,7 @@ class TrackedTasks(models.Model):
         null=True,
     )
     completed = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         # Return a string that represents the instance

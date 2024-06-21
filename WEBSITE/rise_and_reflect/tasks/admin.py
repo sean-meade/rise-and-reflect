@@ -9,6 +9,10 @@ class TasksAdmin(admin.ModelAdmin):
     list_display = ['task', 'custom', 'task_type', 'health_area']
     search_fields = ['task', 'custom', 'task_type', 'health_area']
 
+class TrackedTasksAdmin(admin.ModelAdmin):
+    list_display = ['user', 'date']
+    search_fields = ['task', 'custom', 'task_type', 'health_area']
+
 admin.site.register(PersonalTasks,PersonalTasksAdmin)
 admin.site.register(Tasks, TasksAdmin)
-admin.site.register(TrackedTasks)
+admin.site.register(TrackedTasks, TrackedTasksAdmin)
