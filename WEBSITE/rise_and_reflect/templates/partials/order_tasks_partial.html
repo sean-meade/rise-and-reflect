@@ -1,0 +1,53 @@
+{{add_tasks}}
+
+<h2>Order tasks for {{tasks.0.task_type}}</h2>
+<br />
+
+<form
+  class="sortable"
+  hx-trigger="end"
+  hx-post="{% url 'sort' routine_type=routine_type %}"
+  hx-target="#film-list"
+>
+  {% csrf_token %}
+  <div class="htmx-indicator">Updating...</div>
+  {% for taske in tasks %}
+
+  <div>
+    <input type="hidden" name="task_order" value="{{taske.id}}" />
+    {% comment %} <span>{{task}}</span> {% endcomment %}
+    <tr>
+      <p>{{taske.task}} | {{taske.duration}} mins</p>
+    </tr>
+  </div>
+
+  {% endfor %}
+</form>
+{% if tasks.0.task_type == "Morning" %}
+  <a class="btn btn-primary" id="orderEveningTasks" href="{% url 'order_tasks' routine_type='Evening' %}">
+    Order Evening Tasks
+  </a>
+{% else %}
+  <a class="btn btn-primary" id="orderMorningTasks" href="{% url 'order_tasks' routine_type='Morning' %}">
+    Order Morning Tasks
+  </a>
+{% endif %}
+<a class="btn btn-primary" id="viewRoutine" href="{% url 'display_routine' %}">
+    View Routine
+  </a>
+<script>
+  document.body.addEventListener("htmx:configRequest", (event) => {
+    event.detail.headers["X-CSRFToken"] = "{{ csrf_token }}";
+  });
+
+  htmx.onLoad(function (content) {
+    var sortables = document.querySelectorAll(".sortable");
+    for (var i = 0; i < sortables.length; i++) {
+      var sortable = sortables[i];
+      new Sortable(sortable, {
+        animation: 150,
+        ghostClass: "blue-background-class",
+      });
+    }
+  });
+</script>

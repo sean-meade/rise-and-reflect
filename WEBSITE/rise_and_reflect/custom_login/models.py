@@ -16,6 +16,9 @@ class UserProfile(models.Model):
                                     to_field='health_area', null=True,
                                     related_name='user_health_area', on_delete=models.PROTECT)
     
+    def __str__(self):
+        # Return a string that represents the instance
+        return f"{self.name}"
 
 class CustomUser(AbstractUser):
 

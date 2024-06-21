@@ -41,30 +41,26 @@ header {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   background-color: #bedfdb;
-  
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  z-index: 1000;
-  color: #7e679b;
 }
 
 .custom-dropdown-menu {
   background-color: #7e679b !important;
   color: #7e679b !important;
+  top: 10px !important;
 }
+
 .dropdown-item {
   color: white !important;
 }
+
 .dropdown-item:hover {
   color: #7e679b !important;
 }
+
 .dropdown:hover .dropdown-menu {
-  display: block;
+  display: block !important;
   color: #7e679b;
+  z-index: 5 !important;
 }
 
 .nav-logo {
@@ -201,7 +197,6 @@ footer a:hover {
 
 /* PROFILE PAGE */
 
-
 .fixed-left-column {
   position: fixed;
   left: 0;
@@ -329,12 +324,10 @@ footer a:hover {
   cursor: pointer;
   outline: inherit;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
- 
 }
 
 .health-btn:hover {
   transform: scale(1.05); /* Slightly increase size */
-
 }
 
 .profile-image {
@@ -364,7 +357,6 @@ footer a:hover {
   border-radius: 10px;
 }
 
-
 .goal-box {
   display: flex;
   flex-direction: column;
@@ -374,7 +366,6 @@ footer a:hover {
   height: 200px;
   border: 2px solid black;
   background-color: #bedfdb;
-
 }
 
 .instructions {
@@ -428,7 +419,6 @@ footer a:hover {
   margin-bottom: 30px;
   transition: transform 0.3s ease;
 }
-
 
 .user-column img:hover {
   transform: scale(1.1);
@@ -492,7 +482,6 @@ footer a:hover {
   background-color: #bedfdb;
   border-radius: 5px;
   margin-top: 20px;
-
 }
 
 .routine-box:hover {
@@ -609,7 +598,6 @@ footer a:hover {
   color: white;
   font-family: 'Comfortaa', cursive;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
 }
 
 .health-btn h3:hover {
@@ -625,6 +613,12 @@ td {
 
 .carousel {
   height: 100%;
+}
+
+/* Tasks */
+
+.order-tasks {
+  min-height: 100vh;
 }
 
 /* Account info & PROGRESS BARS ON PROFILE PAGE */
@@ -654,7 +648,6 @@ td {
   font-size: 50px;
   font-weight: 600;
   color: #99b4df;
-
 }
 
 .progress-container {
@@ -731,16 +724,12 @@ td {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 1) 100%);
   z-index: -1;
 }
 
 .profile-bg {
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100vh;
   background-color: #bedfdb;
   background-size: cover;
   background-position: center;
@@ -751,7 +740,6 @@ td {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   background: linear-gradient(to bottom, rgba(190, 223, 219, 1) 0%, rgba(190, 223, 219, 0.8) 25%, rgba(255, 255, 255, 1) 100%);
 }
 
@@ -760,7 +748,6 @@ td {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   background-image: url("../images/pass-reset.jpg");
   background-size: cover;
   background-position: center;
