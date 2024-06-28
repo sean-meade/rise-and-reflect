@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from tasks.views import create_tasks
 from tasks.models import PersonalTasks
+from track_routine.models import RoutineTasks
 from .forms import CommitmentsForm
 from .models import HEALTH_AREAS, UserHealthArea, UserTimeCommitments
 from tasks.models import Tasks
@@ -94,5 +95,14 @@ def health_areas(request):
             wake_time=True
         # Take user to the page where they can choose their health area
         return render(request, 'daily-commit/daily-commit.html', {'form': form, 'wake_time': wake_time})
+    # On GET request send data to create health area buttons
+    return render(request, 'daily-commit/health-area.html', {'areas': HEALTH_AREAS})
+
+def start_new_routine(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    routines = RoutineTasks.objects.filter(user=user_profile)
+    for routine in routines:
+        routine.delete()
+
     # On GET request send data to create health area buttons
     return render(request, 'daily-commit/health-area.html', {'areas': HEALTH_AREAS})
