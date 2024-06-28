@@ -18,7 +18,7 @@ class UserProfile(models.Model):
     
     def __str__(self):
         # Return a string that represents the instance
-        return f"{self.name}"
+        return f"{self.user}"
 
 class CustomUser(AbstractUser):
 
