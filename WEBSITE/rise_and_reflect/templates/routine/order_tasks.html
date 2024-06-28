@@ -6,7 +6,13 @@
 
   <main class="d-flex">
       <section id="film-list" class="col-12">
+      <h2>Order tasks for {{routine_type}}</h2>
+      {% if tasks|length == 0 %}
+      <p>Please create a routine first </p>
+      <a class="btn btn-primary w-20" href="{% url 'health-areas' %}">Create Routine</a>
+      {% else %}
           {% include 'partials/order_tasks_partial.html' %}
+      {% endif %}
       </section>
   </main>
 </div>

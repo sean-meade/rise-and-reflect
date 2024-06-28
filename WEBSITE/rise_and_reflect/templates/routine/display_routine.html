@@ -2,6 +2,8 @@
 
 {% block content %} 
 
+{% comment %} TODO: reduce this styling {% endcomment %}
+
 <div class="profile-bg">
     <div class="profile-bg-gradient">
         <div class="tab-pane full-task" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
@@ -10,6 +12,10 @@
                     <div class="row justify-content-center align-items-start">
                         <div class="col-md-8">
                             <h4 class="mt-4 text-center task-title mb-3">Your Routine</h4>
+                            {% if message %}
+                            <p>Please create a routine first </p>
+                            <a class="btn btn-primary w-20" href="{% url 'health-areas' %}">Create Routine</a>
+                            {% else %}
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <thead>
@@ -72,6 +78,7 @@
                                     </a>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -79,5 +86,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

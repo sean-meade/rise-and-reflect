@@ -7,6 +7,10 @@
       <div class="row justify-content-center align-items-start" style="min-height: 100vh;">
         <div class="col-md-8">
           <h2 class="text-center mb-4">Track tasks</h2>
+          {% if routine|length == 0 %}
+          <p>Please create a routine first </p>
+          <a class="btn btn-primary w-20" href="{% url 'health-areas' %}">Create Routine</a>
+          {% else %}
           <form action="{% url 'edit_track_routine' %}" method="POST">
             {% csrf_token %}
             <table class="table table-bordered">
@@ -39,6 +43,7 @@
               <button class="btn btn-info" id="nextBtn" type="submit">Save</button>
           </div>
           </form>
+          {% endif %}
         </div>
       </div>
     </div>

@@ -3,6 +3,10 @@ Section {% endcomment %}
 <div class="profile-bg">
     <div class="profile-bg-gradient">
         <div class="container mt-6">
+        {% if tasks == "Please create tasks first" %}
+        <p>Please create a routine first </p>
+        <a class="btn btn-primary w-20" href="{% url 'health-areas' %}">Create Routine</a>
+        {% else %}
             <form action="{% url 'edit_all_tasks' routine_type=routine_type %}" method="POST">
                 {% csrf_token %}
                 <h1 class="text-center">{{routine_type}} Tasks</h1>
@@ -79,6 +83,7 @@ Section {% endcomment %}
                     </div>
                 </div>
             </form>
+        {% endif %}
         </div>
     </div>
 </div>
