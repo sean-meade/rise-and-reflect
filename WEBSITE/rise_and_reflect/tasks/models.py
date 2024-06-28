@@ -1,5 +1,3 @@
-import datetime
-from django.conf import settings
 from django.db import models
 from custom_login.models import UserProfile
 from track_routine.models import RoutineTasks
@@ -25,6 +23,8 @@ class Tasks(models.Model):
     task_type = models.CharField(max_length=9, choices=TASK_TYPE)
     custom = models.BooleanField(default=False)
     users = models.ManyToManyField(UserProfile, related_name='users_ptasks', through='PersonalTasks')
+
+    # TODO: Custom save method limit tasks number
 
     def __str__(self):
         # Return a string that represents the instance
@@ -57,12 +57,18 @@ class TrackedTasks(models.Model):
         RoutineTasks,
         verbose_name="personal_routine",
         related_name="personal_routine",
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         blank=True,
         null=True,
     )
     completed = models.BooleanField(default=False)
     date = models.DateField(auto_now_add=True)
+
+    def delete(self, *args, **kwargs):
+
+        self.personal_task.delete()
+
+        super(RoutineTasks, self).delete(*args, **kwargs)
 
     def __str__(self):
         # Return a string that represents the instance
