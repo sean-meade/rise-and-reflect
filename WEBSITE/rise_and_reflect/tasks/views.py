@@ -1,12 +1,10 @@
-import operator
 from django.shortcuts import render
-from daily_commitments.forms import CommitmentsForm
 from daily_commitments.models import UserHealthArea
-from rise_and_reflect import settings
 from track_routine.models import RoutineTasks
 from custom_login.models import UserProfile
 from .models import Tasks, PersonalTasks, TrackedTasks
 from django.utils import timezone
+from django.contrib import messages
 from .utils import get_max_order, rename_keys
 import re
 from django.contrib.auth.decorators import login_required
@@ -19,21 +17,23 @@ def create_tasks(request, routine_type, task_post=True):
     area = getattr(user, "health_area_id")
     health_area = UserHealthArea.objects.get(health_area=area)
 
+    # get all tasks for health area and routine_type and display them
+    area_tasks = list(Tasks.objects.filter(health_area=area, task_type=routine_type, custom=False).values(
+                "id", "task", "task_type", "custom"
+            ))
+
     # fill in values if they are there
     # get all tasks for health area and routine_type and display them
-    tasks_tuple = PersonalTasks.objects.filter(user=user, task_id__health_area=area, 
+    ptasks_tuple = PersonalTasks.objects.filter(user=user, task_id__health_area=area, 
                                                         task_id__task_type=routine_type).values(
             "task_id__id", "task_id__task", "task_id__task_type", "duration", 
         )
         
-    if len(tasks_tuple) > 0:
-        tasks_list = rename_keys(list(tasks_tuple))
+    if len(ptasks_tuple) > 0:
+        ptasks_tuple_new = rename_keys(list(ptasks_tuple))
+        tasks_list = area_tasks + ptasks_tuple_new
     else:
-        # get all tasks for health area and routine_type and display them
-        tasks_tuple = Tasks.objects.filter(health_area=area, task_type=routine_type).values(
-                    "id", "task", "task_type", "custom"
-                )
-        tasks_list = tasks_tuple
+        tasks_list = area_tasks
 
     if request.POST and task_post == True:
         # check to see if a routine for today exists
@@ -43,7 +43,6 @@ def create_tasks(request, routine_type, task_post=True):
             routine = RoutineTasks.objects.get(user=user, routine_type=routine_type, day=today)
         # Create one if not
         except Exception as error:
-            print("No routine for today found: ", error)
             routine = RoutineTasks(user=user, routine_type=routine_type)
             routine.save()
 
@@ -113,8 +112,8 @@ def create_tasks(request, routine_type, task_post=True):
                     ptask_exists = PersonalTasks.objects.get(user=user,
                                                              task_id=task_obj)
                     ptask_exists.delete()
-                except Exception as e:
-                    print("No Personal task were found: ", e) 
+                except:
+                    pass
             
                 # Then create a personal task 
                 personal_task = PersonalTasks(
@@ -153,21 +152,24 @@ def create_tasks(request, routine_type, task_post=True):
             # fill in values if they are there
             try:
                 # get all tasks for health area and routine_type and display them
-                tasks_tuple = PersonalTasks.objects.filter(user=user, task_id__health_area=area, 
-                                                                task_id__task_type=routine_type).values(
-                        "task_id__id", "task_id__task", "task_id__task_type", "duration", "task_id__custom" 
+                area_tasks = list(Tasks.objects.filter(health_area=area, task_type=routine_type, custom=False).values(
+                            "id", "task", "task_type", "custom"
+                        ))
+
+                # fill in values if they are there
+                # get all tasks for health area and routine_type and display them
+                ptasks_tuple = PersonalTasks.objects.filter(user=user, task_id__health_area=area, 
+                                                                    task_id__task_type=routine_type).values(
+                        "task_id__id", "task_id__task", "task_id__task_type", "duration", 
                     )
                     
-                if len(tasks_tuple) > 0:
-                    tasks_list = rename_keys(list(tasks_tuple))
+                if len(ptasks_tuple) > 0:
+                    ptasks_tuple_new = rename_keys(list(ptasks_tuple))
+                    tasks_list = area_tasks + ptasks_tuple_new
                 else:
-                    # get all tasks for health area and routine_type and display them
-                    tasks_tuple = Tasks.objects.filter(health_area=area, task_type=routine_type).values(
-                                "id", "task", "task_type", "custom"
-                            )
-                    tasks_list = list(tasks_tuple)
-            except Exception as e:
-                print("No personal tasks found: ", e)
+                    tasks_list = area_tasks
+            except:
+                pass
 
             # Get the latest Task id for creating custom tasks in html
             last_id = Tasks.objects.all().values_list('id', flat=True).order_by('-id').first()
@@ -192,6 +194,7 @@ def create_tasks(request, routine_type, task_post=True):
     last_id = Tasks.objects.all().values_list('id', flat=True).order_by('-id').first()
     if last_id == None:
         last_id = 0
+    print("tasks_list: ", tasks_list)
     return render(
         request,
         "tasks/edit_tasks.html",
@@ -249,7 +252,7 @@ def edit_all_tasks(request, routine_type):
                 routine = RoutineTasks.objects.get(user=user, routine_type=routine_type, day=today)
             # Create one if not
             except Exception as error:
-                print("No routine for today found: ", error)
+                messages.error(request, "No routine found for today.")
                 routine = RoutineTasks(user=user, routine_type=routine_type)
                 routine.save()
 
@@ -320,7 +323,7 @@ def edit_all_tasks(request, routine_type):
                                                                 task_id=task_obj)
                         ptask_exists.delete()
                     except Exception as e:
-                        print("No Personal task were found: ", e) 
+                        pass
                 
                     # Then create a personal task 
                     personal_task = PersonalTasks(
@@ -348,13 +351,14 @@ def edit_all_tasks(request, routine_type):
                     try:
                         delete_ptask = PersonalTasks.objects.get(task_id__id = task_to_delete)
                         delete_ptask.delete()
-                    except Exception as e:
-                        print("No PersonalTask created from Task")
+                    except:
+                        messages.error(request, "No PersonalTask created from Task.")
         tasks_tuple = PersonalTasks.objects.filter(user=user, task_id__task_type= routine_type).values(
             "task_id__id", "task_id__task", "task_id__task_type", "duration", "task_id__custom"
         )
         tasks_list = rename_keys(list(tasks_tuple))
     else:
+        messages.error(request, "No Personal task were found.")
         tasks_list = "Please create tasks first"
 
     # Get the latest Task id for creating custom tasks in html
