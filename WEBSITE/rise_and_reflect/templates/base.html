@@ -141,21 +141,23 @@
 
     {% endblock %}
 
-    <script>
-        window.intercomSettings = {
-          app_id: "z7b36uhl",
-          user_id: "{{ request.user.id }}",
-          name: "{{ request.user.get_full_name|escapejs }}",
-          email: "{{ request.user.email|escapejs }}",
-          created_at: "{{ request.user.date_joined|date:'U' }}",
-          user_hash: "{{ user_hash }}"
-        };
-    </script>
+    {% if request.user.is_authenticated %}
+        <script>
+            window.intercomSettings = {
+            app_id: "z7b36uhl",
+            user_id: "{{ request.user.id }}",
+            name: "{{ request.user.get_full_name|escapejs }}",
+            email: "{{ request.user.email|escapejs }}",
+            created_at: "{{ request.user.date_joined|date:'U' }}",
+            user_hash: "{{ user_hash }}"
+            };
+        </script>
 
-    <script>
-        // Example: Update after user logs in via AJAX or SPA behavior
-        window.Intercom("update");
-    </script>
+        <script>
+            // Example: Update after user logs in via AJAX or SPA behavior
+            window.Intercom("update");
+        </script>
+    {% endif %}
 </body>
 
 </html>
