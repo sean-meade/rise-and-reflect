@@ -35,16 +35,25 @@ def profile_summary(request):
     user_profile = UserProfile.objects.get(user=user)
 
     num_of_total_tasks = TrackedTasks.objects.filter(user=user_profile).count()
-    num_of_tasks_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True).count()
-    percent_of_all_tasks_completed = int((num_of_tasks_complete/num_of_total_tasks)*100)
-
+    if num_of_total_tasks > 0:
+        num_of_tasks_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True).count()
+        percent_of_all_tasks_completed = int((num_of_tasks_complete/num_of_total_tasks)*100)
+    else:
+        percent_of_all_tasks_completed = 0
+        
     num_of_eve_tasks = TrackedTasks.objects.filter(user=user_profile, personal_routine__routine_type='Evening').count()
-    num_of_eve_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True, personal_routine__routine_type='Evening').count()
-    percent_of_eve_tasks_completed = int((num_of_eve_complete/num_of_eve_tasks)*100)
+    if num_of_eve_tasks > 0:
+        num_of_eve_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True, personal_routine__routine_type='Evening').count()
+        percent_of_eve_tasks_completed = int((num_of_eve_complete/num_of_eve_tasks)*100)
+    else:
+        percent_of_eve_tasks_completed = 0
 
     num_of_morn_tasks = TrackedTasks.objects.filter(user=user_profile, personal_routine__routine_type='Morning').count()
-    num_of_morn_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True, personal_routine__routine_type='Morning').count()
-    percent_of_morn_tasks_completed = int((num_of_morn_complete/num_of_morn_tasks)*100)
+    if num_of_morn_tasks > 0:
+        num_of_morn_complete = TrackedTasks.objects.filter(user=user_profile, date=timezone.now(), completed=True, personal_routine__routine_type='Morning').count()
+        percent_of_morn_tasks_completed = int((num_of_morn_complete/num_of_morn_tasks)*100)
+    else:
+        percent_of_morn_tasks_completed = 0
 
     return render(request, 'home/profile_summary.html', 
                   {'user_profile': user_profile, 
