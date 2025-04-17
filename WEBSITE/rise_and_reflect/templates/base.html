@@ -23,6 +23,11 @@
     <meta name="keywords" content="">
     {% endblock %}
 
+    <script>
+        // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/z7b36uhl'
+        (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/z7b36uhl';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+    </script>
+
     {% block extra_meta %}
 
     {% endblock %}
@@ -135,6 +140,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
     {% endblock %}
+
+    <script>
+        window.intercomSettings = {
+          app_id: "z7b36uhl",
+          user_id: "{{ request.user.id }}",
+          name: "{{ request.user.get_full_name|escapejs }}",
+          email: "{{ request.user.email|escapejs }}",
+          created_at: "{{ request.user.date_joined|date:'U' }}",
+          user_hash: "{{ user_hash }}"
+        };
+    </script>
+
+    <script>
+        // Example: Update after user logs in via AJAX or SPA behavior
+        window.Intercom("update");
+    </script>
 </body>
 
 </html>
